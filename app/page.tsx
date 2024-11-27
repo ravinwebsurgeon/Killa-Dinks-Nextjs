@@ -17,7 +17,7 @@ import CustomizePaddle from 'components/homepage/CustomizePaddle';
 export default function HomePage() {
   return (
     <>
-      <div className="bg-[#FAF7EB] w-full overflow-hidden  ">
+      <div className="bg-[#FAF7EB]  w-full overflow-hidden  ">
                 <HomePageBanner />
                  <OurWork />
                  <CustomizePaddle/>

@@ -19,13 +19,13 @@ const OurWork = () => {
     <div className="custum-paddles ">
         <div className="text-center mt-[70px] mb-12">
             <div className="text-[40px] font-medium text-black">
-                See Our Wok
+                See Our Work
             </div>
             <div className="text-[25px] text-gray-700 ">
                 Products that Speak for Themselves
             </div>
         </div>
-        <div className="relative flex justify-center pt-">
+        <div className="relative flex justify-center px-[50px]">
 
             <Swiper
                 spaceBetween={42}
@@ -53,7 +53,7 @@ const OurWork = () => {
                         spaceBetween: 42, // Space between slides
                     },
                 }}
-                className="max-w-[1440px]  w-full mx-auto flex justify-center"
+                className="max-w-[1440px]   w-full mx-auto flex justify-center"
             >
                 <SwiperSlide>
                     <div className="border-2  w-full max-w-[452px] overflow-hidden flex flex-col rounded-[20px]">
@@ -99,7 +99,7 @@ const OurWork = () => {
 
 
 
-            <div className="absolute max-w-[1660px] w-full lg:flex hidden justify-between  items-center top-[44%]  " >
+            <div className="absolute z-50 max-w-[1660px] w-full lg:flex hidden justify-between  items-center top-[44%]  " >
                 <div
                     className="py-6  px-4  top-1/2 -translate-y-1/2 left-4 flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer bg-white shadow-md"
                     onClick={() => ourWorkRef.current?.slidePrev()}

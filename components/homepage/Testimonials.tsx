@@ -41,7 +41,7 @@ const Testimonials = () => {
                                 },
                                 // When the width is 768px or more (tablet and above)
                                 768: {
-                                    slidesPerView: 1, // Show 2 slides
+                                    slidesPerView:4, // Show 2 slides
                                     spaceBetween: 42, // Space between slides
                                 },
                                 // When the width is 1024px or more (desktop and above)
