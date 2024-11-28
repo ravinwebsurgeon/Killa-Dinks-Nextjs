@@ -78,7 +78,7 @@ export default function HomePageBanner() {
 
           {/* Mobile Drawer (Hamburger Menu) */}
           <div
-            className={`fixed top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${
+            className={`fixed top-0 z-50 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${
               isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
           >

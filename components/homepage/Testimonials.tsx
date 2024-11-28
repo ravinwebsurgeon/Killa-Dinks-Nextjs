@@ -12,8 +12,8 @@ const Testimonials = () => {
     const ourWorkRef = useRef<SwiperClass | any>(null);
   return (
     <div>
-            <div className="testimonials  max-w-[1440px] w-full mx-auto ">
-                <div className="py-[30px] pt-[50px] relative">
+            <div className="testimonials  max-w-[1440px]  w-full  mx-auto ">
+                <div className="py-[30px] pt-[50px] mx-5  relative">
                     <div className="]  ">
                         <div className="text-[24px] md:text-[40px] font-medium flex justify-center">
                             {" "}
@@ -35,15 +35,19 @@ const Testimonials = () => {
                                 ourWorkRef.current = swiper;
                             }}
                             breakpoints={{
-                                // 640: {
-                                //     slidesPerView: 1, 
-                                //     spaceBetween: 20, 
-                                // },
+                                100: {
+                                    slidesPerView: 1, 
+                                    spaceBetween: 20, 
+                                },
+                                900:{
+                                    slidesPerView: 2, 
+                                    spaceBetween: 20, 
+                                },
                                 // // When the width is 768px or more (tablet and above)
-                                // 768: {
-                                //     slidesPerView:1, // Show 2 slides
-                                //     spaceBetween: 20, // Space between slides
-                                // },
+                                1400: {
+                                    slidesPerView:3, // Show 2 slides
+                                    spaceBetween: 20, // Space between slides
+                                },
                                 // // When the width is 1024px or more (desktop and above)
                                 // 1024: {
                                 //     slidesPerView: 3, // Show 3 slides
@@ -69,7 +73,7 @@ const Testimonials = () => {
                                         />
                                    </div>
                                    <div className=' ' >
-                                   <div className=" pt-[60px]  flex justify-center">John Smith</div>
+                                   <div className=" pt-[60px] ] flex justify-center">John Smith</div>
                                     <div className="flex justify-center gap-2 py-[10px]">
                                         <svg
                                             width="23"
