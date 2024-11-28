@@ -28,7 +28,7 @@ const Footerx = () => {
               <div className="flex w-full justify-between gap-4 py-[20px] pb-[30px] md:pb-[20px]">
                 <div className="text-start">
                   <span className="uppercase">Company</span>
-                  <div className="mt-2 flex flex-col gap-[5px]">
+                  <div className="mt-2 lg:mt-[26px] flex flex-col gap-[5px]">
                     <Link href="">
                       <div className="cursor-pointer text-start">Home</div>
                     </Link>
@@ -49,7 +49,7 @@ const Footerx = () => {
 
                 <div className="text-start">
                   <span className="uppercase">Shop</span>
-                  <div className="mt-2 flex flex-col gap-[5px]">
+                  <div className="mt-2 lg:mt-[26px] flex flex-col gap-[5px]">
                     <Link href="">
                       <div className="cursor-pointer text-start">Paddles</div>
                     </Link>
@@ -70,7 +70,7 @@ const Footerx = () => {
                     <div>
                     <span className="uppercase">Help</span>
                     <div className="flex flex-col justify-between">
-                      <div className="mt-2 flex flex-col gap-[5px]">
+                      <div className="mt-2 lg:mt-[26px] flex flex-col gap-[5px]">
                         <Link href="">
                           <div className="cursor-pointer text-start">Returns</div>
                         </Link>
