@@ -18,7 +18,7 @@ const Footerx = () => {
           <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex lg:flex-row lg:pt-[40px]">
             <div className="w-full">
               <img src={logo.src} alt="" className="mx-auto py-[10px] lg:mx-0 lg:py-0" />
-              <div className="w-full px-[10px] py-[10px] text-center lg:max-w-[320px] lg:text-left">
+              <div className="w-full pr-[10px] py-[10px] text-center lg:max-w-[320px] lg:text-left">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 Ipsum has been the industry standard dummy text ever since.
               </div>

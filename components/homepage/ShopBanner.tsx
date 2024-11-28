@@ -10,7 +10,7 @@ const ShopBanner = ({ products }: any) => {
                         Shop Our Brand
                     </div>
 
-                    <div className="grid  gap-[36px] pt-[40px] place-items-center pb-[50px] mx-auto max-w-screen-xl" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }}>
+                    <div className="grid  gap-[36px] pt-[40px] place-items-center pb-[50px] mx-4 " style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }}>
 
                         {
                             products && products.map((item: any, index: any) => {
@@ -20,8 +20,8 @@ const ShopBanner = ({ products }: any) => {
                                             <div className="max-h-[302px] xl:h-[302px]  overflow-hidden group bg-[#FAF7EB] h-full rounded-t-[20px] flex justify-center items-center">
                                                 <img src={item.images[0].url} alt="" className="w-[250px] h-[250px] transition-transform duration-500 ease-in-out group-hover:scale-110" />
                                             </div>
-                                            <div className=" flex flex-col gap-1 pl-[18px]">
-                                                <div className="pt-[10px] text-[16px] sm:text-[18px]">{item.title}</div>
+                                            <div className=" flex flex-col gap-1 pt-[10px] pb-[20px] px-5">
+                                                <div className=" text-[16px] sm:text-[18px]">{item.title}</div>
                                                 <div className="text-[18px] sm:text-[20px]">${item.priceRange.maxVariantPrice.amount}{" "} USD</div>
                                                 <Link  href={`/product/${item.handle}`}  className="my-[10px] py-[6px] max-w-[200px] text-[16px] sm:text-[18px] text-[#BBA887] bg-[#FAF7EB] px-6 rounded-[20px]">
                                                     Choose Options
