@@ -1,6 +1,6 @@
-'use client'
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import dropDownIcon from '../../app/assets/dropDownArrow.png'
+import dropDownIcon from '../../public/assets/dropDownArrow.png'
 
 // Type definition for the dropdown props
 interface DropdownProps {
@@ -43,24 +43,39 @@ const Dropdown: React.FC<DropdownProps> = ({ title, options }) => {
   };
 
   return (
-    <div className="relative"    ref={dropdownRef}>
+    <div className="relative" ref={dropdownRef}>
       {/* Dropdown button */}
-      <button
-       onMouseEnter={handleMouseEnter}
-      
-        className=" text-white  flex gap-[5px] justify-center items-center p-2 rounded-md"
+      <div
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={() => setIsOpen(!isOpen)} // Toggle dropdown when button is clicked
+        className="text-white flex gap-[5px] justify-center items-center p-2 py-4 rounded-md"
       >
-        { title}
+        {title}
         {isOpen ? (
-          <img src={dropDownIcon.src} width={10} height={10} className="ml-2 transition-transform duration-300 transform rotate-180" />
+          <img
+            src={dropDownIcon.src}
+            width={10}
+            height={10}
+            className="ml-2 transition-transform duration-300 transform rotate-180"
+          />
         ) : (
-          <img src={dropDownIcon.src} width={10} height={10} className="ml-2 transition-transform duration-300 transform rotate-0" />
+          <img
+            src={dropDownIcon.src}
+            width={10}
+            height={10}
+            className="ml-2 transition-transform duration-300 transform rotate-0"
+          />
         )}
-      </button>
+      </div>
 
       {/* Dropdown menu */}
       {isOpen && (
-        <ul  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="absolute bg-black/50  overflow-hidden opacity-7 border rounded-md shadow-lg mt-2 w-40 z-10">
+        <ul
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="absolute bg-black/50 overflow-hidden opacity-7 border rounded-md shadow-lg  w-40 z-10"
+        >
           {options.map((option, index) => (
             <li
               key={index}
@@ -72,13 +87,14 @@ const Dropdown: React.FC<DropdownProps> = ({ title, options }) => {
           ))}
         </ul>
       )}
-
-      {/* Optionally display the selected option */}
-      {/* {selectedOption && (
-        <p className="mt-2 text-gray-700">Selected: {selectedOption}</p>
-      )} */}
     </div>
   );
 };
 
 export default Dropdown;
+
+
+{/* Optionally display the selected option */}
+{/* {selectedOption && (
+<p className="mt-2 text-gray-700">Selected: {selectedOption}</p>
+)} */}

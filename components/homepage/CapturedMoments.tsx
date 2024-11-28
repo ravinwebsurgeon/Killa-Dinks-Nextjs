@@ -1,17 +1,17 @@
 'use client'
 import React  , {useRef} from 'react'
-import videoImg1 from "../../app/assets/videoImg1.jpeg";
-import videoImg2 from "../../app/assets/videoImg2.jpeg";
-import videoImg3 from "../../app/assets/videoImg3.jpeg";
-import arrowImg1 from '../../app/assets/Arrow1.png';
-import arrowImg2 from '../../app/assets/Arrow2.png';
-import sliderImage1 from "../../app/assets/sliderImage.jpeg";
-import sliderImage3 from "../../app/assets/sliderImage3.jpeg";
+import videoImg1 from "../../public/assets/videoImg1.jpeg";
+import videoImg2 from "../../public/assets/videoImg2.jpeg";
+import videoImg3 from "../../public/assets/videoImg3.jpeg";
+import arrowImg1 from '../../public/assets/Arrow1.png';
+import arrowImg2 from '../../public/assets/Arrow2.png';
+import sliderImage1 from "../../public/assets//sliderImage.jpeg";
+import sliderImage3 from "../../public/assets/sliderImage3.jpeg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from 'swiper'; 
 import "swiper/css";
 import "swiper/css/navigation";
-
+// C:\Users\SimranpreetSingh\Desktop\project\Killa-Dinks-Nextjs\public\assets\Arrow1.png
 const CapturedMoments = () => {
     const swiperRef = useRef<SwiperClass | any>(null);
   return (

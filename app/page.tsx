@@ -31,7 +31,7 @@ export default function HomePage() {
                 </div>
                <NewsLetter />            
             <div className="overflow-hidden">
-            <Footerx /> 
+            <Footerx />  
                 </div>
             </div>
     </>

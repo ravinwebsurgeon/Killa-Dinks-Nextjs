@@ -1,32 +1,32 @@
 "use client"
-import React, { useRef } from 'react'
-import manImg from "../../app/assets/man.png";
-import { Swiper as SwiperClass } from 'swiper'; 
+import { useRef } from 'react';
+import { Swiper as SwiperClass } from 'swiper';
+import manImg from "../../public/assets/man.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import arrowImg1 from '../../app/assets/Arrow1.png';
-import arrowImg2 from '../../app/assets/Arrow2.png';
+import arrowImg1 from '../../public/assets/Arrow1.png';
+import arrowImg2 from '../../public/assets/Arrow2.png';
 
 const Testimonials = () => {
     const swiperRef = useRef(null);
     const ourWorkRef = useRef<SwiperClass | any>(null);
   return (
     <div>
-            <div className="testimonials">
-                <div className="py-[30px] relative">
+            <div className="testimonials  max-w-[1440px] w-full mx-auto ">
+                <div className="py-[30px] pt-[50px] relative">
                     <div className="]  ">
-                        <div className="text-[40px] font-medium flex justify-center">
+                        <div className="text-[24px] md:text-[40px] font-medium flex justify-center">
                             {" "}
                             Testimonials
                         </div>
-                        <div className="text-[25px] flex justify-center">
+                        <div className="text-[16px] md:text-[25px] flex justify-center">
                             See Why They Love Us
                         </div>
                     </div>
                     <div className="slider-container   my-[40px] ">
                         <Swiper
-                            // spaceBetween={42}
-                            slidesPerView={'auto'}
+                            spaceBetween={0}
+                            slidesPerView={3}
                             loop={true}
                             ref={ourWorkRef}
                             centeredSlides={true}
@@ -35,28 +35,28 @@ const Testimonials = () => {
                                 ourWorkRef.current = swiper;
                             }}
                             breakpoints={{
-                                640: {
-                                    slidesPerView: 1, 
-                                    spaceBetween: 20, 
-                                },
-                                // When the width is 768px or more (tablet and above)
-                                768: {
-                                    slidesPerView:4, // Show 2 slides
-                                    spaceBetween: 42, // Space between slides
-                                },
-                                // When the width is 1024px or more (desktop and above)
-                                1024: {
-                                    slidesPerView: 2.4, // Show 3 slides
-                                    spaceBetween: 42, // Space between slides
-                                },
-                                // centeredSlides: true,     // Activates center mode
+                                // 640: {
+                                //     slidesPerView: 1, 
+                                //     spaceBetween: 20, 
+                                // },
+                                // // When the width is 768px or more (tablet and above)
+                                // 768: {
+                                //     slidesPerView:1, // Show 2 slides
+                                //     spaceBetween: 20, // Space between slides
+                                // },
+                                // // When the width is 1024px or more (desktop and above)
+                                // 1024: {
+                                //     slidesPerView: 3, // Show 3 slides
+                                //     spaceBetween: 20, // Space between slides
+                                // },
+                                // Activates center mode
 
                             }} 
                             // className='flex justify-start'
                              >
 
-                            <SwiperSlide className=' !w-[524px] '>
-                            <div className="border-2 min-h-[405] min-w-[479px]  rounded-[20px]">
+                            <SwiperSlide className='  w-full '>
+                            <div className="border-2   rounded-[20px]">
                                     {/* <div className="flex justify-center">
                                        
                                     </div> */}
@@ -145,8 +145,8 @@ const Testimonials = () => {
                                 </div>
                             </SwiperSlide>
 
-                            <SwiperSlide  className=' !w-[524px] ' >
-                            <div className="border-2 min-h-[405] min-w-[479px]  rounded-[20px]">
+                            <SwiperSlide className='  w-full '>
+                            <div className="border-2   rounded-[20px]">
                                     {/* <div className="flex justify-center">
                                        
                                     </div> */}
@@ -235,8 +235,8 @@ const Testimonials = () => {
                                 </div>
                             </SwiperSlide>
 
-                            <SwiperSlide  className=' !w-[524px] '>
-                            <div className="border-2 min-h-[405] min-w-[479px]  rounded-[20px]">
+                            <SwiperSlide className='  w-full '>
+                            <div className="border-2   rounded-[20px]">
                                     {/* <div className="flex justify-center">
                                        
                                     </div> */}
@@ -325,8 +325,8 @@ const Testimonials = () => {
                                 </div>
                             </SwiperSlide>
 
-                            <SwiperSlide  className=' !w-[524px] '>
-                            <div className="border-2 min-h-[405] min-w-[479px]  rounded-[20px]">
+                            <SwiperSlide className='  w-full '>
+                            <div className="border-2   rounded-[20px]">
                                     {/* <div className="flex justify-center">
                                        
                                     </div> */}
@@ -415,8 +415,8 @@ const Testimonials = () => {
                                 </div>
                             </SwiperSlide>
 
-                            <SwiperSlide  className=' !w-[524px] '>
-                            <div className="border-2 min-h-[405] min-w-[479px]  rounded-[20px]">
+                            <SwiperSlide className='  w-full '>
+                            <div className="border-2   rounded-[20px]">
                                     {/* <div className="flex justify-center">
                                        
                                     </div> */}

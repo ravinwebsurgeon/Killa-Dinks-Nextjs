@@ -3,15 +3,15 @@ import React, { useRef } from 'react'
 import img1 from "../../app/assets/ourwork1.png";
 import img2 from "../../app/assets/ourwork2.png";
 import img3 from "../../app/assets/ourwork3.png";
-import arrowImg1 from '../../app/assets/Arrow1.png';
-import arrowImg2 from '../../app/assets/Arrow2.png';
+import arrowImg1 from '../../public/assets/Arrow1.png';
+import arrowImg2 from '../../public/assets/Arrow2.png';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from 'swiper'; 
 import "swiper/css"; // Swiper core styles
 import "swiper/css/navigation"; 
-import videoImg1 from "../../app/assets/videoImg1.jpeg";
-import videoImg2 from "../../app/assets/videoImg2.jpeg";
-import videoImg3 from "../../app/assets/videoImg3.jpeg";
+import videoImg1 from "../../public/assets/videoImg1.jpeg";
+import videoImg2 from "../../public/assets/videoImg2.jpeg";
+import videoImg3 from "../../public/assets/videoImg3.jpeg";
 
 const MobileCapturedMoments = () => {
     const ourWorkRef = useRef<SwiperClass | any>(null);

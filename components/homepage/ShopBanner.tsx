@@ -1,8 +1,8 @@
 import React from 'react'
-import bag from "../../app/assets/bag.png";
-import im2 from "../../app/assets/im2.png";
-import im3 from "../../app/assets/im3.png";
-import im4 from "../../app/assets/im4.png";
+import bag from "../../public/assets/bag.png";
+import im2 from "../../public/assets/im2.png";
+import im3 from "../../public/assets/im3.png";
+import im4 from "../../public/assets/im4.png";
 
 const ShopBanner = () => {
   return (

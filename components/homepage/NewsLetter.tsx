@@ -13,9 +13,9 @@ const NewsLetter = () => {
                 placeholder="Email"
                 type="text"
             />
-            <div className=" right-[35%] top-4 bottom-0 flex items-center pr-4 text-black/50 text-[16px] lg:text-[24px] font-[400] ">
+            <button className=" right-[35%] top-4 bottom-0 hover:cursor-pointer flex items-center pr-4 text-black/50 text-[16px] lg:text-[24px] font-[400] ">
                 Subscribe
-            </div>
+            </button>
         </div>
     </section>
 </div>

@@ -1,10 +1,10 @@
 import React from 'react'
-import b1 from "../../app/assets/Badge1.png";
-import b2 from "../../app/assets/Badge2.png";
-import b3 from "../../app/assets/Badge3.png";
-import b4 from "../../app/assets/Badge4.png";
-import b5 from "../../app/assets/Badge5.png";
-import logo from "../../app/assets/logo.png";
+import b1 from "../../public/assets/Badge1.png";
+import b2 from "../../public/assets/Badge2.png";
+import b3 from "../../public/assets/Badge3.png";
+import b4 from "../../public/assets/Badge4.png";
+import b5 from "../../public/assets/Badge5.png";
+import logo from '../../public/assets/logo.png';
 
 const Footerx = () => {
   return (
