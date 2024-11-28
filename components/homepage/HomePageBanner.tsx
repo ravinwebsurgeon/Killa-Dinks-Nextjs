@@ -1,9 +1,9 @@
 'use client'
-import React, { useState } from 'react';
-import rect from '../../public/assets/rect.png';
+import CartModal from 'components/cart/modal';
+import { useState } from 'react';
 import logo from '../../public/assets/logo.png';
+import rect from '../../public/assets/rect.png';
 import user from '../../public/assets/user.png';
-import cart from '../../public/assets/cart.png';
 import Dropdown from './Dropdown';
 
 export default function HomePageBanner() {
@@ -30,9 +30,9 @@ export default function HomePageBanner() {
               />
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex items-center gap-5">
               <img src={user.src} alt="User" className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]" />
-              <img src={cart.src} alt="Cart" className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]" />
+              <CartModal />
             </div>
 
             {/* Hamburger Menu Icon */}
@@ -69,22 +69,21 @@ export default function HomePageBanner() {
                 <div>Custom Paddles</div>
                 <div>Join the Team!</div>
               </div>
-              <div className="flex gap-5">
+              <div className="flex items-center gap-5">
                 <img src={user.src} alt="User" className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]" />
-                <img src={cart.src} alt="Cart" className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]" />
+                <CartModal />
               </div>
             </div>
           </div>
 
           {/* Mobile Drawer (Hamburger Menu) */}
           <div
-            className={`fixed top-0 z-50 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${
-              isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}
+            className={`fixed top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+              }`}
           >
             <div className="flex flex-col py-6 pt-8 px-4">
               <div className="flex justify-end items-center mb-1">
-                
+
                 <button onClick={toggleDrawer} className="text-4xl text-black">
                   &times; {/* Close icon */}
                 </button>
@@ -92,7 +91,7 @@ export default function HomePageBanner() {
 
               <div className="flex flex-col gap-4 text-lg">
                 <div>Home</div>
-                
+
                 <div>Our Story</div>
                 <div>Custom Paddles</div>
                 <div>Join the Team!</div>
