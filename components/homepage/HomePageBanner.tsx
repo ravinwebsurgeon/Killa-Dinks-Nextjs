@@ -20,7 +20,7 @@ export default function HomePageBanner() {
     <div>
       <header className="bigger-navbar z-50 overflow-hidden bg-[#FAF7EB] lg:pt-[47px]">
         {/* Mobile Header */}
-        <div className="mb-8 flex overflow-hidden bg-black/90 px-8 lg:hidden">
+        <div className="mb-8  flex overflow-hidden bg-black/90 px-8 lg:hidden">
           <div className="mx-auto flex w-full items-center justify-between gap-[30px] py-4 text-white">
             <div>
               <img
@@ -78,7 +78,7 @@ export default function HomePageBanner() {
 
           {/* Mobile Drawer (Hamburger Menu) */}
           <div
-            className={`fixed top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+            className={`fixed z-50 top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
               }`}
           >
             <div className="flex flex-col py-6 pt-8 px-4">
