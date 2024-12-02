@@ -17,11 +17,11 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
     'h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center';
 
   return (
-    <form>
-      <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
+    <form className='flex flex-col xl:flex-row-reverse gap-4' >
+      <div className="relative aspect-square bg-white  border-[1px] border-[#bba887] rounded-2xl  h-full max-h-[625px] w-full overflow-hidden">
         {images[imageIndex] && (
           <Image
-            className="h-full w-full object-contain"
+            className="h-full w-full p-5 rounded-2xl  object-contain"
             fill
             sizes="(min-width: 1024px) 66vw, 100vw"
             alt={images[imageIndex]?.altText as string}
@@ -31,7 +31,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
         )}
 
         {images.length > 1 ? (
-          <div className="absolute bottom-[15%] flex w-full justify-center">
+          <div className="absolute bottom-[15%] flex  w-full justify-center">
             <div className="mx-auto flex h-11 items-center rounded-full border border-white bg-neutral-50/80 text-neutral-500 backdrop-blur dark:border-black dark:bg-neutral-900/80">
               <button
                 formAction={() => {
@@ -60,12 +60,12 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
       </div>
 
       {images.length > 1 ? (
-        <ul className="my-12 flex items-center flex-wrap justify-center gap-2 overflow-auto py-1 lg:mb-0">
+        <ul className=" flex items-center justify-center xl:justify-start xl:flex-col  gap-2   lg:mb-0">
           {images.map((image, index) => {
             const isActive = index === imageIndex;
 
             return (
-              <li key={image.src} className="h-20 w-20">
+              <li key={image.src} className="h-[150px] w-[150px]">
                 <button
                   formAction={() => {
                     const newState = updateImage(index.toString());

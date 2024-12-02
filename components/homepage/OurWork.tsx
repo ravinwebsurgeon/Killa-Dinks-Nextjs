@@ -17,7 +17,7 @@ const OurWork = () => {
   return (
     <div>
     <div className="custum-paddles ">
-        <div className="text-center mt-4 mb-3 md:mt-[70px] md:mb-12">
+        <div className="text-center mt-4 mb-3 md:mt-[80px] md:mb-12">
             <div className=" text-[24px] md:text-[40px] font-medium text-black">
                 See Our Work
             </div>
@@ -129,14 +129,14 @@ const OurWork = () => {
         <div className='lg:hidden block'>
             <div className="flex justify-center gap-2 py-[20px] lg:p-[10px] " >
                 <div
-                    className="py-6  px-4  flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer bg-white shadow-md"
+                    className="py-6  px-4  flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer  shadow-md"
                     onClick={() => ourWorkRef.current?.slidePrev()}
                 >
-                    <img src={arrowImg2.src} className="w-[30px]" alt="Previous" />
+                    <img src={arrowImg2.src} className="  w-[30px]" alt="Previous" />
                 </div>
 
                 <div
-                    className="py-6  px-4  flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer bg-white shadow-md"
+                    className="py-6  px-4  flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer  shadow-md"
                     onClick={() => ourWorkRef.current?.slideNext()}
                 >
                     <img src={arrowImg1.src} className="w-[30px]" alt="Next" />

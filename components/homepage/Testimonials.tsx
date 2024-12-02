@@ -39,7 +39,7 @@ const Testimonials = () => {
         <div>
             {
                 reviews && <div className="testimonials  max-w-[1440px]  w-full  mx-auto ">
-                    <div className="py-[30px] pt-[50px] mx-5  relative">
+                    <div className=" pt-[40px] md:pt-[80px] mx-5  relative">
                         <div className="]  ">
                             <div className="text-[24px] md:text-[40px] font-medium flex justify-center">
                                 {" "}
@@ -49,7 +49,7 @@ const Testimonials = () => {
                                 See Why They Love Us
                             </div>
                         </div>
-                        <div className="slider-container  my-[40px] ">
+                        <div className="slider-container mt-[10px] my-[40px] mb-[40px] md:mb-[80px] ">
                             <Swiper
                                 spaceBetween={0}
                                 slidesPerView={3}
@@ -94,7 +94,7 @@ const Testimonials = () => {
                                                             <div className='flex justify-center py-[10]'>
                                                                 <StarRating rating={item.rating}  filled={'#FFE400'}/>
                                                             </div>
-                                                            <div className="text-center flex justify-center mx-auto max-w-[300px]">
+                                                            <div className="text-center flex justify-center  mx-4 md:mx-auto xl:max-w-[300px]">
                                                                 {item.body}
                                                             </div>
                                                             
@@ -114,14 +114,14 @@ const Testimonials = () => {
                             <div className=''>
                                 <div className="flex justify-center gap-2 py-2" >
                                     <div
-                                        className="py-6  px-4  flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer bg-white shadow-md"
+                                        className="py-6  px-4  flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer  shadow-md"
                                         onClick={() => ourWorkRef.current?.slidePrev()}
                                     >
                                         <img src={arrowImg2.src} className="w-[30px]" alt="Previous" />
                                     </div>
 
                                     <div
-                                        className="py-6  px-4  flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer bg-white shadow-md"
+                                        className="py-6  px-4  flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer  shadow-md"
                                         onClick={() => ourWorkRef.current?.slideNext()}
                                     >
                                         <img src={arrowImg1.src} className="w-[30px]" alt="Next" />

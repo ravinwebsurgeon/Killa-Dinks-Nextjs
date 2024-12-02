@@ -3,27 +3,50 @@ import Price from 'components/price';
 import Prose from 'components/prose';
 import { Product } from 'lib/shopify/types';
 import { VariantSelector } from './variant-selector';
+import Counter from 'components/productDetails/Counter';
+import Accordion from 'components/productDetails/Accordion';
 
 export function ProductDescription({ product }: { product: Product }) {
+
+  const items=[
+    {title:'Description',
+    content:product.descriptionHtml ||null},
+    {
+      title:'Material',
+      content:'100% breathable poly mesh fabric'
+    },
+    {
+      title:'Shipping',
+      content:'This is a limited edition collaboration and ALL SALES ARE FINAL!'
+    }
+  ]
+  
   return (
-    <>
-      <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
-        <h1 className="mb-2 text-5xl font-medium">{product.title}</h1>
-        <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
+    <div className='flex flex-col gap-4' >
+      <div className=" flex flex-col  gap-2 ">
+        <h1 className=" text-4xl font-medium">{product.title}</h1>
+        <div className="mr-auto w-auto">
           <Price
             amount={product.priceRange.maxVariantPrice.amount}
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}
+            className='text-2xl font-[500] text-[#bba887]'
           />
         </div>
       </div>
+      <div className='text-xs xl:text-sm text-yellow-900/70' >Shipping calculated at checkout.</div>
       <VariantSelector options={product.options} variants={product.variants} />
-      {product.descriptionHtml ? (
+      <Counter/>
+      <AddToCart product={product} />
+      {/* {product.descriptionHtml ? (
         <Prose
-          className="mb-6 text-sm leading-tight dark:text-white/[60%]"
+          className=" text-sm leading-tight dark:text-white/[60%]"
           html={product.descriptionHtml}
         />
-      ) : null}
-      <AddToCart product={product} />
-    </>
+      ) : null} */}
+
+      <Accordion  items={items}/>
+
+      
+    </div>
   );
 }

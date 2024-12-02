@@ -20,7 +20,7 @@ export default function HomePageBanner() {
     <div>
       <header className="bigger-navbar z-50 overflow-hidden bg-[#FAF7EB] lg:pt-[47px]">
         {/* Mobile Header */}
-        <div className="mb-8  flex overflow-hidden bg-black/90 px-8 lg:hidden">
+        <div className="mb-8  flex  bg-black/90 px-8 lg:hidden">
           <div className="mx-auto flex w-full items-center justify-between gap-[30px] py-4 text-white">
             <div>
               <img
@@ -54,7 +54,7 @@ export default function HomePageBanner() {
 
           {/* Main Navigation (visible on large screens) */}
           <div className="bannerx absolute left-0 right-0 top-0 hidden py-[13px] lg:absolute lg:left-0 lg:top-[0px] lg:flex">
-            <div className="mx-auto flex items-center justify-center gap-[30px] text-white xl:w-full xl:max-w-[1200px] xl:justify-between xl:px-5">
+            <div className="mx-auto flex items-center justify-center gap-[30px] text-white xl:w-full xl:max-w-[1440px] xl:justify-between xl:px-5">
               <div>
                 <img
                   src={logo.src}

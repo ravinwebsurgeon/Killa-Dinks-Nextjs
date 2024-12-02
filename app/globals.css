@@ -178,6 +178,13 @@ img {
   transition: transform 0.5s ease;
 }
 
+@media (max-width:968px) {
+  .testimonials .swiper-slide-active{
+   scale: 1;
+    color: white;
+    border-radius: 20px;
+  }
+}
 
 
 .testimonials .swiper-slide-active {
@@ -207,7 +214,37 @@ img {
 .circle{
   border-radius: 20px
 }
+.shopbanner-card{
+ grid-template-columns: repeat(auto-fill, minmax(333px, 1fr))
+}
 
+@media (max-width:1600px){
+  .shopbanner-card{
+    display: grid;
+    max-width: 1180px;
+    gap: 0;
+    row-gap: 36px;
+    grid-template-columns: repeat(3, 1fr);
+   }
+}
+@media (max-width:1024px){
+  .shopbanner-card{
+    display: grid;
+    gap: 0;
+    place-items: center;
+    row-gap: 36px;
+    grid-template-columns: repeat(2, 1fr);
+   }
+}
+@media (max-width:968px){
+  .shopbanner-card{
+    display: grid;
+    gap: 0;
+    place-items: center;
+    row-gap: 36px;
+    grid-template-columns: repeat(1, 1fr);
+   }
+}
 .header-menu-item{
   color: white !important;
 }
@@ -251,6 +288,53 @@ img {
 }
 .testimonials 
 .swiper-slide {
-    padding: 7rem 0;
+    padding-top: 100px;
+    padding-bottom: 60px;
     transition: scale  0.5s;
 }
+@media (max-width :768px) {
+  .testimonials 
+.swiper-slide {
+    padding-bottom: 0  ;
+    transition: scale  0.5s;
+}
+}
+.product-colors-button button {
+  
+  border-radius: full; 
+
+  
+  padding: 12px 18px;
+  min-width: 48px; 
+  
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+  background-color: white;/* Default background */
+  /* border: 1px solid #ccc; Light border */
+  
+  color: #bba887;
+  /* text-indent: -9999px; */
+ 
+
+  /* Add transition for hover effect */
+  transition: all 0.3s ease;
+  
+  /* Visual styles when hovered */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+
+.product-colors-button button:hover {
+  background-color: #ddd; 
+  border-color: #999; 
+  /* Darken the border */
+}
+
+/* Specific color buttons */
+
+
+
