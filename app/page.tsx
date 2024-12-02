@@ -5,6 +5,7 @@ export const metadata = {
     type: 'website'
   }
 };
+
 import CapturedMoments from 'components/homepage/CapturedMoments';
 import CustomizePaddle from 'components/homepage/CustomizePaddle';
 import Footerx from 'components/homepage/Footerx';
@@ -15,12 +16,16 @@ import Testimonials from 'components/homepage/Testimonials';
 import { getCollectionProducts, getMenu } from 'lib/shopify';
 import HomePageBanner from '../components/homepage/HomePageBanner';
 export default async function HomePage() {
+
   const FrontProducts = await getCollectionProducts({ collection: "front-page" });
-  const menu = await getMenu('next-js-frontend-header-menu');
+  const menu = await getMenu('main-menu');
+  const sidemenu = await getMenu('main-menu-1');
+  const footerData = await getMenu('footer');
+
   return (
     <>
       <div className="bg-[#FAF7EB]  w-full overflow-hidden  ">
-        <HomePageBanner />
+        <HomePageBanner menu={sidemenu} />
         <OurWork />
         <CustomizePaddle />
         <Testimonials />

@@ -177,6 +177,9 @@ img {
   border-radius: 20px;
   transition: transform 0.5s ease;
 }
+.swiper-slide-active .testimonial-review-name{
+      color: white;
+}
 
 @media (max-width:968px) {
   .testimonials .swiper-slide-active{
@@ -215,19 +218,19 @@ img {
   border-radius: 20px
 }
 .shopbanner-card{
- grid-template-columns: repeat(auto-fill, minmax(333px, 1fr))
+ grid-template-columns: repeat(auto-fit, minmax(330px, 1fr))
 }
 
 @media (max-width:1600px){
-  .shopbanner-card{
+  /* .shopbanner-card{
     display: grid;
     max-width: 1180px;
     gap: 0;
     row-gap: 36px;
     grid-template-columns: repeat(3, 1fr);
-   }
+   } */
 }
-@media (max-width:1024px){
+/* @media (max-width:1024px){
   .shopbanner-card{
     display: grid;
     gap: 0;
@@ -244,7 +247,7 @@ img {
     row-gap: 36px;
     grid-template-columns: repeat(1, 1fr);
    }
-}
+} */
 .header-menu-item{
   color: white !important;
 }
@@ -281,6 +284,11 @@ img {
 .testimonials 
  .swiper-slide:not(.swiper-slide-active) > div {
     max-width: 405px;
+    
+  
+}
+.testimonial-review-name{
+      color: #BBA887;
 }
 .testimonials 
 .swiper-slide.w-full.swiper-slide-next  >div {
@@ -338,3 +346,26 @@ img {
 
 
 
+/* Styling the scrollbar itself */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the vertical scrollbar */
+  height: 10px; /* Height of the horizontal scrollbar */
+}
+
+/* Styling the thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+  background-color: #BBA887; /* Color of the thumb */
+  border-radius: 10px; /* Rounded corners */
+  border: 3px solid #fff; /* Border around the thumb */
+}
+
+/* Styling the track (where the thumb slides) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Optional: Styling the scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #A88B64; /* Change color when hovering over thumb */
+}

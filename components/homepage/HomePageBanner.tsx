@@ -1,12 +1,12 @@
 'use client'
 import CartModal from 'components/cart/modal';
+import Link from 'next/link';
 import { useState } from 'react';
 import logo from '../../public/assets/logo.png';
 import rect from '../../public/assets/rect.png';
 import user from '../../public/assets/user.png';
-import Dropdown from './Dropdown';
 
-export default function HomePageBanner() {
+export default  function HomePageBanner({ menu }: any) {
   const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
 
   // State to manage the visibility of the mobile drawer
@@ -63,11 +63,27 @@ export default function HomePageBanner() {
                 />
               </div>
               <div className="flex items-center gap-[30px] text-[18px]">
-                <div>Home</div>
+
+              {
+                  menu.map((item: any, index: any) => {
+                    let url: string = new URL(item.path).pathname;
+ 
+                    if (item.title == "Shop") {
+                      url = '/search'; // Change the URL for 'Shop'
+                    }
+                    return (
+                      <Link key={index} href={url}>
+                        {item.title}
+                      </Link>
+                    );
+                  })
+                }
+
+                {/* <div>Home</div>
                 <Dropdown title={'Shop'} options={options} />
                 <div>Our Story</div>
                 <div>Custom Paddles</div>
-                <div>Join the Team!</div>
+                <div>Join the Team!</div> */}
               </div>
               <div className="flex items-center gap-5">
                 <img src={user.src} alt="User" className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]" />

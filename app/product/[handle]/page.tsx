@@ -1,21 +1,19 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { GridTileImage } from 'components/grid/tile';
-import Footer from 'components/layout/footer';
 import { Gallery } from 'components/product/gallery';
 import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { getProduct, getProductRecommendations } from 'lib/shopify';
+import { getMenu, getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 
-import { Suspense } from 'react';
+import CapturedMoments from 'components/homepage/CapturedMoments';
+import Footerx from 'components/homepage/Footerx';
+import NewsLetter from 'components/homepage/NewsLetter';
 import Navbar from 'components/productDetails/Navbar';
 import Slider from 'components/productDetails/Slider';
-import CapturedMoments from 'components/homepage/CapturedMoments';
-import NewsLetter from 'components/homepage/NewsLetter';
-import Footerx from 'components/homepage/Footerx';
+import { Suspense } from 'react';
 
 export async function generateMetadata(props: {
   params: Promise<{ handle: string }>;
@@ -79,6 +77,11 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
     }
   };
 
+
+  const menu = await getMenu('main-menu');
+  const sidemenu = await getMenu('main-menu-1');
+  const footerData = await getMenu('footer');
+
   return (
     <ProductProvider>
       <script
@@ -88,11 +91,12 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
         }}
       />
       
-      <div className="mx-auto bg-[#FAF7EB] lg:pt-[47px]  w-full overflow-hidden ">
-      <div className='  ' >
-      <Navbar/>
-        <div className='max-w-[1920px] mx-2 md:mx-[20px]   xl:mx-[43px]' >
-        <div className="flex flex-col rounded-lg  gap-8  justify-center     pt-10 lg:flex-row lg:gap-8">
+      <div className="mx-auto flex flex-col bg-[#FAF7EB]  lg:pt-[47px]  w-full overflow-hidden ">
+      <Navbar menu={sidemenu}/>
+      <div className=' flex justify-center  mx-2 md:mx-[20px]   xl:mx-[43px] flex-col  ' >
+      
+        <div className='max-w-[1920px] w-full ' >
+        <div className="flex flex-col rounded-lg  gap-8    pt-10 lg:flex-row lg:gap-8">
           <div className="h-full lg:w-[60%]  mx-auto w-full">
             <Suspense
               fallback={
@@ -115,12 +119,18 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
           </div>
         </div>
         </div>
+        <div className=' ' >
         <RelatedProducts  id={product.id} />
-        <CapturedMoments />
-        <NewsLetter />
+        </div>
+       
+        
       </div>
+     
       </div>
-      
+      <div className='bg-[#FAF7EB]'>
+      <CapturedMoments />
+      </div>
+      <NewsLetter />
       <Footerx/>
     </ProductProvider>
   );
@@ -132,11 +142,11 @@ async function RelatedProducts({ id }: { id: string }) {
   if (!relatedProducts.length) return null;
 
   return (
-    <div className="max-w-[1920px] flex flex-col gap-8 mt-[80px] mx-2 md:mx-[20px]   xl:mx-[43px]">
+    <div className=" flex  flex-col gap-8  mt-[80px] ">
       <div className=" text-4xl  text-center font-medium text-black">
                 Related Works
             </div>
-      <ul className="flex w-full gap-4 overflow-x-auto pt-1">
+      {/* <ul className="flex w-full gap-4  pt-1"> */}
         {/* {relatedProducts.map((product) => (
           // <li
           //   key={product.handle}
@@ -163,7 +173,9 @@ async function RelatedProducts({ id }: { id: string }) {
           <Card product={product}/>
         ))} */}
         <Slider relatedProducts={relatedProducts}/>
-      </ul>
+
+      {/* </ul> */}
+      
     </div>
   );
 }

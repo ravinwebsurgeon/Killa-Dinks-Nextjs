@@ -1,6 +1,6 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import dropDown from '../../public/assets/dropdown.svg'
+import React, { useEffect, useRef, useState } from 'react';
+import dropDown from '../../public/assets/dropdown.svg';
 
 interface AccordionItem {
   title: string;
