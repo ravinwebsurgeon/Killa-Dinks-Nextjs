@@ -47,7 +47,7 @@ export default  function HomePageBanner({ menu }: any) {
         </div>
 
         {/* Main Banner */}
-        <div className="banner relative mx-2 md:mx-[20px] gap-[30px] overflow-hidden rounded-[12px] lg:rounded-[50px] xl:mx-[43px]">
+        <div className="banner relative mx-4 md:mx-[20px] gap-[30px] overflow-hidden rounded-[12px] lg:rounded-[50px] xl:mx-[43px]">
           <div className="z-50 flex h-full w-full rounded-[50px]">
             <img src={rect.src} alt="Banner" className="h-[400px] w-full object-cover lg:h-auto" />
           </div>

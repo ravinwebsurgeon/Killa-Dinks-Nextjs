@@ -20,7 +20,7 @@ export function GridTileImage({
   return (
     <div
       className={clsx(
-        'group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-[#bba887] dark:bg-black',
+        'group flex h-full w-full  items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-[#bba887] dark:bg-black',
         {
           relative: label,
           'border-2 border-[#bba887]': active,
@@ -30,6 +30,8 @@ export function GridTileImage({
     >
       {props.src ? (
         <Image
+        height={150}
+        width={150}
           className={clsx('relative h-full w-full object-cover', {
             'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
           })}

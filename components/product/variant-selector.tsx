@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import { useProduct, useUpdateURL } from 'components/product/product-context';
 import { ProductOption, ProductVariant } from 'lib/shopify/types';
+import { useEffect } from 'react';
 
 type Combination = {
   id: string;
@@ -25,7 +26,8 @@ export function VariantSelector({
   if (hasNoOptionsOrJustOneOption) {
     return null;
   }
-
+  console.log('options', options);
+  console.log('state', state);
 
   const combinations: Combination[] = variants.map((variant) => ({
     id: variant.id,
@@ -36,10 +38,36 @@ export function VariantSelector({
     )
   }));
 
+  useEffect(
+    () =>{
+      // updateURL({
+      //   color: options[0]?.values[0] || '',
+      //   size: options[1]?.values[0] || ''
+      // }),
+      const newState = options.reduce((acc:any, option) => {
+        const optionName = option.name ? option.name.toLowerCase() : ''; // Get option name in lowercase
+        const value = option?.values[0] || ''; // Select the first value of the option by default
+        
+        // Add the option name and its first value to the accumulator object
+        if (optionName) {
+          acc[optionName] = value;
+        }
+    
+        return acc;
+      }, {});
+    
+      // Call the updateURL function with the newly constructed state
+      updateURL(newState);},
+    []
+  );
+
+
   return options.map((option) => (
     <form key={option.id}>
-      <dl className=" flex flex-col gap-2 product-colors-button">
-        <dt className=" flex gap-3 text-base font-[500] text-[#bba887] uppercase tracking-wide">{option.name}</dt>
+      <dl className="product-colors-button flex flex-col gap-2">
+        <dt className="flex gap-3 text-base font-[500] uppercase tracking-wide text-[#9c8c70]">
+          {option.name}
+        </dt>
         <dd className="flex flex-wrap gap-3">
           {option.values.map((value) => {
             const optionNameLowerCase = option.name.toLowerCase();
@@ -66,6 +94,7 @@ export function VariantSelector({
               <button
                 formAction={() => {
                   const newState = updateOption(optionNameLowerCase, value);
+                 
                   updateURL(newState);
                 }}
                 key={value}

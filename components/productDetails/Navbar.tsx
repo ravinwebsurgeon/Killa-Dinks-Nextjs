@@ -44,7 +44,7 @@ const  Navbar = ({menu}: any) => {
     </div>
 
     {/* Main Banner */}
-    <div className="banner gap-[30px]  mx-2 md:mx-[20px]   xl:mx-[43px]">
+    <div className="banner gap-[30px]  mx-4 md:mx-[20px]   xl:mx-[43px]">
 
       {/* Main Navigation (visible on large screens) */}
       <div className="bg-black rounded-t-[50px]  left-0 right-0 top-0 hidden py-[13px] lg:left-0 lg:top-[0px] lg:flex">

@@ -18,7 +18,7 @@ const CustomizePaddle = () => {
         </div>
 
         {/* Responsive flex container */}
-        <div className="flex flex-col mx-2 md:mx-[20px] xl:flex-row md:gap-8 justify-center items-center space-y-4 md:space-y-0 md:space-x-12">
+        <div className="flex flex-col mx-4 md:mx-[20px] xl:flex-row md:gap-8 justify-center items-center space-y-4 md:space-y-0 md:space-x-12">
 
             {/* Image Section */}
             <div className="flex-shrink-0 ">
