@@ -63,12 +63,12 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
 
      
       {images.length > 1 ? (
-        <ul className=" flex  max-h-[625px] max-w-full w-full xl:justify-start xl:flex-col h-full justify-center overflow-x-auto overflow-y-hidden xl:overflow-y-auto  xl:max-w-[170px]  gap-2    lg:mb-0">
+        <ul className=" flex  max-h-[625px] max-w-full w-full xl:justify-start xl:flex-col h-full sm:justify-center overflow-x-auto overflow-y-hidden xl:overflow-y-auto  xl:max-w-[170px]  gap-2    lg:mb-0">
           {images.map((image, index) => {
             const isActive = index === imageIndex;
 
             return (
-              <li key={image.src} className="sm:min-h-[150px] h-full max-w-[150px] w-full">
+              <li key={image.src} className="sm:min-h-[150px] h-full max-h-[150px] max-w-[150px] w-full">
                 <button
                   formAction={() => {
                     const newState = updateImage(index.toString());

@@ -89,7 +89,7 @@ const  Navbar = ({menu}: any) => {
 
       {/* Mobile Drawer (Hamburger Menu) */}
       <div
-        className={`fixed z-50 top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed z-50 top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-[#faf7eb] text-black transform transition-transform duration-300 ease-in-out lg:hidden ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         <div className="flex flex-col py-6 pt-8 px-4">

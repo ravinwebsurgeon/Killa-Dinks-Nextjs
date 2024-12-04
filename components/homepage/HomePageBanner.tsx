@@ -94,7 +94,7 @@ export default  function HomePageBanner({ menu }: any) {
 
           {/* Mobile Drawer (Hamburger Menu) */}
           <div
-            className={`fixed z-50 top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+            className={`fixed z-50 top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-[#faf7eb] text-black transform transition-transform duration-300 ease-in-out lg:hidden ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
               }`}
           >
             <div className="flex flex-col py-6 pt-8 px-4">
@@ -106,11 +106,25 @@ export default  function HomePageBanner({ menu }: any) {
               </div>
 
               <div className="flex flex-col gap-4 text-lg">
-                <div>Home</div>
+                {/* <div>Home</div>
 
                 <div>Our Story</div>
                 <div>Custom Paddles</div>
-                <div>Join the Team!</div>
+                <div>Join the Team!</div> */}
+                {
+                  menu.map((item: any, index: any) => {
+                    let url: string = new URL(item.path).pathname;
+ 
+                    if (item.title == "Shop") {
+                      url = '/search'; // Change the URL for 'Shop'
+                    }
+                    return (
+                      <Link key={index} href={url}>
+                        {item.title}
+                      </Link>
+                    );
+                  })
+                }
               </div>
             </div>
           </div>

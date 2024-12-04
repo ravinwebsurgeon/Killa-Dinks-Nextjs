@@ -29,13 +29,12 @@ const Slider: React.FC<SliderProps> = ({ relatedProducts }) => {
         // Enable navigation arrows
         className="mySwiper"
       >
-        {relatedProducts.map((product: any,index) => (
-          <div key={index}>
-            {' '}
-            <SwiperSlide className="!w-[320px]">
+        {relatedProducts.map((product: any,index) => (   
+           
+            <SwiperSlide key={index} className="!w-[320px]">
               <ProductCard product={product} />
             </SwiperSlide>
-          </div>
+        
         ))}
       </Swiper>
       <div className="absolute top-[50%] z-20 flex w-full items-center justify-between">

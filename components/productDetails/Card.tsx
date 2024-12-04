@@ -20,6 +20,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  console.log(product?.title)
   return (
     <div className="w-full min-w-[333px] sm:w-[340px] min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
       {/* Image Container with Hover Effect */}
@@ -27,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <img 
           src={product.featuredImage?.url} 
           alt={product.title} 
-          className=" w-full h-full group-hover:scale-105 transition-all duration-300 ease-in-out" 
+          className=" w-full h-full group-hover:scale-105 object-contain transition-all duration-300 ease-in-out" 
         />
         {/* Optional: Add a subtle overlay on image */}
        

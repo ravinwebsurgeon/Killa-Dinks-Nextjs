@@ -18,13 +18,13 @@ const OurStory = async () => {
                 <div className="flex w-full max-w-[1920px] flex-wrap justify-evenly gap-[30px] xl:flex-nowrap">
                     <div className="flex w-full max-w-[800px] flex-col gap-[20px] pt-4 lg:pt-24">
                         <div className="text-[64px] font-[600] text-[#BBA887]"> Our Story</div>
-                        <div className="w-full max-w-[700px] text-justify text-[22px] font-[400] text-[#BBA887]">
+                        <div className="w-full max-w-[700px]  text-[22px] font-[400] text-[#BBA887]">
                             Welcome to Killa Dinks, a brand that embodies the spirit of creativity,
                             entrepreneurship, and the prioritization of mindfulness.
                         </div>
                     </div>
                     <div className="z-30 flex">
-                        <div className="relative xl:top-32 w-full xl:max-w-[450px] mb-3 xl:mb-0 rounded-xl bg-[#bba887] p-8 text-justify text-[20px] text-[white]">
+                        <div className="relative xl:top-32 w-full xl:max-w-[450px] mb-3 xl:mb-0 rounded-xl bg-[#bba887] p-8  sm:text-[20px] text-[white]">
                             Our journey began as a family who embraced a healthy and active lifestyle that rather
                             quickly began revolving around pickleball. As a family brand, our foundation rests on
                             the principles of unity and togetherness. We understand the importance of fostering
