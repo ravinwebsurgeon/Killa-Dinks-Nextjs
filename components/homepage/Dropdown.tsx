@@ -1,11 +1,12 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import dropDownIcon from '../../public/assets/dropDownArrow.png'
+import Link from 'next/link';
 
 // Type definition for the dropdown props
 interface DropdownProps {
   title: string;         // Title for the dropdown button
-  options: string[];     // Array of options to display in the dropdown
+  options: any;     // Array of options to display in the dropdown
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ title, options }) => {
@@ -37,7 +38,7 @@ const Dropdown: React.FC<DropdownProps> = ({ title, options }) => {
   }, []);
 
   // Handle option selection
-  const handleOptionSelect = (option: string) => {
+  const handleOptionSelect = (option: any) => {
     setSelectedOption(option);
     setIsOpen(false); // Close the dropdown after selection
   };
@@ -74,17 +75,21 @@ const Dropdown: React.FC<DropdownProps> = ({ title, options }) => {
         <ul
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="absolute bg-black/50 overflow-hidden opacity-7 border rounded-md shadow-lg  w-40 z-10"
+          className="absolute bg-black/50 flex flex-col overflow-hidden opacity-7 border rounded-md shadow-lg  w-40 z-10"
         >
-          {options.map((option, index) => (
-            <li
+          {options.map((option:any, index:number) => {
+            // <>
+            // {console.log(option)}</>
+            let url: string = new URL(option.path).pathname;
+           return <Link
               key={index}
+              href={url}
               className="p-2 overflow-hidden hover:bg-white hover:text-black cursor-pointer"
               onClick={() => handleOptionSelect(option)}
             >
-              {option}
-            </li>
-          ))}
+              {option.title}
+            </Link>
+})}
         </ul>
       )}
     </div>

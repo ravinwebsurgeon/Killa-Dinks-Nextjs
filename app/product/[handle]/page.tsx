@@ -91,7 +91,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
       />
       
       <div className="mx-auto flex flex-col bg-[#FAF7EB]  lg:pt-[47px]  w-full overflow-hidden ">
-      <Navbar menu={sidemenu}/>
+     
       <div className=' flex justify-center  mx-2 md:mx-[20px]   xl:mx-[43px] flex-col  ' >
       
         <div className='max-w-[1920px] w-full ' >
@@ -130,7 +130,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
       <CapturedMoments />
       </div>
       <NewsLetter />
-      <Footerx/>
+    
     </ProductProvider>
   );
 }

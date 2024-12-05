@@ -63,7 +63,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
 
      
       {images.length > 1 ? (
-        <ul className=" flex  max-h-[625px] max-w-full w-full xl:justify-start xl:flex-col h-full sm:justify-center overflow-x-auto overflow-y-hidden xl:overflow-y-auto  xl:max-w-[170px]  gap-2    lg:mb-0">
+        <ul className=" flex  max-h-[625px] max-w-full w-full xl:justify-start xl:flex-col  sm:justify-center overflow-x-auto overflow-y-hidden xl:overflow-y-auto  xl:max-w-[170px]  gap-2    lg:mb-0">
           {images.map((image, index) => {
             const isActive = index === imageIndex;
 

@@ -369,3 +369,18 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #A88B64; /* Change color when hovering over thumb */
 }
+
+.collection-cards {
+  display: grid;
+  
+  grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+   /* adjust gap if needed */
+  width: 100%; /* ensure it spans full width */
+  box-sizing: border-box; /* this ensures padding/border is included in width */
+}
+
+.ambassador-card{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,280px )) ;
+}
+

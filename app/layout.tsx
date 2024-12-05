@@ -1,12 +1,15 @@
 import { CartProvider } from 'components/cart/cart-context';
+import { Navbar } from 'components/layout/navbar';
 import { WelcomeToast } from 'components/welcome-toast';
 import { GeistSans } from 'geist/font/sans';
-import { getCart } from 'lib/shopify';
+import { getCart, getMenu } from 'lib/shopify';
 import { ensureStartsWith } from 'lib/utils';
 import { cookies } from 'next/headers';
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 import './globals.css';
+import HomePageBanner from 'components/homepage/HomePageBanner';
+import Footerx from 'components/homepage/Footerx';
 
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
@@ -40,6 +43,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const cartId = (await cookies()).get('cartId')?.value;
   // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart(cartId);
+  const sidemenu = await getMenu('main-menu-1');
 
   return (
     <html lang="en" className={GeistSans.variable}>
@@ -75,13 +79,15 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
       <body className="">
         <CartProvider cartPromise={cart}>
-          {/* <Navbar /> */}
+          <HomePageBanner className='' menu={sidemenu} />
+           {/* <Navbar />  */}
           <main>
             {children}
             <Toaster closeButton />
             <WelcomeToast />
           </main>
         </CartProvider>
+        <Footerx/>
       </body>
     </html>
   );

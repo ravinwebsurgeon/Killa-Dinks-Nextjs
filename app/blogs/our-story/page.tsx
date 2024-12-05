@@ -4,6 +4,7 @@ import NewsLetter from 'components/homepage/NewsLetter';
 import Navbar from 'components/productDetails/Navbar';
 import { getMenu } from 'lib/shopify';
 import img1 from '../../../public/assets/ourWorkImg4.webp';
+import HomePageBanner from 'components/homepage/HomePageBanner';
 
 const OurStory = async () => {
 
@@ -13,7 +14,7 @@ const OurStory = async () => {
 
     return (
         <div className="mx-auto flex w-full flex-col bg-[#FAF7EB] lg:pt-[47px]">
-            <Navbar menu={sidemenu} />
+           
             <div className="justify-center md:mx-[20px] mx-4 flex xl:mx-[43px]">
                 <div className="flex w-full max-w-[1920px] flex-wrap justify-evenly gap-[30px] xl:flex-nowrap">
                     <div className="flex w-full max-w-[800px] flex-col gap-[20px] pt-4 lg:pt-24">

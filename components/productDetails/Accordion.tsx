@@ -49,7 +49,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
           <button
             onClick={() => toggleAccordion(index)}
             className={`
-              w-full text-left py-4 px-6 
+              w-full text-left py-4 px-6 tracking-[1px]
               bg-[#FAF7EB] text-[#BBA887] hover:text-white font-semibold 
                border-t  border-[#BBA887] 
               hover:bg-[#BBA887] transition-colors
