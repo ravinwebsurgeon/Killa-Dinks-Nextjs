@@ -1,15 +1,14 @@
 'use client';
 import CartModal from 'components/cart/modal';
+import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import image1 from 'public/assets/homepageBanner.png';
 import { useState } from 'react';
 import logo from '../../public/assets/logo.png';
-import rect from '../../public/assets/rect.png';
 import user from '../../public/assets/user.png';
+import image2 from 'public/assets/videoImg3.jpeg'
 import Dropdown from './Dropdown';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { usePathname } from 'next/navigation';
-import image1 from 'public/assets/homepageBanner.png'
 
 export default function HomePageBanner({ menu }: any) {
   const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
@@ -24,12 +23,12 @@ export default function HomePageBanner({ menu }: any) {
   const router = usePathname()
 
   const getbannerClass  = ()=>{
-    if(router ==='/'  || router ==='/ambassador'){
+    if(router ==='/'  || router ==='/pages/ambassador'){
       return 'absolute w-full bg-black/70'
     }
   }
   const getConatinerClass = ()=>{
-    if (router === '/'|| router === '/ambassador') {
+    if (router === '/'|| router === '/pages/ambassador') {
       return ' lg:rounded-[50px] overflow-hidden lg:bg-black/70 '; // Apply class if the condition is true
     }
     return '';
@@ -39,8 +38,11 @@ export default function HomePageBanner({ menu }: any) {
   const bannerClass = getbannerClass()
 
   const getImageSrc = (router:any)=>{
-      if(router==='/' || router ==='/ambassador'){
+      if(router==='/'  ){
          return image1 
+      }
+      if(router ==='/pages/ambassador'){
+        return image2
       }
   }
  
@@ -48,19 +50,19 @@ export default function HomePageBanner({ menu }: any) {
 
   return (
     <div>
-      <header className="bigger-navbar z-50  bg-[#FAF7EB] lg:pt-[47px]">
+      <header className={`bigger-navbar z-50  bg-[#FAF7EB] lg:pt-[47px] ${router.includes('/sanity') ? 'hidden' : ''}`}>
         {/* Main Banner */}
         <div className={` banner bg-black  relative  gap-[30px]   lg:mx-[20px] lg:rounded-t-[50px] xl:mx-[43px]  ${containerClass}`}>
           <div className={`z-50 flex flex-col  h-full max-h-[800px] w-full rounded-[50px] `}>
             <div className={`  py-[13px] lg:flex  ${bannerClass}`}>
               <div className="mx-auto flex items-center justify-around lg:justify-center gap-[30px] text-white xl:w-full xl:max-w-[1440px] xl:justify-between xl:px-5">
-                <div>
+                <Link href={'/'}>
                   <img
                     src={logo.src}
                     alt="Logo"
                     className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
                   />
-                </div>
+                </Link>
                 <div className="lg:flex items-center hidden gap-[30px] text-[18px]">
                   {menu.map((item: any, index: any) => {
                     let url: string = new URL(item.path).pathname;
@@ -123,13 +125,13 @@ export default function HomePageBanner({ menu }: any) {
           >
             <div className="flex flex-col gap-6 px-4 py-6 pt-8">
               <div className="mb-1 flex items-center justify-between">
-              <div>
+              <Link href={'/'} onClick={toggleDrawer}>
                   <img
                     src={logo.src}
                     alt="Logo"
                     className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
                   />
-                </div>
+                </Link>
                 <button onClick={toggleDrawer} className="text-4xl text-black">
                   &times; {/* Close icon */}
                 </button>
@@ -145,10 +147,10 @@ export default function HomePageBanner({ menu }: any) {
                   let url: string = new URL(item.path).pathname;
 
                   if (item.title == 'Shop') {
-                    url = '/search'; // Change the URL for 'Shop'
+                    url = '/collections'; // Change the URL for 'Shop'
                   }
                   return (
-                    <Link key={index} className="text-xl font-[500] tracking-[1px]" href={url}>
+                    <Link key={index} onClick={toggleDrawer} className="text-xl font-[500] tracking-[1px]" href={url}>
                       {item.title}
                     </Link>
                   );

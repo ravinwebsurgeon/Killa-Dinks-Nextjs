@@ -9,7 +9,6 @@ import { getMenu, getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 
 import CapturedMoments from 'components/homepage/CapturedMoments';
-import Footerx from 'components/homepage/Footerx';
 import NewsLetter from 'components/homepage/NewsLetter';
 import Slider from 'components/productDetails/Slider';
 import { Suspense } from 'react';
@@ -141,7 +140,7 @@ async function RelatedProducts({ id }: { id: string }) {
 
   return (
     <div className=" flex  flex-col gap-8  mt-[80px] ">
-      <div className=" text-4xl  text-center font-medium text-black">
+      <div className=" text-2xl md:text-4xl  text-center font-medium text-black">
                 Related Works
             </div>
       {/* <ul className="flex w-full gap-4  pt-1"> */}

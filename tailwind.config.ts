@@ -27,6 +27,9 @@ const config: Config = {
         fadeIn: 'fadeIn .3s ease-in-out',
         carousel: 'marquee 60s linear infinite',
         blink: 'blink 1.4s both infinite'
+      },
+      boxShadow:{
+        "10xl":"inset 0 0 9px 3px #ccd0d0,inset -3px -3px 3px #e3e3e3"
       }
     }
   },

@@ -10,7 +10,7 @@ import Footerx from 'components/homepage/Footerx';
 export default async function SearchLayout({ children }: { children: React.ReactNode }) {
   const sidemenu = await getMenu('main-menu-1');
   return (
-    <div className="bg-[#faf7eb] lg:pt-[47px]">
+    <div className="bg-[#faf7eb] pt-8 lg:pt-[47px]">
      
       <div className="mx-4 flex flex-col gap-4 pb-4 sm:pt-[47px] text-black md:mx-[20px] lg:flex-row xl:mx-[43px] xl:gap-8 dark:text-white">
         <div className="order-first lg:block hidden flex-none">

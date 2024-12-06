@@ -1,10 +1,8 @@
 import CapturedMoments from 'components/homepage/CapturedMoments';
-import Footerx from 'components/homepage/Footerx';
 import NewsLetter from 'components/homepage/NewsLetter';
 
 import { getMenu } from 'lib/shopify';
 import img1 from '../../../public/assets/ourWorkImg4.webp';
-import HomePageBanner from 'components/homepage/HomePageBanner';
 
 const OurStory = async () => {
 
@@ -53,7 +51,6 @@ const OurStory = async () => {
             </div>
             <CapturedMoments />
             <NewsLetter />
-            <Footerx />
         </div>
     );
 };

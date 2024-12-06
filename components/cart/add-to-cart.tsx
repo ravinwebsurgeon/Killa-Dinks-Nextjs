@@ -72,7 +72,7 @@ export function AddToCart({ product,productQuantity }: { product: Product,produc
   
   const actionWithVariant = formAction.bind(null,  selectedVariantId);
 
-  console.log(selectedVariantId,productQuantity)
+  // console.log(selectedVariantId,productQuantity )
 
   const finalVariant = variants.find((variant) => variant.id === selectedVariantId)!;
  
