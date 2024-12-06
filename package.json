@@ -11,7 +11,7 @@
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "test": "pnpm prettier:check",
-    "preinstall": "echo @pqina:registry=https://npm.pqina.nl///npm.pqina.nl/:_authToken=${NPM_TOKEN}' > .npmrc"
+    "preinstall": "echo //npm.pqina.nl/:_authToken=${NPM_TOKEN}' > .npmrc"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.2",
