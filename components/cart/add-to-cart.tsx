@@ -1,6 +1,5 @@
 'use client';
 
-import { PlusIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { addItem } from 'components/cart/actions';
 import { useProduct } from 'components/product/product-context';
@@ -70,7 +69,7 @@ export function AddToCart({ product,productQuantity }: { product: Product,produc
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
   
-  const actionWithVariant = formAction.bind(null,  selectedVariantId);
+  const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity});
 
   console.log(selectedVariantId,productQuantity)
 
