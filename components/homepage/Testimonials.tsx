@@ -41,7 +41,6 @@ const Testimonials = () => {
     return text;
   };
 
-  console.log('data', reviews);
 
   return (
     <div>

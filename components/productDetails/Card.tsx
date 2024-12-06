@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
+import placeholder from '../../public/assets/product-placeholder.webp'
 
 interface Product {
   title: string;
@@ -20,22 +21,23 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  console.log(product?.title)
   return (
-    <div className="w-full min-w-[333px] sm:w-[340px] min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
+    <div className="w-full  min-w-[333px]   min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
       {/* Image Container with Hover Effect */}
-      <div className="relative group w-[350px] h-[350px] bg-[#FAF7EB]  rounded-t-[20px] flex justify-center items-center overflow-hidden transition-transform duration-500 ease-in-out">
+      <div className="relative group  h-full max-h-[350px]  min-h-[350px] bg-[#FAF7EB]  rounded-t-[20px] flex justify-center items-center overflow-hidden transition-transform duration-500 ease-in-out">
         <img 
-          src={product.featuredImage?.url} 
-          alt={product.title} 
-          className=" w-full h-full group-hover:scale-105 transition-all duration-300 ease-in-out" 
+          src={product?.featuredImage?.url || placeholder.src } 
+          alt={product?.title} 
+          className=" w-full h-full group-hover:scale-105 object-contain transition-all duration-300 ease-in-out" 
         />
         {/* Optional: Add a subtle overlay on image */}
        
       </div>
 
       {/* Card Content Section */}
-      <div className="flex flex-col gap-2 pt-4 pb-6 px-5">
-        <div className="text-lg sm:text-xl font-semibold text-gray-800 truncate">{product.title}</div>
+      <div className="flex flex-col gap-1 pt-1  pb-3  px-5">
+        <div className="text-lg sm:text-xl font-semibold w-full max-w-[270px] text-gray-800 truncate">{product.title}</div>
         <div className="text-[18px] sm:text-[20px] font-bold text-[#BBA887]">
           ${product.priceRange.maxVariantPrice.amount} USD
         </div>

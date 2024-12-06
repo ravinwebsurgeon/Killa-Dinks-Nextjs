@@ -56,7 +56,6 @@ export async function generateMetadata(props: {
 export default async function ProductPage(props: { params: Promise<{ handle: string }> }) {
   const params = await props.params;
   const product = await getProduct(params.handle);
-  console.log(product)
 
   if (!product) return notFound();
 
@@ -92,11 +91,11 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
       />
       
       <div className="mx-auto flex flex-col bg-[#FAF7EB]  lg:pt-[47px]  w-full overflow-hidden ">
-      <Navbar menu={sidemenu}/>
+     
       <div className=' flex justify-center  mx-2 md:mx-[20px]   xl:mx-[43px] flex-col  ' >
       
         <div className='max-w-[1920px] w-full ' >
-        <div className="flex flex-col rounded-lg  gap-8    pt-10 lg:flex-row lg:gap-8">
+        <div className="flex flex-col rounded-lg  gap-8    md:pt-20 lg:flex-row lg:gap-8">
           <div className="h-full lg:w-[60%]  mx-auto w-full">
             <Suspense
               fallback={
@@ -131,7 +130,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
       <CapturedMoments />
       </div>
       <NewsLetter />
-      <Footerx/>
+    
     </ProductProvider>
   );
 }

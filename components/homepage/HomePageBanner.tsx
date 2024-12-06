@@ -1,12 +1,17 @@
-'use client'
+'use client';
 import CartModal from 'components/cart/modal';
 import Link from 'next/link';
 import { useState } from 'react';
 import logo from '../../public/assets/logo.png';
 import rect from '../../public/assets/rect.png';
 import user from '../../public/assets/user.png';
+import Dropdown from './Dropdown';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+import image1 from 'public/assets/homepageBanner.png'
 
-export default  function HomePageBanner({ menu }: any) {
+export default function HomePageBanner({ menu }: any) {
   const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
 
   // State to manage the visibility of the mobile drawer
@@ -16,101 +21,132 @@ export default  function HomePageBanner({ menu }: any) {
     setDrawerOpen(!isDrawerOpen);
   };
 
+  const router = usePathname()
+
+  console.log(router)
+  const getbannerClass  = ()=>{
+    if(router ==='/'  || router ==='/ambassador'){
+      return 'absolute w-full bg-black/70'
+    }
+  }
+  const getConatinerClass = ()=>{
+    if (router === '/'|| router === '/ambassador') {
+      return ' lg:rounded-[50px] overflow-hidden lg:bg-black/70 '; // Apply class if the condition is true
+    }
+    return '';
+  }
+  const containerClass = getConatinerClass()
+
+  const bannerClass = getbannerClass()
+
+  const getImageSrc = (router:any)=>{
+      if(router==='/' || router ==='/ambassador'){
+         return image1 
+      }
+  }
+ 
+  const imageSrc = getImageSrc(router) || '';
+
   return (
     <div>
-      <header className="bigger-navbar z-50 overflow-hidden bg-[#FAF7EB] lg:pt-[47px]">
-        {/* Mobile Header */}
-        <div className="mb-8  flex  bg-black/90 px-8 lg:hidden">
-          <div className="mx-auto flex w-full items-center justify-between gap-[30px] py-4 text-white">
-            <div>
-              <img
-                src={logo.src}
-                alt="Logo"
-                className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
-              />
-            </div>
-
-            <div className="flex items-center gap-5">
-              <img src={user.src} alt="User" className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]" />
-              <CartModal />
-            </div>
-
-            {/* Hamburger Menu Icon */}
-            <div className="lg:hidden" onClick={toggleDrawer}>
-              <div className="space-y-2 cursor-pointer">
-                <div className="w-8 h-[2px] bg-white rounded"></div>
-                <div className="w-8 h-[2px] bg-white rounded"></div>
-                <div className="w-8 h-[2px] bg-white rounded"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <header className="bigger-navbar z-50  bg-[#FAF7EB] lg:pt-[47px]">
         {/* Main Banner */}
-        <div className="banner relative mx-2 md:mx-[20px] gap-[30px] overflow-hidden rounded-[12px] lg:rounded-[50px] xl:mx-[43px]">
-          <div className="z-50 flex h-full w-full rounded-[50px]">
-            <img src={rect.src} alt="Banner" className="h-[400px] w-full object-cover lg:h-auto" />
-          </div>
-
-          {/* Main Navigation (visible on large screens) */}
-          <div className="bannerx absolute left-0 right-0 top-0 hidden py-[13px] lg:absolute lg:left-0 lg:top-[0px] lg:flex">
-            <div className="mx-auto flex items-center justify-center gap-[30px] text-white xl:w-full xl:max-w-[1440px] xl:justify-between xl:px-5">
-              <div>
-                <img
-                  src={logo.src}
-                  alt="Logo"
-                  className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
-                />
-              </div>
-              <div className="flex items-center gap-[30px] text-[18px]">
-
-              {
-                  menu.map((item: any, index: any) => {
+        <div className={` banner bg-black  relative  gap-[30px]   lg:mx-[20px] lg:rounded-t-[50px] xl:mx-[43px]  ${containerClass}`}>
+          <div className={`z-50 flex flex-col  h-full max-h-[800px] w-full rounded-[50px] `}>
+            <div className={`  py-[13px] lg:flex  ${bannerClass}`}>
+              <div className="mx-auto flex items-center justify-around lg:justify-center gap-[30px] text-white xl:w-full xl:max-w-[1440px] xl:justify-between xl:px-5">
+                <div>
+                  <img
+                    src={logo.src}
+                    alt="Logo"
+                    className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
+                  />
+                </div>
+                <div className="lg:flex items-center hidden gap-[30px] text-[18px]">
+                  {menu.map((item: any, index: any) => {
                     let url: string = new URL(item.path).pathname;
- 
-                    if (item.title == "Shop") {
-                      url = '/search'; // Change the URL for 'Shop'
+
+                    if (item.title == 'Shop') {
+                      url = '/collections'; // Change the URL for 'Shop'
+                    }
+
+                    if (item.children.length > 0) {
+                      return <Dropdown key={index} title={item.title} options={item.children} />;
                     }
                     return (
-                      <Link key={index} href={url}>
+                      <Link key={index} className="" href={url}>
                         {item.title}
                       </Link>
                     );
-                  })
-                }
-
-                {/* <div>Home</div>
-                <Dropdown title={'Shop'} options={options} />
-                <div>Our Story</div>
-                <div>Custom Paddles</div>
-                <div>Join the Team!</div> */}
-              </div>
-              <div className="flex items-center gap-5">
-                <img src={user.src} alt="User" className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]" />
-                <CartModal />
+                  })}
+                </div>
+                <div className="flex items-center gap-5">
+                  <Link href={'https://dourdinks.myshopify.com//customer_authentication/redirect?locale=en&region_country=US'}>
+                  <img
+                    src={user.src}
+                    alt="User"
+                    className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]"
+                    />
+                    </Link>
+                  <CartModal />
+                </div>
+                <div className="lg:hidden" onClick={toggleDrawer}>
+              <div className="cursor-pointer space-y-2">
+                <div className="h-[2px] w-8 rounded bg-white"></div>
+                <div className="h-[2px] w-8 rounded bg-white"></div>
+                <div className="h-[2px] w-8 rounded bg-white"></div>
               </div>
             </div>
+              </div>
+            </div>
+            {/* {/* <img src={image.src} alt="Banner" className="  w-full object-cover lg:h-auto" />  */}
+            {
+             imageSrc ?  
+             <div className='  flex items-center justify-center w-full' >
+               <Image
+              height={800}
+              width={1820}
+              src={imageSrc}
+              className=" min-h-[400px] object-cover  w-full"
+              alt=""
+            />
+              </div>:null
+            }
           </div>
+
+          {/* Main Navigation (visible on large screens) */}
 
           {/* Mobile Drawer (Hamburger Menu) */}
           <div
-            className={`fixed z-50 top-0 right-0 max-w-[320px] w-full h-full !z-1000 bg-white text-black transform transition-transform duration-300 ease-in-out lg:hidden ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
-              }`}
+            className={`!z-1000 fixed right-0 top-0 z-50 h-full w-full max-w-[320px] transform bg-[#faf7eb] text-black transition-transform duration-300 ease-in-out lg:hidden ${
+              isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
           >
-            <div className="flex flex-col py-6 pt-8 px-4">
-              <div className="flex justify-end items-center mb-1">
-
+            <div className="flex flex-col px-4 py-6 pt-8">
+              <div className="mb-1 flex items-center justify-end">
                 <button onClick={toggleDrawer} className="text-4xl text-black">
                   &times; {/* Close icon */}
                 </button>
               </div>
 
               <div className="flex flex-col gap-4 text-lg">
-                <div>Home</div>
+                {/* <div>Home</div>
 
                 <div>Our Story</div>
                 <div>Custom Paddles</div>
-                <div>Join the Team!</div>
+                <div>Join the Team!</div> */}
+                {menu.map((item: any, index: any) => {
+                  let url: string = new URL(item.path).pathname;
+
+                  if (item.title == 'Shop') {
+                    url = '/search'; // Change the URL for 'Shop'
+                  }
+                  return (
+                    <Link key={index} className="text-lg font-[500] tracking-[1px]" href={url}>
+                      {item.title}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>

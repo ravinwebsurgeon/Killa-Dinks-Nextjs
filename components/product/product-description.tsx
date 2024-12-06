@@ -29,7 +29,7 @@ export function ProductDescription({ product }: { product: Product }) {
           <Price
             amount={product.priceRange.maxVariantPrice.amount}
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}
-            className='text-2xl font-[500] text-[#bba887]'
+            className='text-2xl font-[500] text-[#9c8c70]'
           />
         </div>
       </div>

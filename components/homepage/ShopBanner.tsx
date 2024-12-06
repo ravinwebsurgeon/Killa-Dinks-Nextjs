@@ -15,7 +15,7 @@ const ShopBanner = ({ products }: any) => {
                             products && products.map((item: any, index: any) => {
                                 return (
                                     <div key={index} className="w-full">
-                                        <div className="w-full min-w-[333px]  min-h-[436px] h-auto flex-col  overflow-hidden border-[1px] rounded-[20px] text-white  lg:mx-0">
+                                        <div className="w-full min-w-[333px]  min-h-[336px] h-auto flex-col  overflow-hidden border-[1px] rounded-[20px] text-white  lg:mx-0">
                                             <div className="max-h-[302px] xl:h-[302px]  overflow-hidden group bg-[#FAF7EB] h-full rounded-t-[20px] flex justify-center items-center">
                                                 <img src={item.images[0].url} alt="" className="w-[250px] h-[250px] transition-transform duration-500 ease-in-out group-hover:scale-110" />
                                             </div>

@@ -25,7 +25,7 @@ const OurWork = () => {
                 Products that Speak for Themselves
             </div>
         </div>
-        <div className="relative flex justify-center px-[50px]">
+        <div className="relative flex justify-center sm:px-[50px] px-4">
 
             <Swiper
                 spaceBetween={42}

@@ -225,6 +225,10 @@ export type ShopifyMenuOperation = {
       items: {
         title: string;
         url: string;
+        items: {
+          title: string;
+          url: string;
+        }[];
       }[];
     };
   };
