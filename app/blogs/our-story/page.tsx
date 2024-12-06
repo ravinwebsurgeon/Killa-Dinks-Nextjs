@@ -1,5 +1,6 @@
 import CapturedMoments from 'components/homepage/CapturedMoments';
 import NewsLetter from 'components/homepage/NewsLetter';
+
 import { getMenu } from 'lib/shopify';
 import img1 from '../../../public/assets/ourWorkImg4.webp';
 
