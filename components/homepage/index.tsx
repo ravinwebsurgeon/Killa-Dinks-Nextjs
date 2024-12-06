@@ -11,7 +11,7 @@ const Index = ({FrontProducts}:any) => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const result = await client.fetch(`*[_type == "home"]`);
+            const result = await client.fetch(`*[_type == "animationHero"]`);
             if (result.length > 0) {
                     console.log(result);                    
             }
