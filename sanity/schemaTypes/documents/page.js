@@ -1,7 +1,7 @@
 import { ColorWheelIcon, ComposeIcon, DocumentIcon, SearchIcon } from '@sanity/icons'
 import { defineField } from 'sanity'
 
-import ShopifyIcon from 'sanity/components/icons/Shopify'
+import ShopifyIcon from '../../components/icons/Shopify'
 import { validateSlug } from '../../utils/validateSlug'
 
 export const pageType = defineField({

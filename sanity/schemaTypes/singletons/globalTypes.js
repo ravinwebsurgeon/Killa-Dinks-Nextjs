@@ -1,6 +1,6 @@
 import { BlockElementIcon } from '@sanity/icons'
 import { defineType } from 'sanity'
-import { GROUPS } from 'sanity/constants'
+import { GROUPS } from '../../constants'
 
 const TITLE = 'Global'
 
