@@ -1,12 +1,11 @@
-import {ThLargeIcon} from '@sanity/icons'
 import pluralize from 'pluralize-esm'
-import {defineArrayMember, defineField} from 'sanity'
+import { defineArrayMember, defineField } from 'sanity'
 
 export const gridType = defineField({
   name: 'grid',
   title: 'Grid',
   type: 'object',
-  icon: ThLargeIcon,
+  icon: false,
   fields: [
     defineField({
       name: 'items',

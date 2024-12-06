@@ -1,11 +1,11 @@
-import {PackageIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { GoPackage } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const collectionGroupType = defineField({
   name: 'collectionGroup',
   title: 'Collection group',
   type: 'object',
-  icon: PackageIcon,
+  icon: GoPackage,
   fields: [
     defineField({
       name: 'title',

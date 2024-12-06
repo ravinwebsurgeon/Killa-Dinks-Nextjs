@@ -1,18 +1,20 @@
-import React from 'react';
+'use client';
 import Link from 'next/link'; // Import Link from next
+import { usePathname } from 'next/navigation';
 import b1 from '../../public/assets/Badge1.png';
 import b2 from '../../public/assets/Badge2.png';
 import b3 from '../../public/assets/Badge3.png';
 import b4 from '../../public/assets/Badge4.png';
 import b5 from '../../public/assets/Badge5.png';
-import logo from '../../public/assets/logo.png';
-import twitter from '../../public/assets/twitter.png';
 import facebook from '../../public/assets/facebook.png';
 import instagram from '../../public/assets/instagram.png';
+import logo from '../../public/assets/logo.png';
+import twitter from '../../public/assets/twitter.png';
 
 const Footerx = () => {
+  const router = usePathname();
   return (
-    <div>
+    <footer className={`${router.includes('/sanity') ? 'hidden' : ''}`}>
       <section className="footer-container w-full flex-col items-center">
         <div className="w-full flex-col bg-[#BBA887] px-4 text-white">
           <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex lg:flex-row lg:pt-[40px]">
@@ -126,7 +128,7 @@ const Footerx = () => {
           </div>
         </div>
       </section>
-    </div>
+    </footer>
   );
 };
 

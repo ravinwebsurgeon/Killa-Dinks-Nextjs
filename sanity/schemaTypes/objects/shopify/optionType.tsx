@@ -1,11 +1,11 @@
-import {SunIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { GoSun } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const optionType = defineField({
   title: 'Product option',
   name: 'option',
   type: 'object',
-  icon: SunIcon,
+  icon: GoSun,
   readOnly: true,
   fields: [
     defineField({

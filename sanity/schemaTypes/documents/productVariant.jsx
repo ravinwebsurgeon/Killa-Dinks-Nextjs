@@ -1,6 +1,6 @@
 
 import { CopyIcon } from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 import ProductVariantHiddenInput from '../../components/inputs/ProductVariantHidden'
 import ShopifyDocumentStatus from '../../components/media/ShopifyDocumentStatus'

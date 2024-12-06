@@ -17,12 +17,12 @@ const CustomPaddlesEditor = () => {
     cropedFront:'',
 cropedBack:'',
   });
-  const getImages = (e: any, field: any) => {
+  const getImages = (e, field) => {
     const file = e.target.files[0];
     if (e.target.files) {
       const reader = new FileReader();
       reader.onload = () => {
-        setPaddlesData((prev: any) => ({
+        setPaddlesData((prev) => ({
           ...prev,
           [field]: reader.result
         }));

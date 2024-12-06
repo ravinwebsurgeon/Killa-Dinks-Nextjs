@@ -1,11 +1,11 @@
-import {UserIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { GoPerson } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const instagramType = defineField({
   name: 'instagram',
   title: 'Instagram',
   type: 'object',
-  icon: UserIcon,
+  icon: GoPerson,
   fields: [
     defineField({
       name: 'url',
@@ -28,7 +28,7 @@ export const instagramType = defineField({
       return {
         subtitle: 'Instagram',
         title: url,
-        media: UserIcon,
+        media: GoPerson,
       }
     },
   },

@@ -351,10 +351,10 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string, items:any }) => ({
       title: item.title,
-      path: item.url.replace(domain, '').replace('/pages', ''),
+      path: item.url,
       children:item?.items.length > 0 ? item?.items.map((item: { title: string; url: string }) => ({
         title: item.title,
-        path: item.url.replace(domain, '').replace('/pages', '')
+        path: item.url
       })) : []
     })) || []
   );

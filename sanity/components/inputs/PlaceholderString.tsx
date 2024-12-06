@@ -1,5 +1,5 @@
-import {StringInputProps, useFormValue, SanityDocument, StringSchemaType} from 'sanity'
-import get from 'lodash.get'
+import { get } from 'lodash'
+import { SanityDocument, StringInputProps, StringSchemaType, useFormValue } from 'sanity'
 
 type Props = StringInputProps<StringSchemaType & {options?: {field?: string}}>
 
@@ -13,7 +13,7 @@ const PlaceholderStringInput = (props: Props) => {
 
   return props.renderDefault({
     ...props,
-    elementProps: {...props.elementProps, placeholder: proxyValue},
+    elementProps: {...props.elementProps, placeholder: ''},
   })
 }
 

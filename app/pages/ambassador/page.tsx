@@ -1,17 +1,6 @@
-import Footerx from 'components/homepage/Footerx';
 import { getMenu } from 'lib/shopify';
 import Image from 'next/image';
 import Link from 'next/link';
-import img1 from '../../public/assets/videoImg3.jpeg';
-import HomePageBanner from 'components/homepage/HomePageBanner';
-import img2 from '../../public/assets/ourWorkImg4.webp'
-
-import img3 from '../../public/assets/ambassedor2.jpg'
-import img4 from '../../public/assets/ambassedor3.jpg'
-import img5 from '../../public/assets/ambassedor4.jpg'
-
-
-
 
 async function Ambassador() {
   const sidemenu = await getMenu('main-menu-1');
@@ -44,16 +33,16 @@ async function Ambassador() {
       </div>
       <div className=' place-content-center ambassador-card  gap-4' >
     <div className=' overflow-hidden rounded-lg min-h-[250px] max-h-[250px]' >
-      <Image alt='' className='w-full object-cover h-full'  height={400} width={400} src={img2.src} />
+      <Image alt='' className='w-full object-cover h-full'  height={400} width={400} src='/assets/ourWorkImg4.webp' />
     </div>
     <div className=' overflow-hidden rounded-lg min-h-[250px] max-h-[250px]' >
-      <Image alt='' className='w-full  object-cover h-full'  height={400} width={400} src={img3.src} />
+      <Image alt='' className='w-full  object-cover h-full'  height={400} width={400} src='/assets/ambassedor2.jpg' />
     </div>
     <div className=' overflow-hidden rounded-lg min-h-[250px] max-h-[250px]' >
-      <Image alt='' className='w-full  object-cover h-full'  height={400} width={400} src={img4.src} />
+      <Image alt='' className='w-full  object-cover h-full'  height={400} width={400} src='/assets/ambassedor3.jpg' />
     </div>
     <div className=' overflow-hidden rounded-lg min-h-[250px] max-h-[250px]' >
-      <Image alt='' className='w-full  object-cover h-full'  height={400} width={400} src={img5.src} />
+      <Image alt='' className='w-full  object-cover h-full'  height={400} width={400} src='/assets/ambassedor4.jpg' />
     </div>
       </div>
    

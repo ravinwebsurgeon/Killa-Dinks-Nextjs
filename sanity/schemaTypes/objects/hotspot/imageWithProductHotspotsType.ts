@@ -1,9 +1,9 @@
-import {ImageIcon} from '@sanity/icons'
 import pluralize from 'pluralize-esm'
-import {defineField} from 'sanity'
+import { GoImage } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const imageWithProductHotspotsType = defineField({
-  icon: ImageIcon,
+  icon: GoImage,
   name: 'imageWithProductHotspots',
   title: 'Image',
   type: 'object',

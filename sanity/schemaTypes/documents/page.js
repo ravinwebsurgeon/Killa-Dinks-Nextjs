@@ -1,7 +1,7 @@
-import { DocumentIcon } from '@sanity/icons'
+import { ColorWheelIcon, ComposeIcon, DocumentIcon, SearchIcon } from '@sanity/icons'
 import { defineField } from 'sanity'
 
-import { GROUPS } from '../../constants'
+import ShopifyIcon from 'sanity/components/icons/Shopify'
 import { validateSlug } from '../../utils/validateSlug'
 
 export const pageType = defineField({
@@ -9,7 +9,29 @@ export const pageType = defineField({
   title: 'Page',
   type: 'document',
   icon: DocumentIcon,
-  groups: GROUPS,
+  groups: [
+    {
+      name: 'theme',
+      title: 'Theme',
+      icon: ColorWheelIcon,
+    },
+    {
+      default: false,
+      name: 'editorial',
+      title: 'Editorial',
+      icon: ComposeIcon
+    },
+    {
+      name: 'shopifySync',
+      title: 'Shopify sync',
+      icon: ShopifyIcon,
+    },
+    {
+      name: 'seo',
+      title: 'SEO',
+      icon: SearchIcon
+    },
+  ],
   fields: [
     defineField({
       name: 'title',

@@ -102,6 +102,8 @@ import ourWork from './documents/home/ourWork';
 import perfectPaddle from './documents/home/perfectPaddle';
 import testimonials from './documents/home/testimonials';
 import { pageType } from './documents/page';
+import ambassador from './documents/pages/ambassador';
+import ourStory from './documents/pages/ourStory';
 import { productType } from './documents/product';
 import { globalType } from './singletons/globalTypes';
 const documents = [collectionType, pageType, productType];
@@ -119,6 +121,8 @@ export const schemaTypes = [
   newsletter,  
   header,
   footer,
+  ourStory,
+  ambassador,
   ...annotations,
   ...objects,
   ...singletons,

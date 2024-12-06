@@ -16,7 +16,7 @@ export default defineStructure<ListItemBuilder>((S) =>
             .views([
               S.view.form(),
               previewPane(S).options({
-                url: (doc) => {
+                url: (doc: { store: { slug: { current: any; }; }; }) => {
                   const slug = doc?.store.slug?.current; // Adjust based on your schema
                   return getPreviewUrl('Global', slug);
                 },

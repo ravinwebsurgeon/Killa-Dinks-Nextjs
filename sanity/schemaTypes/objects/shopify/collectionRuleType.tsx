@@ -1,11 +1,11 @@
-import {FilterIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { GoFilter } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const collectionRuleType = defineField({
   title: 'Collection rule',
   name: 'collectionRule',
   type: 'object',
-  icon: FilterIcon,
+  icon: GoFilter,
   readOnly: true,
   fields: [
     defineField({

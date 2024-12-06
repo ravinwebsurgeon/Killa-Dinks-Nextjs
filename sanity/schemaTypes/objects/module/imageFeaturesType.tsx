@@ -1,12 +1,12 @@
-import {ImageIcon} from '@sanity/icons'
 import pluralize from 'pluralize-esm'
-import {defineField} from 'sanity'
+import { GoImage } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const imageFeaturesType = defineField({
   name: 'images',
   title: 'Images',
   type: 'object',
-  icon: ImageIcon,
+  icon: GoImage,
   fields: [
     defineField({
       name: 'imageFeatures',
@@ -44,7 +44,7 @@ export const imageFeaturesType = defineField({
       return {
         subtitle: 'Images',
         title: images?.length > 0 ? pluralize('image', images.length, true) : 'No images',
-        media: ImageIcon,
+
       }
     },
   },

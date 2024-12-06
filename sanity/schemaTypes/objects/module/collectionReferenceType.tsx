@@ -1,14 +1,14 @@
 
-import {PackageIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { defineField } from 'sanity'
 
+import { GoPackage } from 'react-icons/go'
 import ShopifyDocumentStatus from '../../../components/media/ShopifyDocumentStatus'
 
 export const collectionReferenceType = defineField({
   name: 'collectionReference',
   title: 'Collection',
   type: 'object',
-  icon: PackageIcon,
+  icon: GoPackage,
   fields: [
     defineField({
       name: 'collection',

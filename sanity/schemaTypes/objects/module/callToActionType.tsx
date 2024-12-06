@@ -1,11 +1,11 @@
-import {BlockElementIcon, ImageIcon} from '@sanity/icons'
-import {defineArrayMember, defineField} from 'sanity'
+import { GoBlocked, GoImage } from 'react-icons/go'
+import { defineArrayMember, defineField } from 'sanity'
 
 export const callToActionType = defineField({
   name: 'callToAction',
   title: 'Call to action',
   type: 'object',
-  icon: BlockElementIcon,
+  icon: GoBlocked,
   fieldsets: [
     {
       name: 'copy',
@@ -58,7 +58,7 @@ export const callToActionType = defineField({
       validation: (Rule) => Rule.required().max(1),
       of: [
         defineArrayMember({
-          icon: ImageIcon,
+          icon: GoImage,
           type: 'image',
           options: {hotspot: true},
         }),
@@ -78,7 +78,6 @@ export const callToActionType = defineField({
       return {
         subtitle: 'Call to action',
         title,
-        media: BlockElementIcon,
       }
     },
   },

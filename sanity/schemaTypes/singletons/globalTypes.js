@@ -3,9 +3,6 @@ import { defineType } from 'sanity'
 import { GROUPS } from 'sanity/constants'
 
 const TITLE = 'Global'
-interface ProductOptions {
-  title: string
-}
 
 export const globalType = defineType({
   name: 'Global',

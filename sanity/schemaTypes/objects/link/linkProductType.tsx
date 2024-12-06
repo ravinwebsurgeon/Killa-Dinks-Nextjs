@@ -1,11 +1,17 @@
-import {TagIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { TagIcon } from '@sanity/icons'
+import { defineField } from 'sanity'
 
 export const linkProductType = defineField({
   title: 'Product',
   name: 'linkProduct',
   type: 'object',
-  icon: TagIcon,
+  icon:  <TagIcon
+  style={{
+    marginLeft: '0.05em',
+    marginRight: '0.1em',
+    width: '0.75em',
+  }}
+/>,
   components: {
     annotation: (props) => (
       <span>

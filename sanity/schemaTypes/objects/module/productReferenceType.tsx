@@ -1,14 +1,14 @@
-import {TagIcon} from '@sanity/icons'
 
-import {defineField} from 'sanity'
+import { defineField } from 'sanity'
 
+import { GoTag } from 'react-icons/go'
 import ShopifyDocumentStatus from '../../../components/media/ShopifyDocumentStatus'
 
 export const productReferenceType = defineField({
   name: 'productReference',
   title: 'Product',
   type: 'object',
-  icon: TagIcon,
+  icon: GoTag,
   fields: [
     defineField({
       name: 'productWithVariant',

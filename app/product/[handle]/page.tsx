@@ -9,9 +9,7 @@ import { getMenu, getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 
 import CapturedMoments from 'components/homepage/CapturedMoments';
-import Footerx from 'components/homepage/Footerx';
 import NewsLetter from 'components/homepage/NewsLetter';
-import Navbar from 'components/productDetails/Navbar';
 import Slider from 'components/productDetails/Slider';
 import { Suspense } from 'react';
 

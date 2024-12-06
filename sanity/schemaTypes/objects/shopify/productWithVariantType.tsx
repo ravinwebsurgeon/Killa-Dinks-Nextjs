@@ -1,8 +1,8 @@
-import { TagIcon } from '@sanity/icons'
 import pluralize from 'pluralize-esm'
 
 import { defineField } from 'sanity'
 
+import { GoTag } from 'react-icons/go'
 import ShopifyDocumentStatus from '../../../components/media/ShopifyDocumentStatus'
 import { SANITY_API_VERSION } from '../../../constants'
 import { getPriceRange } from '../../../utils/getPriceRange'
@@ -11,7 +11,7 @@ export const productWithVariantType = defineField({
   name: 'productWithVariant',
   title: 'Product with variant',
   type: 'object',
-  icon: TagIcon,
+  icon: GoTag,
   fields: [
     defineField({
       name: 'product',

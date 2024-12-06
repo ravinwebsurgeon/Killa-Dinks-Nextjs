@@ -1,11 +1,17 @@
-import {EarthGlobeIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { EarthGlobeIcon } from '@sanity/icons'
+import { defineField } from 'sanity'
 
 export const linkExternalType = defineField({
   title: 'External Link',
   name: 'linkExternal',
   type: 'object',
-  icon: EarthGlobeIcon,
+  icon:  <EarthGlobeIcon
+  style={{
+    marginLeft: '0.05em',
+    marginRight: '0.1em',
+    width: '0.75em',
+  }}
+/>,
   components: {
     annotation: (props) => (
       <span>

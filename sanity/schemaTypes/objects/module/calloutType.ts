@@ -1,11 +1,11 @@
-import {BulbOutlineIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { GoLightBulb } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const calloutType = defineField({
   name: 'callout',
   title: 'Callout',
   type: 'object',
-  icon: BulbOutlineIcon,
+  icon: GoLightBulb,
   fields: [
     defineField({
       name: 'text',
@@ -26,13 +26,6 @@ export const calloutType = defineField({
   preview: {
     select: {
       text: 'text',
-    },
-    prepare({text}) {
-      return {
-        subtitle: 'Callout',
-        title: text,
-        media: BulbOutlineIcon,
-      }
-    },
+    }
   },
 })

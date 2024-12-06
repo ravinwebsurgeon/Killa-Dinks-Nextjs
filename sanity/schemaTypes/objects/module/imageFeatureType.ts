@@ -1,5 +1,5 @@
-import {ImageIcon} from '@sanity/icons'
-import {defineField} from 'sanity'
+import { GoImage } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 const VARIANTS = [
   {title: 'Simple', value: undefined},
@@ -13,7 +13,7 @@ export const imageFeatureType = defineField({
   name: 'imageFeature',
   title: 'Image Feature',
   type: 'object',
-  icon: ImageIcon,
+  icon: GoImage,
   fields: [
     defineField({
       name: 'image',

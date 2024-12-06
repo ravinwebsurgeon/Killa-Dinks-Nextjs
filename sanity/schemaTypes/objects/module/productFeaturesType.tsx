@@ -1,12 +1,12 @@
-import {TagIcon} from '@sanity/icons'
 import pluralize from 'pluralize-esm'
-import {defineField} from 'sanity'
+import { GoTag } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const productFeaturesType = defineField({
   name: 'products',
   title: 'Products',
   type: 'object',
-  icon: TagIcon,
+  icon: GoTag,
   fields: [
     defineField({
       name: 'products',
@@ -43,7 +43,7 @@ export const productFeaturesType = defineField({
       return {
         subtitle: 'Products',
         title: products.length > 0 ? pluralize('product', products.length, true) : 'No products',
-        media: TagIcon,
+        media: GoTag,
       }
     },
   },

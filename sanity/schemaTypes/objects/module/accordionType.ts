@@ -1,12 +1,12 @@
-import {StackCompactIcon} from '@sanity/icons'
 import pluralize from 'pluralize-esm'
-import {defineField} from 'sanity'
+import { GoStack } from 'react-icons/go'
+import { defineField } from 'sanity'
 
 export const accordionType = defineField({
   name: 'accordion',
   title: 'Accordion',
   type: 'object',
-  icon: StackCompactIcon,
+  icon: GoStack,
   fields: [
     defineField({
       name: 'groups',

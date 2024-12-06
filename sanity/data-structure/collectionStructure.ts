@@ -1,6 +1,6 @@
-import {ListItemBuilder} from 'sanity/structure'
-import defineStructure from '../utils/defineStructure'
+import { ListItemBuilder } from 'sanity/structure';
 import { getPreviewUrl, previewPane } from '../components/PreviewPane';
+import defineStructure from '../utils/defineStructure';
 
 export default defineStructure<ListItemBuilder>((S) =>
   S.listItem()
@@ -16,7 +16,7 @@ export default defineStructure<ListItemBuilder>((S) =>
             .views([
               S.view.form(),
               previewPane(S).options({
-                url: (doc) => {
+                url: (doc: { store: { slug: { current: any; }; }; }) => {
                   const slug = doc?.store.slug?.current; // Adjust based on your schema
                   return getPreviewUrl('collection', slug);
                 },
