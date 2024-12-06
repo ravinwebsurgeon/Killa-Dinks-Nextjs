@@ -8,13 +8,13 @@ export default defineType({
       name: 'text',
       title: 'Heading',
       type: 'string',
-      validation: (Rule) => Rule.max(80).warning('Text should be less than 80 characters')
+       
     },
     {
       name: 'subHeading',
       title: 'Sub Heading',
       type: 'string',
-      validation: (Rule) => Rule.max(80).warning('Text should be less than 80 characters')
+       
     },
     defineField({
       name: 'images',
@@ -26,7 +26,6 @@ export default defineType({
           to: [{ type: 'capturedMomentsCard' }]          
         }
       ],
-      validation: (Rule) => Rule.max(3),
       description: 'Optional images like Trustpilot, Recommended dimensions: 169X82px,.'
     })
   ]

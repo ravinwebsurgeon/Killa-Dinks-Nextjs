@@ -48,7 +48,7 @@ export default defineType({
                 ]
               }
         ],
-        validation: (Rule) => Rule.max(3)
+
       }),
   ],
 
