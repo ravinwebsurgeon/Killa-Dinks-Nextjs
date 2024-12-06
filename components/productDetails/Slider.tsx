@@ -14,7 +14,7 @@ interface SliderProps {
 
 const Slider: React.FC<SliderProps> = ({ relatedProducts }) => {
   const relatedRef = useRef<SwiperClass | any>(null);
-  console.log(relatedProducts)
+
   return (
     <div className="relative">
       {' '}

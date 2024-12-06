@@ -21,7 +21,6 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  console.log(product?.title)
   return (
     <div className="w-full  min-w-[333px]   min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
       {/* Image Container with Hover Effect */}

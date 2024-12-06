@@ -1,3 +1,4 @@
+'use client'
 import { AddToCart } from 'components/cart/add-to-cart';
 import Price from 'components/price';
 import Prose from 'components/prose';
@@ -5,8 +6,13 @@ import { Product } from 'lib/shopify/types';
 import { VariantSelector } from './variant-selector';
 import Counter from 'components/productDetails/Counter';
 import Accordion from 'components/productDetails/Accordion';
+import { useState } from 'react';
 
 export function ProductDescription({ product }: { product: Product }) {
+
+  const [productQuantity,setProductQuantity] = useState(1)
+  const increase = () => setProductQuantity((prevCount) => prevCount + 1);
+  const decrease = () => setProductQuantity((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
 
   const items=[
     {title:'Description',
@@ -35,8 +41,8 @@ export function ProductDescription({ product }: { product: Product }) {
       </div>
       <div className='text-xs xl:text-sm text-yellow-900/70' >Shipping calculated at checkout.</div>
       <VariantSelector options={product.options} variants={product.variants} />
-      <Counter/>
-      <AddToCart product={product} />
+      <Counter quantity={productQuantity} increase={increase} decrease={decrease} />
+      <AddToCart productQuantity={productQuantity} product={product} />
       {/* {product.descriptionHtml ? (
         <Prose
           className=" text-sm leading-tight dark:text-white/[60%]"
