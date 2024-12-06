@@ -36,8 +36,7 @@ export default defineType({
             type: 'string',
         },
           {name: 'url', title: 'URL', type: 'string'},
-        ]}],
-        validation: (Rule) => Rule.max(3),
+        ]}]
       }),
   ],
 
