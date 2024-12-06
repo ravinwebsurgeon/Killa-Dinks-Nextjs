@@ -1,6 +1,6 @@
 
-import { PackageIcon } from '@sanity/icons'
 import pluralize from 'pluralize-esm'
+import { GoPackage } from 'react-icons/go'
 import { defineField, defineType } from 'sanity'
 import CollectionHiddenInput from '../../components/inputs/CollectionHidden'
 import ShopifyDocumentStatus from '../../components/media/ShopifyDocumentStatus'
@@ -10,7 +10,7 @@ export const collectionType = defineType({
   name: 'collection',
   title: 'Collection',
   type: 'document',
-  icon: PackageIcon,
+  icon: GoPackage,
   groups: GROUPS,
   fields: [
     defineField({
