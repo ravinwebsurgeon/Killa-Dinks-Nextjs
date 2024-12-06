@@ -23,6 +23,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/custom-paddles/CustomPaddleImageEditor.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/custom-paddles/CustomPaddleImageEditor.tsx", "sanity/schemaTypes/documents/productVariant.jsx", "sanity/schemaTypes/singletons/settingsType.js", "sanity/schemaTypes/singletons/homeType.js", "sanity/schemaTypes/singletons/globalTypes.js", "sanity/schemaTypes/documents/page.js", "components/custom-paddles/CustomPaddlesEditor.jsx"],
   "exclude": ["node_modules"]
 }
