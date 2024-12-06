@@ -1,0 +1,12 @@
+.main-gallery-images svg {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.thumbnail-images svg {
+    width: 100%;
+    height: auto;
+}

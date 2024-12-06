@@ -8,22 +8,18 @@ export const metadata = {
 
 import CapturedMoments from 'components/homepage/CapturedMoments';
 import CustomizePaddle from 'components/homepage/CustomizePaddle';
-import Footerx from 'components/homepage/Footerx';
 import NewsLetter from 'components/homepage/NewsLetter';
 import OurWork from 'components/homepage/OurWork';
 import ShopBanner from 'components/homepage/ShopBanner';
 import Testimonials from 'components/homepage/Testimonials';
 import { getCollectionProducts, getMenu } from 'lib/shopify';
-import banner from '../public/assets/rect.png'
-import HomePageBanner from '../components/homepage/HomePageBanner';
 export default async function HomePage() {
 
   const FrontProducts = await getCollectionProducts({ collection: "front-page" });
   const menu = await getMenu('main-menu');
   const sidemenu = await getMenu('main-menu-1');
-  const footerData = await getMenu('footer');
- 
-
+  const footerData = await getMenu('footer');    
+    
   return (
     <>
       <div className="bg-[#FAF7EB]  w-full overflow-hidden  ">

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "createdAt": "2024-11-22T09:51:10.102Z",
+  "workspaces": [
+    {
+      "name": "default",
+      "title": "popdarts",
+      "basePath": "/",
+      "dataset": "production",
+      "schema": "c49938eb.create-schema.json"
+    }
+  ]
+}
