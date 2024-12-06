@@ -1,15 +1,13 @@
 'use client';
 import CartModal from 'components/cart/modal';
+import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import image1 from 'public/assets/homepageBanner.png';
 import { useState } from 'react';
 import logo from '../../public/assets/logo.png';
-import rect from '../../public/assets/rect.png';
 import user from '../../public/assets/user.png';
 import Dropdown from './Dropdown';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { usePathname } from 'next/navigation';
-import image1 from 'public/assets/homepageBanner.png'
 
 export default function HomePageBanner({ menu }: any) {
   const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
@@ -49,7 +47,7 @@ export default function HomePageBanner({ menu }: any) {
 
   return (
     <div>
-      <header className="bigger-navbar z-50  bg-[#FAF7EB] lg:pt-[47px]">
+      <header className={`bigger-navbar z-50  bg-[#FAF7EB] lg:pt-[47px] ${router.includes('/sanity') ? 'hidden' : ''}`}>
         {/* Main Banner */}
         <div className={` banner bg-black  relative  gap-[30px]   lg:mx-[20px] lg:rounded-t-[50px] xl:mx-[43px]  ${containerClass}`}>
           <div className={`z-50 flex flex-col  h-full max-h-[800px] w-full rounded-[50px] `}>
