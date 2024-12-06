@@ -88,7 +88,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
         }}
       />
       
-      <div className="mx-auto flex flex-col bg-[#FAF7EB]  lg:pt-[47px]  w-full overflow-hidden ">
+      <div className="mx-auto flex flex-col bg-[#FAF7EB]  pt-8 lg:pt-[47px]  w-full overflow-hidden ">
      
       <div className=' flex justify-center  mx-2 md:mx-[20px]   xl:mx-[43px] flex-col  ' >
       

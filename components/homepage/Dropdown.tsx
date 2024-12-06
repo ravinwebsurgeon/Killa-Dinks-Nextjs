@@ -78,8 +78,7 @@ const Dropdown: React.FC<DropdownProps> = ({ title, options }) => {
           className="absolute bg-black/50 flex flex-col overflow-hidden opacity-7 border rounded-md shadow-lg  w-40 z-10"
         >
           {options.map((option:any, index:number) => {
-            // <>
-            // {console.log(option)}</>
+           
             let url: string = new URL(option.path).pathname;
            return <Link
               key={index}

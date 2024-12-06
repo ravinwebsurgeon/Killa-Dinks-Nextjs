@@ -44,6 +44,7 @@ export default function CartModal() {
         setIsOpen(true);
       }
       quantityRef.current = cart?.totalQuantity;
+      
     }
   }, [isOpen, cart?.totalQuantity, quantityRef]);
 

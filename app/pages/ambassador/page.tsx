@@ -44,8 +44,8 @@ async function Ambassador() {
     <div className=' overflow-hidden rounded-lg min-h-[250px] max-h-[250px]' >
       <Image alt='' className='w-full  object-cover h-full'  height={400} width={400} src='/assets/ambassedor4.jpg' />
     </div>
-      </div>
    
+      </div>
     </div>
   );
 }
