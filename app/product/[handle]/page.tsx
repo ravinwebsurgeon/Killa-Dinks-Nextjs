@@ -11,7 +11,6 @@ import { Image } from 'lib/shopify/types';
 import CapturedMoments from 'components/homepage/CapturedMoments';
 import Footerx from 'components/homepage/Footerx';
 import NewsLetter from 'components/homepage/NewsLetter';
-import Navbar from 'components/productDetails/Navbar';
 import Slider from 'components/productDetails/Slider';
 import { Suspense } from 'react';
 
@@ -90,7 +89,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
         }}
       />
       
-      <div className="mx-auto flex flex-col bg-[#FAF7EB]  lg:pt-[47px]  w-full overflow-hidden ">
+      <div className="mx-auto flex flex-col bg-[#FAF7EB]  pt-8 lg:pt-[47px]  w-full overflow-hidden ">
      
       <div className=' flex justify-center  mx-2 md:mx-[20px]   xl:mx-[43px] flex-col  ' >
       

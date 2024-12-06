@@ -10,6 +10,7 @@ import { Toaster } from 'sonner';
 import './globals.css';
 import HomePageBanner from 'components/homepage/HomePageBanner';
 import Footerx from 'components/homepage/Footerx';
+import Popup from 'components/common/Popup';
 
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
@@ -87,6 +88,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
             <WelcomeToast />
           </main>
         </CartProvider>
+        <Popup/>
         <Footerx/>
       </body>
     </html>

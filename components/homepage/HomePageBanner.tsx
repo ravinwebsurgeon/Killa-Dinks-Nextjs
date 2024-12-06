@@ -23,7 +23,6 @@ export default function HomePageBanner({ menu }: any) {
 
   const router = usePathname()
 
-  console.log(router)
   const getbannerClass  = ()=>{
     if(router ==='/'  || router ==='/ambassador'){
       return 'absolute w-full bg-black/70'
@@ -122,14 +121,21 @@ export default function HomePageBanner({ menu }: any) {
               isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
           >
-            <div className="flex flex-col px-4 py-6 pt-8">
-              <div className="mb-1 flex items-center justify-end">
+            <div className="flex flex-col gap-6 px-4 py-6 pt-8">
+              <div className="mb-1 flex items-center justify-between">
+              <div>
+                  <img
+                    src={logo.src}
+                    alt="Logo"
+                    className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
+                  />
+                </div>
                 <button onClick={toggleDrawer} className="text-4xl text-black">
                   &times; {/* Close icon */}
                 </button>
               </div>
 
-              <div className="flex flex-col gap-4 text-lg">
+              <div className="flex flex-col gap-6 text-lg">
                 {/* <div>Home</div>
 
                 <div>Our Story</div>
@@ -142,11 +148,13 @@ export default function HomePageBanner({ menu }: any) {
                     url = '/search'; // Change the URL for 'Shop'
                   }
                   return (
-                    <Link key={index} className="text-lg font-[500] tracking-[1px]" href={url}>
+                    <Link key={index} className="text-xl font-[500] tracking-[1px]" href={url}>
                       {item.title}
                     </Link>
                   );
                 })}
+
+                
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import CapturedMoments from 'components/homepage/CapturedMoments';
 import Footerx from 'components/homepage/Footerx';
 import NewsLetter from 'components/homepage/NewsLetter';
-import Navbar from 'components/productDetails/Navbar';
+
 import { getMenu } from 'lib/shopify';
 import img1 from '../../../public/assets/ourWorkImg4.webp';
 import HomePageBanner from 'components/homepage/HomePageBanner';
