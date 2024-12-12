@@ -133,6 +133,7 @@ cropedBack:'',
             </div>
             <div className="main-gallery-images w-full">
               <CustomPaddleSvg
+              image={paddlesData?.cropedFront}
                 paddleEdge={
                   paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                 }
