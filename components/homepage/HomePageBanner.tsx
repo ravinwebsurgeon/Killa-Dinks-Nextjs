@@ -4,16 +4,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import image1 from 'public/assets/homepageBanner.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../../public/assets/logo.png';
 import user from '../../public/assets/user.png';
 import Dropdown from './Dropdown';
+import client from 'sanity/lib/client';
+import {urlFor} from '../../sanity/lib/image'
 
 export default function HomePageBanner({ menu }: any) {
   const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
 
   // State to manage the visibility of the mobile drawer
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [heroImage,setHeroImage] =useState(null)
 
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
@@ -22,12 +25,12 @@ export default function HomePageBanner({ menu }: any) {
   const router = usePathname()
 
   const getbannerClass  = ()=>{
-    if(router ==='/'  || router ==='/ambassador'){
+    if(router ==='/'  || router ==='/pages/ambassador'){
       return 'absolute w-full bg-black/70'
     }
   }
   const getConatinerClass = ()=>{
-    if (router === '/'|| router === '/ambassador') {
+    if (router === '/'|| router === '/pages/ambassador') {
       return ' lg:rounded-[50px] overflow-hidden lg:bg-black/70 '; // Apply class if the condition is true
     }
     return '';
@@ -37,12 +40,28 @@ export default function HomePageBanner({ menu }: any) {
   const bannerClass = getbannerClass()
 
   const getImageSrc = (router:any)=>{
-      if(router==='/' || router ==='/ambassador'){
-         return image1 
+      if(router==='/' || router ==='/pages/ambassador'){
+         return  heroImage?urlFor(heroImage)?.width(1200)?.url() :null
       }
   }
  
   const imageSrc = getImageSrc(router) || '';
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await client.fetch(`*[_type == "animationHero"]`);
+        
+        if (result.length > 0) {    
+                setHeroImage(result[0]?.Image.asset)               
+        }
+      } catch (error) {
+        console.error('Error fetching social gallery cards:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -52,13 +71,13 @@ export default function HomePageBanner({ menu }: any) {
           <div className={`z-50 flex flex-col  h-full max-h-[800px] w-full rounded-[50px] `}>
             <div className={`  py-[13px] lg:flex  ${bannerClass}`}>
               <div className="mx-auto flex items-center justify-around lg:justify-center gap-[30px] text-white xl:w-full xl:max-w-[1440px] xl:justify-between xl:px-5">
-                <div>
+                <Link href={'/'}>
                   <img
                     src={logo.src}
                     alt="Logo"
                     className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
                   />
-                </div>
+                </Link>
                 <div className="lg:flex items-center hidden gap-[30px] text-[18px]">
                   {menu.map((item: any, index: any) => {
                     let url: string = new URL(item.path).pathname;
@@ -100,7 +119,7 @@ export default function HomePageBanner({ menu }: any) {
             {
              imageSrc ?  
              <div className='  flex items-center justify-center w-full' >
-               <Image
+               <img
               height={800}
               width={1820}
               src={imageSrc}

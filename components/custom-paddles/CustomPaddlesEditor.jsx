@@ -105,6 +105,7 @@ cropedBack:'',
             <div className="thumbnail-images w-full max-w-[100px]">
               <div className="rounded-lg border border-gray-200 p-3">
                 <CustomPaddleSvg
+                 image={paddlesData?.cropedFront}
                   paddleEdge={
                     paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                   }
@@ -248,7 +249,10 @@ cropedBack:'',
                     </div>
                   ))}
               </div>
+
             </div>
+            <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button>
+
           </div>
         </div>
       </div>
