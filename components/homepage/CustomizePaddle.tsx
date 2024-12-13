@@ -4,11 +4,14 @@ import play1 from '../../public/assets/badmitionPlayImg.png';
 import icon1 from '../../public/assets/icon1.png';
 import icon2 from '../../public/assets/icon2.png';
 import icon3 from '../../public/assets/icon3.png';
-import client from 'sanity/lib/client';
-import { urlFor } from 'sanity/lib/image';
+import client from '../../sanity/lib/client';
+import { urlFor } from '../../sanity/lib/image';
+;
 const CustomizePaddle = () => {
 
     const [designData,setDesignData] =useState<any>({})
+
+ 
 
     // perfectPaddle
      useEffect(() => {

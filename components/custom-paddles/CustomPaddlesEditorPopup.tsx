@@ -56,7 +56,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
 
   return (
     <div
-      className={`fixed left-0 top-0 flex h-full w-full items-center justify-center p-8 ${showModal ? 'opacity-100' : 'opacity-0'} transition-all duration-500`}
+      className={`fixed left-0 z-10 top-0 flex h-full w-full items-center justify-center p-8 ${showModal ? 'opacity-100' : 'opacity-0'} transition-all duration-500`}
     >
       <div className="relative w-full max-w-[1560px] overflow-hidden rounded-lg bg-white shadow-2xl">
         <button className="absolute right-4 top-4 z-[99]" onClick={() => closeModel()}>

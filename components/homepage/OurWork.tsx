@@ -9,7 +9,7 @@ import { Swiper as SwiperClass } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css'; // Core Swiper styles
 import 'swiper/css/navigation'; // Navigation styles
-import client from 'sanity/lib/client';
+import client from '../../sanity/lib/client';
 import { urlFor } from '../../sanity/lib/image';
 
 const OurWork = () => {

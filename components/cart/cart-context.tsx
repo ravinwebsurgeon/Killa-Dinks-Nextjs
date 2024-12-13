@@ -51,7 +51,6 @@ function createOrUpdateCartItem(
 ): CartItem {
   const quantity = existingItem ? existingItem.quantity + productQuantity : productQuantity;
   const totalAmount = calculateItemCost(quantity, variant.price.amount);
-
   return {
     id: existingItem?.id,
     quantity,
@@ -60,7 +59,7 @@ function createOrUpdateCartItem(
         amount: totalAmount,
         currencyCode: variant.price.currencyCode
       }
-    },
+    },    
     merchandise: {
       id: variant.id,
       title: variant.title,
@@ -70,7 +69,9 @@ function createOrUpdateCartItem(
         handle: product.handle,
         title: product.title,
         featuredImage: product.featuredImage
+
       }
+
     }
   };
 }
@@ -160,7 +161,8 @@ export function CartProvider({
     updateOptimisticCart({ type: 'UPDATE_ITEM', payload: { merchandiseId, updateType } });
   };
 
-  const addCartItem = (variant: ProductVariant, product: Product,productQuantity:number) => {
+  const addCartItem = (variant: ProductVariant, product: Product,productQuantity:number,) => {
+
     updateOptimisticCart({ type: 'ADD_ITEM', payload: { variant, product,productQuantity } });
   };
 

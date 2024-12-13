@@ -17,7 +17,7 @@ export async function generateMetadata(props: {
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-
+    console.log( params.handle)
   const product = await getProduct(params.handle);
 
   if (!product) return notFound();
@@ -102,8 +102,8 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
             >
               <Gallery
                 images={product.images.slice(0, 5).map((image: Image) => ({
-                  src: image.url,
-                  altText: image.altText
+                  src: image?.url,
+                  altText: image?.altText
                 }))}
               />
             </Suspense>
@@ -128,7 +128,7 @@ export default async function ProductPage(props: { params: Promise<{ handle: str
       <CapturedMoments />
       </div>
       <NewsLetter />
-    
+      <div className="jdgm-widget jdgm-review-widget jdgm-outside-widget" data-id={product.id.replace('gid://shopify/Product/', '')} data-product-title={product.title}></div>
     </ProductProvider>
   );
 }
