@@ -4,6 +4,7 @@ import { Swiper as SwiperClass } from 'swiper';
 import manImg from '../../public/assets/man.png';
 
 import StarRating from 'components/StarRatings';
+import client from 'sanity/lib/client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import arrowImg1 from '../../public/assets/Arrow1.png';
 import arrowImg2 from '../../public/assets/Arrow2.png';
@@ -13,6 +14,23 @@ const Testimonials = () => {
   const ourWorkRef = useRef<SwiperClass | any>(null);
 
   const [reviews, setReviews] = useState<any>(null);
+  const [testimonial, setTestimonial] = useState<any>();
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await client.fetch(`*[_type == "testimonials"]`);
+        if (result.length > 0) {
+          setTestimonial(result);
+        }
+      } catch (error) {
+        console.error('Error fetching social gallery cards:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const apiUrl = '/api/judgme';
@@ -32,6 +50,7 @@ const Testimonials = () => {
 
     fetchReviews();
   }, []);
+
   
   const truncateText = (text: string, maxWords: number = 50) => {
     const words = text.split(' ');
@@ -50,10 +69,10 @@ const Testimonials = () => {
             <div className="]">
               <div className="flex justify-center text-[24px] font-medium md:text-[40px]">
                 {' '}
-                Testimonials
+                {testimonial[0]?.text && testimonial[0]?.text}
               </div>
               <div className="flex justify-center text-[16px] md:text-[25px]">
-                See Why They Love Us
+              {testimonial[0]?.subHeading && testimonial[0]?.subHeading}
               </div>
             </div>
             <div className="slider-container my-[40px] mb-[40px] mt-[10px] md:mb-[80px]">

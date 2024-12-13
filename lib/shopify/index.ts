@@ -69,7 +69,7 @@ export async function shopifyFetch<T>({
   headers?: HeadersInit;
   query: string;
   tags?: string[];
-  variables?: ExtractVariables<T>;
+  variables?: any;
 }): Promise<{ status: number; body: T } | never> {
   try {
     const result = await fetch(endpoint, {

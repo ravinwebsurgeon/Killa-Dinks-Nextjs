@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import videoImg1 from '../../public/assets/videoImg1.jpeg';
 import videoImg2 from '../../public/assets/videoImg2.jpeg';
 import videoImg3 from '../../public/assets/videoImg3.jpeg';
@@ -11,19 +11,39 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperClass } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import client from 'sanity/lib/client';
 
 
 const CapturedMoments = () => {
   const swiperRef = useRef<SwiperClass | any>(null);
+  
+  const[momentsData,setMomentsData] = useState<any>()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await client.fetch(`*[_type == "capturedMoments"]`);
+        if (result.length > 0) {
+         setMomentsData(result);
+        }
+      } catch (error) {
+        console.error('Error fetching social gallery cards:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
   return (
     <div>
       <section className="captured-moments mx-4">
         <div>
           <div className="flex justify-center pt-[80px] text-[24px] font-medium md:text-[40px]">
-            Captured Moments
+            {momentsData ? momentsData[0]?.text : null}
           </div>
           <div className="flex justify-center text-[16px] md:text-[25px]">
-            Real Users, Real Stories
+          {momentsData ? momentsData[0]?.subHeading : null}
           </div>
         </div>
         <div className="relative mx-auto flex w-full max-w-[1440px] justify-center overflow-hidden pb-[80px] pt-[40px]">

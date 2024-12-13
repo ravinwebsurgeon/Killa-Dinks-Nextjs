@@ -163,7 +163,6 @@ export function CartProvider({
   const addCartItem = (variant: ProductVariant, product: Product,productQuantity:number) => {
     updateOptimisticCart({ type: 'ADD_ITEM', payload: { variant, product,productQuantity } });
   };
-  console.log(addCartItem)
 
   const value = useMemo(
     () => ({
