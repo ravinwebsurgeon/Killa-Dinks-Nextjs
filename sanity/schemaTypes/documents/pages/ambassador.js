@@ -5,6 +5,18 @@ export default defineType({
   type: 'document',  
   fields: [
     {
+      name: 'Image',
+      title: 'Image',
+      type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+        },
+      ],
+    },
+    {
       name: 'text',
       title: 'Heading',
       type: 'string',

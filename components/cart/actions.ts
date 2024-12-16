@@ -85,7 +85,7 @@ export async function updateItemQuantity(
       }
     } else if (quantity > 0) {
       // If the item doesn't exist in the cart and quantity > 0, add it
-      await addToCart(cartId, [{ merchandiseId, quantity }]);
+      await addToCart(cartId, [{ merchandiseId, quantity  }]);
     }
 
     revalidateTag(TAGS.cart);

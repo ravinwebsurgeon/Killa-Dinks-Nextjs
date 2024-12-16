@@ -1,15 +1,13 @@
 'use client';
 import CartModal from 'components/cart/modal';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import image1 from 'public/assets/homepageBanner.png';
 import { useEffect, useState } from 'react';
 import logo from '../../public/assets/logo.png';
 import user from '../../public/assets/user.png';
+import client from '../../sanity/lib/client';
+import { urlFor } from '../../sanity/lib/image';
 import Dropdown from './Dropdown';
-import client from 'sanity/lib/client';
-import {urlFor} from '../../sanity/lib/image'
 
 export default function HomePageBanner({ menu }: any) {
   const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];

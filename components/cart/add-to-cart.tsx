@@ -57,7 +57,7 @@ function SubmitButton({
   );
 }
 
-export function AddToCart({ product,productQuantity,attributes }: { product: Product,productQuantity:any,attributes:any }) {
+export function AddToCart({ product,productQuantity,attributes }: { product: Product,productQuantity:any,attributes?:any }) {
 
  
   const { variants, availableForSale } = product;

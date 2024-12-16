@@ -23,6 +23,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/custom-paddles/CustomPaddleImageEditor.tsx", "sanity/schemaTypes/documents/productVariant.jsx", "sanity/schemaTypes/singletons/settingsType.js", "sanity/schemaTypes/singletons/homeType.js", "sanity/schemaTypes/singletons/globalTypes.js", "sanity/schemaTypes/documents/page.js", "components/custom-paddles/CustomPaddlesEditor.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/custom-paddles/CustomPaddleImageEditor.tsx", "sanity/schemaTypes/documents/productVariant.jsx", "sanity/schemaTypes/singletons/settingsType.js", "sanity/schemaTypes/singletons/homeType.js", "sanity/schemaTypes/singletons/globalTypes.js", "sanity/schemaTypes/documents/page.js", "components/custom-paddles/CustomPaddlesEditor.jsx", "sanity/schemaTypes/objects/hotspot/spotType.jsx", "sanity/schemaTypes/objects/link/linkProductType.jsx", "sanity/schemaTypes/objects/link/linkInternalType.jsx", "sanity/schemaTypes/objects/link/linkExternalType.jsx", "sanity/schemaTypes/objects/link/linkEmailType.jsx", "sanity/schemaTypes/objects/hotspot/productHotspotsType.jsx", "sanity/components/studio/Navbar.jsx", "sanity/components/hotspots/ProductTooltip.jsx"],
   "exclude": ["node_modules"]
 }

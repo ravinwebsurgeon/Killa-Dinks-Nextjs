@@ -22,7 +22,7 @@ export const linkEmailType = defineField({
             width: '0.75em',
           }}
         />
-        {props.renderDefault(props)}
+        {props.renderDefault(props)} 
       </span>
     ),
   },
