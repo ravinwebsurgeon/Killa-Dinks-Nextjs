@@ -438,3 +438,169 @@ input:-webkit-autofill, textarea:-webkit-autofill {
 input:-webkit-autofill:focus, textarea:-webkit-autofill:focus {
   border: 2px solid #bba887; /* Change to match your design */
 }
+
+.jdgm-outside-widget{
+  background-color: #FAF7EB;
+}
+.jdgm-rev-widg__title{
+  color: #BBA887;
+  font-size: 40px !important;
+  font-weight: 500;
+}
+.jdgm-star{
+color: #BBA887 !important;
+}
+.jdgm-histogram__bar-content{
+  background-color: #BBA887 !important;
+}
+.jdgm-link{
+  color: #BBA887 !important;
+}
+.jdgm-rev-widg__summary-text{
+  color: #999;
+}
+.jdgm-write-rev-link{
+  background-color: #BBA887 !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 18px 4px !important;
+}
+.jdgm-histogram{
+  border-left: 1px solid  #BBA887 !important;
+  border-right: 1px solid  #BBA887 !important;
+
+}
+@media (max-width:968px){
+  .jdgm-histogram{
+    border: none !important;
+  }
+}
+
+.jdgm-row-actions{
+  border-top: 1px solid  #BBA887 !important;
+  border-bottom: 1px solid  #BBA887 !important;
+}
+
+.jdgm-sort-dropdown{
+  color: #BBA887 !important;
+  outline: none;
+  font-weight: 500 !important;
+}
+.jdgm-sort-dropdown-arrow{
+  color: #BBA887 !important;
+}
+.jdgm-sort-dropdown option{
+  padding: 8px 4px !important;
+}
+
+/* Target the select dropdown */
+.jdgm-sort-dropdown {
+  padding: 8px 12px !important; /* You can customize this padding for the select element itself */
+  font-size: 14px; /* Customize font size if needed */
+  border: 1px solid #ccc; /* Add border if required */
+  background-color:transparent !important ;
+}
+
+/* Add padding to the option elements */
+.jdgm-sort-dropdown option {
+  padding: 10px !important;  /* Add padding to each option item */
+  font-size: 14px; /* Adjust font size for options */
+}
+
+/* Optional: If you want to add some hover effects */
+
+
+/* Styling for the dropdown arrow */
+
+
+/* Optional: Adjust width of the dropdown */
+.jdgm-sort-dropdown option {
+  width: 100%;
+ font-weight: 500 !important;
+  
+  
+}
+
+.jdgm-form input{
+   border-radius: 16px !important;
+   padding: 18px 15px !important;
+   outline: #BBA887 !important;
+}
+.jdgm-form textarea{
+  border-radius: 16px !important;
+  padding: 18px 15px !important;
+  outline: #BBA887 !important;
+  resize: none;
+}
+:root {
+  --jdgm-primary-color: #BBA887 !important; /* Set your desired color here */
+}
+.jdgm-cancel-rev{
+  padding: 18px 15px !important;
+  border-radius:  12px !important;
+}
+.jdgm-picture-fieldset__box-wrapper{
+  border-radius: 16px;
+
+}
+.jdgm-form-wrapper{
+  border-top: 1px solid  #BBA887 !important;
+}
+.jdgm-rev__icon:after{
+  background-color: #BBA887 !important;
+}
+.jdgm-rev__author{
+  color: #BBA887 !important;
+}
+.jdgm-rev__buyer-badge-wrapper{
+  background-color: #BBA887 !important;
+  padding: 4px 6px !important;
+  display: flex;
+  align-items: center !important;
+  border-radius: 5px !important;
+}
+.jdgm-rev__buyer-badge {
+  background-color: #BBA887 !important;
+
+}
+.jdgm-rev__icon{
+  border-radius:  9999px !important;
+}
+.jdgm-paginate__page.jdgm-curt{
+  color: #BBA887 !important;
+}
+.jdgm-paginate__page{
+  color: #BBA887 !important;
+}
+.jdgm-rev-widg{
+  max-width: 1440px;
+  width: 100%;
+  padding-top: 48px !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.jdgm-write-rev-link{
+  width: max-content !important;
+  padding: 18px 15px  !important;
+}
+.jdgm-quest, .jdgm-quest, .jdgm-rev {
+  border-radius: 16px;
+  margin: 0;
+  padding: 16px 22px !important;
+  border: 1px solid #BBA887 !important ;
+
+}
+.jdgm-rev-widg__reviews{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap:  2rem;
+  padding-bottom: 2rem;
+}
+.jdgm-rev-widg__body{
+  padding-top: 2rem;
+
+}
+.jdgm-paginate{
+  border-top: 1px solid #BBA887 !important;
+}

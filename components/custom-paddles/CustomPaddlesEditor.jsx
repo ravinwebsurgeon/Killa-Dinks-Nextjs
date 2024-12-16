@@ -19,18 +19,32 @@ const CustomPaddlesEditor = ({ getProductData }) => {
     cropedBack: ''
   });
 
-  const atrributesArr = [
-    { type: paddlesData?.type },
-    { frontImage: paddlesData?.frontImage },
-    { paddleEdge: paddlesData?.paddleEdge },
-    { paddleBand: paddlesData?.paddleBand },
-    { paddleGrip:paddlesData?.paddleGrip },
-    { bottomPiece: paddlesData?.bottomPiece},
-    { front: paddlesData?.front},
-    { back:paddlesData?.back},
-    { cropedFront:paddlesData?.cropedFront},
-    { cropedBack: paddlesData?.cropedBack }
-  ];
+
+    // { frontImage: paddlesData?.frontImage },
+    // { paddleEdge: paddlesData?.paddleEdge },
+    // { paddleBand: paddlesData?.paddleBand },
+    // { paddleGrip:paddlesData?.paddleGrip },
+    // { bottomPiece: paddlesData?.bottomPiece},
+    // { front: paddlesData?.front},
+    // { back:paddlesData?.back},
+    // { cropedFront:paddlesData?.cropedFront},
+    // { cropedBack: paddlesData?.cropedBack }
+    
+  const attributesArr = [
+    paddlesData?.type ? { key: 'Type', value: paddlesData.type } : null,
+    paddlesData?.frontImage ? { key: 'Front Image', value: paddlesData.frontImage } : null,
+    paddlesData?.paddleEdge ? { key: 'Edge', value: paddlesData.paddleEdge } : null,
+    paddlesData?.paddleBand ? { key: 'Paddle Band', value: paddlesData.paddleBand } : null,
+    paddlesData?.paddleGrip ? { key: 'Grip', value: paddlesData.paddleGrip } : null,
+    paddlesData?.bottomPiece ? { key: 'Bottom Piece', value: paddlesData.bottomPiece } : null,
+    paddlesData?.front ? { key: 'Front', value: paddlesData.front } : null,
+    paddlesData?.back ? { key: 'Back', value: paddlesData.back } : null,
+    paddlesData?.cropedFront ? { key: 'Cropped Front', value: paddlesData.cropedFront } : null,
+    paddlesData?.cropedBack ? { key: 'Cropped Back', value: paddlesData.cropedBack } : null,
+
+  ].filter(attr => attr !== null); // Filter out null values
+  
+  
   const getImages = (e, field) => {
     const file = e.target.files[0];
     if (e.target.files) {
@@ -276,7 +290,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
             {/* <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button> */}
             {getProductData && (
               <div className="mt-5">
-                <AddToCart product={getProductData} productQuantity={1} attributes={atrributesArr} />
+                <AddToCart product={getProductData} productQuantity={1} attributes={attributesArr} />
               </div>
             )}
           </div>

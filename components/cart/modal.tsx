@@ -49,7 +49,6 @@ export default function CartModal() {
   }, [isOpen, cart?.totalQuantity, quantityRef]);
 
 
-
   return (
     <>
       <button aria-label="Open cart" onClick={openCart}>
@@ -93,21 +92,21 @@ export default function CartModal() {
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden p-1">
                   <ul className="flex-grow overflow-auto py-4">
-                    {cart.lines
-                      .sort((a, b) =>
-                        a.merchandise.product.title.localeCompare(b.merchandise.product.title)
+                    {cart?.lines
+                      ?.sort((a, b) =>
+                        a?.merchandise?.product?.title.localeCompare(b.merchandise.product.title)
                       )
-                      .map((item, i) => {
+                      ?.map((item, i) => {
                         const merchandiseSearchParams = {} as MerchandiseSearchParams;
 
-                        item.merchandise.selectedOptions.forEach(({ name, value }) => {
+                        item?.merchandise?.selectedOptions?.forEach(({ name, value }) => {
                           if (value !== DEFAULT_OPTION) {
                             merchandiseSearchParams[name.toLowerCase()] = value;
                           }
                         });
 
                         const merchandiseUrl = createUrl(
-                          `/product/${item.merchandise.product.handle}`,
+                          `/product/${item?.merchandise?.product?.handle}`,
                           new URLSearchParams(merchandiseSearchParams)
                         );
 
@@ -128,9 +127,9 @@ export default function CartModal() {
                                     height={64}
                                     alt={
                                       item?.merchandise?.product?.featuredImage?.altText ||
-                                      item.merchandise.product.title
+                                      item.merchandise?.product?.title
                                     }
-                                    src={item.merchandise.product.featuredImage?.url}
+                                    src={item?.merchandise?.product?.featuredImage?.url}
                                   />
                                 </div>
                                 <Link
@@ -140,11 +139,11 @@ export default function CartModal() {
                                 >
                                   <div className="flex flex-1 flex-col text-base">
                                     <span className="leading-tight">
-                                      {item.merchandise.product.title}
+                                      {item?.merchandise?.product?.title}
                                     </span>
                                     {item.merchandise.title !== DEFAULT_OPTION ? (
                                       <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                                        {item.merchandise.title}
+                                        {item?.merchandise?.title}
                                       </p>
                                     ) : null}
                                   </div>
