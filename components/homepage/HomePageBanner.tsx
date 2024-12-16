@@ -12,7 +12,6 @@ import client from 'sanity/lib/client';
 import {urlFor} from '../../sanity/lib/image'
 
 export default function HomePageBanner({ menu }: any) {
-  const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
 
   // State to manage the visibility of the mobile drawer
   const [isDrawerOpen, setDrawerOpen] = useState(false);

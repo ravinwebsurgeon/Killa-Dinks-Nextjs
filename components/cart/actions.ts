@@ -13,7 +13,12 @@ export async function addItem(prevState: any, selectedVariantId: string | any) {
   }
 
   try {
-    await addToCart(cartId, [{ merchandiseId: selectedVariantId?.selectedVariantId, quantity: selectedVariantId?.productQuantity, attributes:selectedVariantId?.attributes }]);
+    await addToCart(cartId, [{ merchandiseId: selectedVariantId?.selectedVariantId, quantity: selectedVariantId?.productQuantity, attributes:selectedVariantId?.attributes || [] }]);
+
+    console.log(selectedVariantId)
+  
+      // Log the data that will be sent to addToCart
+
     revalidateTag(TAGS.cart);
   } catch (e) {
     return 'Error adding item to cart';
@@ -85,7 +90,7 @@ export async function updateItemQuantity(
       }
     } else if (quantity > 0) {
       // If the item doesn't exist in the cart and quantity > 0, add it
-      await addToCart(cartId, [{ merchandiseId, quantity }]);
+      await addToCart(cartId, [{ merchandiseId, quantity}]);
     }
 
     revalidateTag(TAGS.cart);

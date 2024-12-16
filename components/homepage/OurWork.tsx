@@ -87,8 +87,8 @@ const OurWork = () => {
                   <div className="flex w-full max-w-[452px] flex-col overflow-hidden rounded-[20px] border-2">
                     <div className="group h-full max-h-[429px] overflow-hidden">
                       <img
-                        src={urlFor(item.image)?.width(1200)?.url()}
-                        alt={item.image.alt}
+                        src={urlFor(item?.image)?.width(1200)?.url()}
+                        alt={item?.image?.alt}
                         className="w-full bg-[FAF7EB] transition-transform duration-500 ease-in-out group-hover:scale-110"
                       />
                     </div>
