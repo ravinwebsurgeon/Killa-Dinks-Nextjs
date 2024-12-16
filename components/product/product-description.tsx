@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 export function ProductDescription({ product }: { product: Product }) {
 
+
   const [productQuantity,setProductQuantity] = useState(1)
   const increase = () => setProductQuantity((prevCount) => prevCount + 1);
   const decrease = () => setProductQuantity((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));

@@ -48,6 +48,8 @@ export default function CartModal() {
     }
   }, [isOpen, cart?.totalQuantity, quantityRef]);
 
+
+
   return (
     <>
       <button aria-label="Open cart" onClick={openCart}>
@@ -125,10 +127,10 @@ export default function CartModal() {
                                     width={64}
                                     height={64}
                                     alt={
-                                      item.merchandise.product.featuredImage.altText ||
+                                      item?.merchandise?.product?.featuredImage?.altText ||
                                       item.merchandise.product.title
                                     }
-                                    src={item.merchandise.product.featuredImage.url}
+                                    src={item.merchandise.product.featuredImage?.url}
                                   />
                                 </div>
                                 <Link

@@ -13,7 +13,7 @@ export async function addItem(prevState: any, selectedVariantId: string | any) {
   }
 
   try {
-    await addToCart(cartId, [{ merchandiseId: selectedVariantId?.selectedVariantId, quantity: selectedVariantId?.productQuantity }]);
+    await addToCart(cartId, [{ merchandiseId: selectedVariantId?.selectedVariantId, quantity: selectedVariantId?.productQuantity, attributes:selectedVariantId?.attributes }]);
     revalidateTag(TAGS.cart);
   } catch (e) {
     return 'Error adding item to cart';

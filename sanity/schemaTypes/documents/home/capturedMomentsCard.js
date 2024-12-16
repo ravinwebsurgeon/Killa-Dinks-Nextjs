@@ -14,6 +14,7 @@ export default defineType({
     defineField({
       name: 'images',
       title: 'Images',
+      // validation: max(5),
       type: 'array',
       of: [
         {

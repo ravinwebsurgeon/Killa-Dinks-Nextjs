@@ -4,7 +4,7 @@ import { Swiper as SwiperClass } from 'swiper';
 import manImg from '../../public/assets/man.png';
 
 import StarRating from 'components/StarRatings';
-import client from 'sanity/lib/client';
+import client from '../../sanity/lib/client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import arrowImg1 from '../../public/assets/Arrow1.png';
 import arrowImg2 from '../../public/assets/Arrow2.png';

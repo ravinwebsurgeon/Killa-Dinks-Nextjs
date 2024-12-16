@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import CustomPaddleBottomSvg from './CustomPaddleBottomSvg';
 import CustomPaddleSvg from './CustomPaddleSvg';
 import CustomPaddlesEditorPopup from './CustomPaddlesEditorPopup';
-const CustomPaddlesEditor = () => {
+import { AddToCart } from 'components/cart/add-to-cart';
+const CustomPaddlesEditor = ({ getProductData }) => {
   const [openModal, setOpenModal] = useState(false);
   const [paddlesData, setPaddlesData] = useState({
     type: 'fiberglass',
@@ -12,11 +13,24 @@ const CustomPaddlesEditor = () => {
     paddleBand: '#000',
     paddleGrip: '#000',
     bottomPiece: '#000',
-    front:'',
-    back:'',
-    cropedFront:'',
-cropedBack:'',
+    front: '',
+    back: '',
+    cropedFront: '',
+    cropedBack: ''
   });
+
+  const atrributesArr = [
+    { type: paddlesData?.type },
+    { frontImage: paddlesData?.frontImage },
+    { paddleEdge: paddlesData?.paddleEdge },
+    { paddleBand: paddlesData?.paddleBand },
+    { paddleGrip:paddlesData?.paddleGrip },
+    { bottomPiece: paddlesData?.bottomPiece},
+    { front: paddlesData?.front},
+    { back:paddlesData?.back},
+    { cropedFront:paddlesData?.cropedFront},
+    { cropedBack: paddlesData?.cropedBack }
+  ];
   const getImages = (e, field) => {
     const file = e.target.files[0];
     if (e.target.files) {
@@ -94,9 +108,9 @@ cropedBack:'',
       ]
     }
   ];
-  const closePopup = ()=>{
+  const closePopup = () => {
     setOpenModal(false);
-  }
+  };
   return (
     <div className="bg-[#FAF7EB]">
       <div className="mx-auto flex max-w-[1440px] gap-6 py-10">
@@ -105,7 +119,7 @@ cropedBack:'',
             <div className="thumbnail-images w-full max-w-[100px]">
               <div className="rounded-lg border border-gray-200 p-3">
                 <CustomPaddleSvg
-                 image={paddlesData?.cropedFront}
+                  image={paddlesData?.cropedFront}
                   paddleEdge={
                     paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                   }
@@ -134,7 +148,7 @@ cropedBack:'',
             </div>
             <div className="main-gallery-images w-full">
               <CustomPaddleSvg
-              image={paddlesData?.cropedFront}
+                image={paddlesData?.cropedFront}
                 paddleEdge={
                   paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                 }
@@ -210,10 +224,19 @@ cropedBack:'',
                 2. Upload image for front side
               </div>
               <div>
-                <button className='' onClick={()=>setOpenModal(true)}>Start Design</button>
-              
-             {openModal &&   <CustomPaddlesEditorPopup open={openModal} closePopup={closePopup} formData={paddlesData} setFormData={setPaddlesData} />  }
-              </div>             
+                <button className="" onClick={() => setOpenModal(true)}>
+                  Start Design
+                </button>
+
+                {openModal && (
+                  <CustomPaddlesEditorPopup
+                    open={openModal}
+                    closePopup={closePopup}
+                    formData={paddlesData}
+                    setFormData={setPaddlesData}
+                  />
+                )}
+              </div>
             </div>
             <div className="mt-5">
               <div className="mb-2 flex gap-3 text-base font-[500] uppercase tracking-wide text-[#bba887]">
@@ -237,7 +260,7 @@ cropedBack:'',
                                   [item?.field]: childItem.code
                                 }))
                               }
-                              className={`shadow-10xl flex h-14 w-14 items-center justify-center rounded-full ${paddlesData[item?.field] == childItem.code ? 'border-4 border-[#bba887]' : ''}`}
+                              className={`flex h-14 w-14 items-center justify-center rounded-full shadow-10xl ${paddlesData[item?.field] == childItem.code ? 'border-4 border-[#bba887]' : ''}`}
                             >
                               <span
                                 className="block h-[40px] w-[40px] rounded-full"
@@ -249,10 +272,13 @@ cropedBack:'',
                     </div>
                   ))}
               </div>
-
             </div>
-            <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button>
-
+            {/* <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button> */}
+            {getProductData && (
+              <div className="mt-5">
+                <AddToCart product={getProductData} productQuantity={1} attributes={atrributesArr} />
+              </div>
+            )}
           </div>
         </div>
       </div>

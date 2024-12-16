@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import client from 'sanity/lib/client';
+import client from '../../sanity/lib/client';
 
 const NewsLetter = () => {
   const [email, setEmail] = useState<string>('');
@@ -18,7 +18,6 @@ const NewsLetter = () => {
       const data = await response.json();
       if (data) {
         
-        console.log(data);
         if (data.result.errors.email) {
           setError('Email has been Already Subscribed');
         }
@@ -40,7 +39,6 @@ const NewsLetter = () => {
         const result = await client.fetch(`*[_type == "newsletter"]`);
 
         if (result.length > 0) {
-          console.log(result[0].text);
           setNewsLetter(result);
         }
       } catch (error) {

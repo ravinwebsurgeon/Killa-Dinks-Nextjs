@@ -27,7 +27,7 @@ export const POST = async (request) => {
       }
     );
     const result = await response.json();
-    console.log(result);
+
     return new NextResponse(JSON.stringify({ result }), {
       status: 200
     });

@@ -57,11 +57,15 @@ function SubmitButton({
   );
 }
 
-export function AddToCart({ product,productQuantity }: { product: Product,productQuantity:any }) {
+export function AddToCart({ product,productQuantity,attributes }: { product: Product,productQuantity:any,attributes:any }) {
+
+ 
   const { variants, availableForSale } = product;
   const { addCartItem } = useCart();
   const { state } = useProduct();
   const [message, formAction] = useActionState(addItem, null);
+
+  // console.log(product, 'add')
   
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every((option) => option.value === state[option.name.toLowerCase()])
@@ -69,7 +73,7 @@ export function AddToCart({ product,productQuantity }: { product: Product,produc
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
   
-  const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity});
+  const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity, attributes: attributes || []});
 
   console.log(selectedVariantId,productQuantity)
 

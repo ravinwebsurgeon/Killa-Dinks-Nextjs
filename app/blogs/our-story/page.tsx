@@ -5,8 +5,8 @@ import NewsLetter from 'components/homepage/NewsLetter';
 // import { getMenu } from 'lib/shopify';
 import img1 from '../../../public/assets/ourWorkImg4.webp';
 import { useEffect, useState } from 'react';
-import client from 'sanity/lib/client';
-import { urlFor } from 'sanity/lib/image';
+import client from '../../../sanity/lib/client';
+import { urlFor } from '../../../sanity/lib/image';
 
 const OurStory =  () => {
 
@@ -23,7 +23,6 @@ const OurStory =  () => {
             const result = await client.fetch(`*[_type == "ourStory"]`);
             
             if (result.length > 0) {    
-                    console.log(urlFor(result[0]?.Image)?.width(1200)?.url())
                     setOurStory(result)               
             }
           } catch (error) {
