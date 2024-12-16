@@ -386,3 +386,55 @@ img {
 .paddleMask{
   
 }
+
+.contact-form-input{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* border-bottom: 2px solid #BBA887; */
+  border-radius: 6px;
+  overflow: hidden;
+  /* background-color: #BBA887 ; */
+  padding: px;
+  
+
+}
+.contact-form-input input{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 2px solid #BBA887;
+  border-radius: 6px;
+  overflow: hidden;
+  /* background-color:#FAF7EB; */
+  padding: 12px 8px;
+  outline: none;
+
+}                                                                                                                      
+.contact-form-input textarea{
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 2px solid #BBA887;
+  border-radius: 6px;
+  overflow: hidden;
+  /* background-color:#FAF7EB; */
+  outline: none;
+}
+.contact-form-input span{
+  display: flex ;
+  justify-content: flex-start;
+}
+/* Remove the blue background color when autofilled */
+input:-webkit-autofill, textarea:-webkit-autofill {
+  background-color: white !important; /* Set to your preferred background color */
+  color: black !important; /* Ensure text color is appropriate */
+  transition: background-color 5000s ease-in-out 0s; /* Smooth transition for autofilled fields */
+}
+
+/* Optional: for better visual feedback, you can change the border or add shadow */
+input:-webkit-autofill:focus, textarea:-webkit-autofill:focus {
+  border: 2px solid #bba887; /* Change to match your design */
+}
