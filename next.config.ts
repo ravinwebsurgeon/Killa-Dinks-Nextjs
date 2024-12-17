@@ -11,6 +11,7 @@ export default {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    domains: ['cdn.sanity.io'], // Add the domain here
     remotePatterns: [
       {
         protocol: 'https',

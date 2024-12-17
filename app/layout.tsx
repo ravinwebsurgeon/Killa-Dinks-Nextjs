@@ -56,7 +56,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                 window.jdgm = {};
                   window.jdgm.SHOP_DOMAIN = 'dourdinks.myshopify.com';
                   window.jdgm.PLATFORM = 'shopify';          
-                  window.jdgm.PUBLIC_TOKEN = '8UVScvlPVkBYIgJScDLh_wUt_Fc';
+                  window.jdgm.PUBLIC_TOKEN = '${process.env.NEXT_PUBLIC_JUDGEME_PUBLIC_TOKEN}';
                 `
           }}
         />
