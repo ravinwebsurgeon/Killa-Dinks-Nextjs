@@ -39,14 +39,14 @@ const Slider: React.FC<SliderProps> = ({ relatedProducts }) => {
       </Swiper>
       <div className="absolute top-[50%] z-20 flex w-full items-center justify-between">
         <div
-          className="left-4 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] bg-white px-4 py-6 shadow-md"
+          className="left-4 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887]  px-4 py-6 shadow-md"
           onClick={() => relatedRef.current?.slidePrev()}
         >
           <img src={arrowImg2.src} className="w-[30px]" alt="Previous" />
         </div>
 
         <div
-          className="right-4 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] bg-white px-4 py-6 shadow-md"
+          className="right-4 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887]  px-4 py-6 shadow-md"
           onClick={() => relatedRef.current?.slideNext()}
         >
           <img src={arrowImg1.src} className="w-[30px]" alt="Next" />

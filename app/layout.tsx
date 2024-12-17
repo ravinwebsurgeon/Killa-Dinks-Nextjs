@@ -54,8 +54,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: `
                 window.jdgm = {};
-                  window.jdgm.SHOP_DOMAIN = 'dourdinks.myshopify.com';
-                  window.jdgm.PLATFORM = 'shopify';          
+                  window.jdgm.SHOP_DOMAIN = '${process.env.NEXT_PUBLIC_JUDGEME_SHOP_DOMAIN}';
+                  window.jdgm.PLATFORM = '${process.env.NEXT_PUBLIC_JUDGEME_PLATFORM}';          
                   window.jdgm.PUBLIC_TOKEN = '${process.env.NEXT_PUBLIC_JUDGEME_PUBLIC_TOKEN}';
                 `
           }}

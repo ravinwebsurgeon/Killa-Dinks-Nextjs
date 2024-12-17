@@ -9,6 +9,19 @@ const NewsLetter = () => {
   const [error, setError] = useState<string>('');
 
   const createCustomer = async () => {
+    if(!email){
+      setError('Please write email')
+      return
+    }
+    setError('');
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address');
+      return; // Prevent further execution if email format is invalid
+    }
+  
+    // Reset the error message before making the request
+    setError('');
     try {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
@@ -17,8 +30,8 @@ const NewsLetter = () => {
       });
       const data = await response.json();
       if (data) {
-        
-        if (data.result.errors.email) {
+        console.log(' data ')
+        if (data.result?.errors?.email) {
           setError('Email has been Already Subscribed');
         }
         else{
@@ -56,7 +69,7 @@ const NewsLetter = () => {
         </div>
         <div className="mx-auto mt-[20px] flex w-[90%] max-w-[641px] items-center justify-center overflow-hidden rounded-[20px] border-[1px] border-[#BBA887] lg:w-full">
           <input
-            className="h-[61px] w-full border-none py-3 pl-[35px] text-[24px] font-[400] outline-none placeholder:text-black/50"
+            className="h-[61px] w-full border-none py-3 pl-4 lg:pl-[35px] text-[18px] lg:text-[24px] font-[400] outline-none placeholder:text-black/50"
             placeholder="Email"
             type="email"
             value={email}

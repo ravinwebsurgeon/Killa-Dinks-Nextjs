@@ -38,7 +38,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
   }, []);
 
   const buttonClassName =
-    'py-6  px-4  top-1/2 -translate-y-1/2 left-4 flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer bg-white shadow-md';
+    'py-6  px-4  top-1/2 -translate-y-1/2 left-4 flex items-center justify-center rounded-full border-[2px] border-[#BBA887] cursor-pointer  shadow-md';
 
   return (
     <form className="flex flex-col gap-4
@@ -93,7 +93,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
       </div>
      <div className=' hidden xl:flex pt-10 xl:pl-[150px]' >
      {images.length > 1 ? (
-          <div className="flex w-full justify-center">
+          <div className="flex w-full  justify-center">
             <div className="flex gap-4">
               <button
                 formAction={() => {
@@ -103,7 +103,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
                 aria-label="Previous product image"
                 className={buttonClassName}
               >
-                <img src={arrowImg2.src} className="w-[30px]" alt="Previous" />
+                <img src={arrowImg2.src} className="w-[30px] " alt="Previous" />
               </button>
 
               <button

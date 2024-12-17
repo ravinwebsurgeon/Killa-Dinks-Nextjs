@@ -51,7 +51,7 @@ const Testimonials = () => {
     fetchReviews();
   }, []);
 
-  
+  const [ description,setDescription] = useState<any>(true)
   const truncateText = (text: string, maxWords: number = 50) => {
     const words = text.split(' ');
     if (words.length > maxWords) {
@@ -59,6 +59,13 @@ const Testimonials = () => {
     }
     return text;
   };
+  const showButton = (text: string, maxWords: number = 50)=>{
+    const words = text.split(' ');
+    if (words.length > maxWords) {
+      return true
+    }
+    return false
+  }
 
 
   return (
@@ -123,14 +130,23 @@ const Testimonials = () => {
                                 <StarRating rating={item.rating} filled={'#FFE400'} />
                               </div>
                             </div>
-                            <div className="mx-4 flex justify-center text-center md:mx-auto xl:max-w-[300px]">
-                            {truncateText(item.body, 30)}
+                            <div className="mx-4 flex px-2 justify-center text-center md:mx-auto xl:max-w-[300px]">
+                            {
+                              description ? <>{truncateText(item.body, 30)}</> : item.body
+                            }
                             </div>
                           </div>
                         </div>
-                        <button className="test-button button-read mx-auto my-[20px] flex rounded-[20px] bg-[#BBA887] px-[45px] py-[15px] font-medium text-white">
-                          Read More
-                        </button>
+                        
+                         {
+                          showButton(item.body,30)?
+                          <button onClick={()=>setDescription(!description)} className="test-button button-read mx-auto my-[20px] flex rounded-[20px] bg-[#BBA887] px-[45px] py-[15px] font-medium text-white">
+                          {
+                            description ? 'Read More': 'Read Less'
+                          }
+                        </button> :null
+                         }
+                     
                       </div>
                     </SwiperSlide>
                   );
@@ -141,14 +157,17 @@ const Testimonials = () => {
                 <div className="flex justify-center gap-2 py-2">
                   <div
                     className="flex cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] px-4 py-6 shadow-md"
-                    onClick={() => ourWorkRef.current?.slidePrev()}
+                    onClick={() => {ourWorkRef.current?.slidePrev() 
+                      setDescription(true)}
+                    }
                   >
                     <img src={arrowImg2.src} className="w-[30px]" alt="Previous" />
                   </div>
 
                   <div
                     className="flex cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] px-4 py-6 shadow-md"
-                    onClick={() => ourWorkRef.current?.slideNext()}
+                    onClick={() => {ourWorkRef.current?.slideNext()
+                       setDescription(true)}}
                   >
                     <img src={arrowImg1.src} className="w-[30px]" alt="Next" />
                   </div>
