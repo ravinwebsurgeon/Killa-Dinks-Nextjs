@@ -73,11 +73,16 @@ export function AddToCart({ product,productQuantity,attributes }: { product: Pro
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
   
-  const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity, attributes: attributes || []});
+  const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity, attributes: attributes });
+  // const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity});
+  // console.log(product)
 
-  console.log(selectedVariantId,productQuantity)
+  // console.log(selectedVariantId,productQuantity)
+  // console.log(attributes)
+  
 
   const finalVariant = variants.find((variant) => variant.id === selectedVariantId)!;
+  
  
   return (
     <form
