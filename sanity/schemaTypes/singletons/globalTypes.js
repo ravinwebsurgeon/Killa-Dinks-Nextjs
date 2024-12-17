@@ -1,8 +1,8 @@
-import { BlockElementIcon } from '@sanity/icons'
-import { defineType } from 'sanity'
-import { GROUPS } from '../../constants'
+import { BlockElementIcon } from '@sanity/icons';
+import { defineType } from 'sanity';
+import { GROUPS } from '../../constants';
 
-const TITLE = 'Global'
+const TITLE = 'Global';
 
 export const globalType = defineType({
   name: 'Global',
@@ -10,19 +10,25 @@ export const globalType = defineType({
   type: 'document',
   icon: BlockElementIcon,
   groups: GROUPS,
-  fields: [   
+  fields: [
     {
-        name: 'capturedMoments',
-        title: 'Captured Moments',
-        type: 'reference',
-        to: [{ type: 'capturedMoments' }]
-      },   
+      name: 'capturedMoments',
+      title: 'Captured Moments',
+      type: 'reference',
+      to: [{ type: 'capturedMoments' }]
+    },
+    {
+      name: 'popup',
+      title: 'PopUp',
+      type: 'reference',
+      to: [{type: 'popup'}]
+    }
   ],
   preview: {
     prepare() {
       return {
-        title: TITLE,
-      }
-    },
-  },
-})
+        title: TITLE
+      };
+    }
+  }
+});

@@ -133,7 +133,7 @@ const Footerx = () => {
           <div className="mx-auto my-[40px] flex h-[3px] w-full max-w-[1440px] justify-between bg-white"></div>
 
           <div className="mx-auto flex w-full max-w-[1440px] flex-wrap justify-between gap-3 sm:flex-nowrap">
-            <div className="w-full text-center md:text-start">Copy Right 2024</div>
+            <div className="w-full text-center flex items-center md:text-start">Copy Right 2024</div>
             <div className="flex w-full flex-wrap justify-center gap-[5px] sm:flex-nowrap sm:justify-end">
               <img src={b1.src} alt="" />
               <img src={b2.src} alt="" />
