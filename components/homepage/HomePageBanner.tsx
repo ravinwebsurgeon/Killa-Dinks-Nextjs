@@ -75,7 +75,7 @@ export default function HomePageBanner({ menu }: any) {
                     className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
                   />
                 </Link>
-                <div className="lg:flex items-center hidden gap-[30px] text-[18px]">
+                <div className="lg:flex items-center hidden gap-[30px] xl:text-[18px]">
                   {menu.map((item: any, index: any) => {
                     let url: string = new URL(item.path).pathname;
 
@@ -159,10 +159,10 @@ export default function HomePageBanner({ menu }: any) {
                   let url: string = new URL(item.path).pathname;
 
                   if (item.title == 'Shop') {
-                    url = '/search'; // Change the URL for 'Shop'
+                    url = '/collections'; // Change the URL for 'Shop'
                   }
                   return (
-                    <Link key={index} className="text-xl font-[500] tracking-[1px]" href={url}>
+                    <Link key={index} onClick={toggleDrawer} className="text-xl font-[500] tracking-[1px]" href={url}>
                       {item.title}
                     </Link>
                   );

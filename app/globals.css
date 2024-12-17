@@ -50,6 +50,17 @@ img {
   height: 100%;
   overflow: hidden;
 }
+
+@media(max-width:968px){
+  .captured-moments-slider-card{
+    border: 3px solid #BBA887;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+}
 .custum-paddles .slick-prev {
   width: 60px;
   height: 60px;
@@ -287,6 +298,7 @@ img {
     
   
 }
+
 .testimonial-review-name{
       color: #BBA887;
 }
@@ -294,6 +306,13 @@ img {
 .swiper-slide.w-full.swiper-slide-next  >div {
     margin: 0 0 0 auto;
 }
+
+.testimonials 
+.swiper-initialized{
+  padding-top: 12px;
+  padding-bottom: 10px;
+}
+
 .testimonials 
 .swiper-slide {
     padding-top: 100px;

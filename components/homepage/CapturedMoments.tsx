@@ -132,7 +132,7 @@ const CapturedMoments = () => {
           <div className="absolute top-[50%] z-50 mx-5 flex w-full justify-between gap-[20px] xl:bottom-[80px] xl:right-4 xl:top-auto xl:justify-end">
             {/* Previous Button */}
             <div
-              className="flex cursor-pointer rounded-full border-[2px] border-[#BBA887] bg-white px-4 py-6 xl:bg-transparent"
+              className="flex cursor-pointer rounded-full border-[2px] border-[#BBA887] bg-white px-4 py-6 lg:bg-transparent"
               onClick={() => swiperRef.current?.slidePrev()}
             >
               <img src={arrowImg2.src} className="w-[30px]" alt="Previous" />
@@ -140,7 +140,7 @@ const CapturedMoments = () => {
 
             {/* Next Button */}
             <div
-              className="flex cursor-pointer rounded-full border-[2px] border-[#BBA887] bg-white px-4 py-6 xl:bg-transparent"
+              className="flex cursor-pointer rounded-full border-[2px] border-[#BBA887] bg-white px-4 py-6 lg:bg-transparent"
               onClick={() => swiperRef.current?.slideNext()}
             >
               <img src={arrowImg1.src} className="w-[30px]" alt="Next" />

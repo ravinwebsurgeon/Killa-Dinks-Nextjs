@@ -20,6 +20,7 @@ import {
 import '@pqina/pintura/pintura.css';
 import { PinturaEditor } from '@pqina/react-pintura';
 import { useEffect, useState } from 'react';
+import CustomButton from './CustomButton';
 function CustomPaddlesImageEditor({ image, getImage }: any) {
   const [inlineResult, setInlineResult] = useState('');
   const editorConfig = {
@@ -52,6 +53,8 @@ function CustomPaddlesImageEditor({ image, getImage }: any) {
 
   return (
     <div className="h-[calc(100vh-236px)] max-h-screen w-full md:h-[calc(95vh-200px)]">
+          
+
       <PinturaEditor      
         util="crop,fill,annotate"
         {...editorConfig}

@@ -34,12 +34,12 @@ const OurStory =  () => {
       }, []);
 
     return (
-        <div className="mx-auto flex w-full flex-col bg-[#FAF7EB] lg:pt-[47px]">
+        <div className="mx-auto flex w-full flex-col pt-8 bg-[#FAF7EB] lg:pt-[47px]">
            
             <div className="justify-center md:mx-[20px] mx-4 flex xl:mx-[43px]">
                 <div className="flex w-full max-w-[1920px] flex-wrap justify-evenly gap-[30px] xl:flex-nowrap">
-                    <div className="flex w-full max-w-[800px] flex-col gap-[20px] pt-4 lg:pt-24">
-                        <div className="text-[64px] font-[600] text-[#BBA887]"> {story&& story[0]?.text}</div>
+                    <div className="flex w-full max-w-[800px] flex-col gap-[20px] pt-4 lg:pt-24 ">
+                        <div className=" text-4xl lg:text-[64px] font-[600] text-[#BBA887]"> {story&& story[0]?.text}</div>
                         <div className="w-full max-w-[700px]  text-[22px] font-[400] text-[#BBA887]">
                         {story&& story[0]?.subHeading}
                         </div>

@@ -6,6 +6,7 @@ import icon2 from '../../public/assets/icon2.png';
 import icon3 from '../../public/assets/icon3.png';
 import client from '../../sanity/lib/client';
 import { urlFor } from '../../sanity/lib/image';
+import Link from 'next/link';
 ;
 const CustomizePaddle = () => {
 
@@ -82,9 +83,9 @@ const CustomizePaddle = () => {
                 }
 
                 {/* Customize Now Button */}
-                <button className="text-white bg-[#BBA887] rounded-[20px] text-[18px] md:text-[24px] font-medium py-2 w-[295px] mx-auto">
-                    {designData[0] ? designData[0].buttonLabel :<>Customize Now</>}
-                </button>
+                <Link href={'/pages/custom-paddles'} className="text-white bg-[#BBA887] text-center rounded-[20px] text-[18px] md:text-[24px] font-medium py-2 w-[295px] mx-auto">
+                    {designData[0] && designData[0].buttonLabel }
+                </Link>
             </div>
         </div>
     </div>

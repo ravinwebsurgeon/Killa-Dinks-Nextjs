@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import CustomPaddleImageEditor from './CustomPaddleImageEditor';
 import ImageUploader from './ImageUploader';
+import CustomButton from './CustomButton';
 
 const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: any) => {
   const [activeTab, setActiveTab] = useState('front');
@@ -119,7 +120,13 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
             )}
           </div>
         </div>
+        <div className='w-full flex py-5 justify-center flex-col gap-3 items-center border-t border-[#BBA887]' >
+          <div><label> <input type='checkbox'/> Use Same Image For Both</label></div>
+          <CustomButton className='bg-[#bba887] text-2xl   flex px-10 py-2 text-white rounded-2xl  max-w-min text-nowrap  ' labelText='Save' />
+          </div> 
+
       </div>
+      
     </div>
   );
 };

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import placeholder from '../../public/assets/product-placeholder.webp'
+import { useRouter } from 'next/navigation';
 
 interface Product {
   title: string;
@@ -21,8 +22,12 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const router = useRouter()
+  const handleClick =( item:any)=>{
+      router.push(item);
+  }
   return (
-    <div className="w-full  min-w-[333px]   min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
+    <Link  href={`/product/${product.handle}`}   className="w-full flex min-w-[333px]   min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
       {/* Image Container with Hover Effect */}
       <div className="relative group  h-full max-h-[350px]  min-h-[350px] bg-[#FAF7EB]  rounded-t-[20px] flex justify-center items-center overflow-hidden transition-transform duration-500 ease-in-out">
         <img 
@@ -42,14 +47,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Button */}
-        <Link 
-          href={`/product/${product.handle}`}  
+        <div 
+          onClick={()=>handleClick(product.handle)} 
           className="my-[10px] py-[8px] text-[16px] sm:text-[18px] text-[#BBA887] bg-[#FAF7EB] px-6 rounded-[20px] text-center transition-transform duration-300 ease-in-out transform hover:scale-105 border-2 border-[#BBA887] hover:bg-[#BBA887] hover:text-white"
         >
           Choose Options
-        </Link>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 export default ProductCard
