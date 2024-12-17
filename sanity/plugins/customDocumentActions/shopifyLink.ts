@@ -1,7 +1,7 @@
-import {EarthGlobeIcon} from '@sanity/icons'
-import {collectionUrl, productUrl, productVariantUrl} from '../../utils/shopifyUrls'
-import {type DocumentActionDescription} from 'sanity'
-import type {ShopifyDocument, ShopifyDocumentActionProps} from './types'
+import { GoGlobe } from 'react-icons/go'
+import { type DocumentActionDescription } from 'sanity'
+import { collectionUrl, productUrl, productVariantUrl } from '../../utils/shopifyUrls'
+import type { ShopifyDocument, ShopifyDocumentActionProps } from './types'
 
 export default (props: ShopifyDocumentActionProps): DocumentActionDescription | undefined => {
   const {published, type}: {published: ShopifyDocument; type: string} = props
@@ -29,7 +29,7 @@ export default (props: ShopifyDocumentActionProps): DocumentActionDescription | 
   if (published && !published?.store?.isDeleted) {
     return {
       label: 'Edit in Shopify',
-      icon: EarthGlobeIcon,
+      icon: GoGlobe,
       onHandle: () => {
         url ? window.open(url) : void 'No URL'
       },

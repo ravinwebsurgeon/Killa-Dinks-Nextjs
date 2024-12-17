@@ -1,14 +1,14 @@
-import React, {useState} from 'react'
-import {TrashIcon} from '@sanity/icons'
-import {Stack, Text, useToast} from '@sanity/ui'
+import { Stack, Text, useToast } from '@sanity/ui'
+import { useState } from 'react'
+import { GoTrash } from 'react-icons/go'
 import {
-  type DocumentActionDescription,
   type DocumentActionConfirmDialogProps,
+  type DocumentActionDescription,
   useClient,
 } from 'sanity'
-import {useRouter} from 'sanity/router'
-import type {ShopifyDocument, ShopifyDocumentActionProps} from './types'
-import {SANITY_API_VERSION} from '../../constants'
+import { useRouter } from 'sanity/router'
+import { SANITY_API_VERSION } from '../../constants'
+import type { ShopifyDocument, ShopifyDocumentActionProps } from './types'
 
 export default (props: ShopifyDocumentActionProps): DocumentActionDescription | undefined => {
   const {
@@ -140,7 +140,7 @@ export default (props: ShopifyDocumentActionProps): DocumentActionDescription | 
   return {
     tone: 'critical',
     dialog: dialogOpen && dialog,
-    icon: TrashIcon,
+    icon: GoTrash,
     label: 'Delete',
     onHandle: () => setDialogOpen(true),
     shortcut: 'Ctrl+Alt+D',

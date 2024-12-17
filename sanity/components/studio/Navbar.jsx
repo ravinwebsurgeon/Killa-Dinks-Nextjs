@@ -1,10 +1,9 @@
-import {Box, Button, Card, Flex} from '@sanity/ui'
-import type {NavbarProps} from 'sanity'
+import { Box, Button, Card, Flex } from '@sanity/ui'
 
-import {SHOPIFY_STORE_ID} from '../../constants'
+import { SHOPIFY_STORE_ID } from '../../constants'
 import ShopifyIcon from '../icons/Shopify'
 
-export default function Navbar(props: NavbarProps) {
+export default function Navbar(props) {
   if (!SHOPIFY_STORE_ID) return props.renderDefault(props)
 
   return (
