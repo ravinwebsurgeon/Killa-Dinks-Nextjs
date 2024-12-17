@@ -1,14 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import CustomButton from './CustomButton';
 import CustomPaddleImageEditor from './CustomPaddleImageEditor';
 import ImageUploader from './ImageUploader';
-import CustomButton from './CustomButton';
 
 const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: any) => {
   const [activeTab, setActiveTab] = useState('front');
   const [showModal, setShowModal] = useState(false);
-
+  const [reupload, setReupload] = useState('');
+  const [side, setSide] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [useBothSide, setuseBothSide] = useState(false);
   const getImages = (e: any, field: any) => {
     const file = e.target.files[0];
     if (e.target.files) {
@@ -31,6 +34,32 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
       [field]: e
     }));
   };
+  const getBothBackImage = (e: any) => {
+    setFormData((prev: any) => ({
+      ...prev,
+      cropedFront: e,
+      cropedBack: e,
+      front: formData?.back,
+      back: formData?.back
+    }));
+  };
+  const getBothFrontImage = (e: any) => {
+    console.log(activeTab);
+
+    setFormData((prev: any) => ({
+      ...prev,
+      cropedFront: e,
+      cropedBack: e,
+      front: formData?.front,
+      back: formData?.front
+    }));
+  };
+  const getEditedFrontImage = (e: any, field: any) => {
+    setFormData((prev: any) => ({
+      ...prev,
+      [field]: e
+    }));
+  };
   const closeModel = () => {
     setShowModal(false);
     if (closePopup) {
@@ -47,17 +76,28 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
     }
   }, [open]);
   useEffect(() => {
-    if (formData?.cropedFront && formData?.front) {
+    console.log(formData, activeTab);
+
+    if (formData?.cropedFront && formData?.front && activeTab === 'front' && reupload == '') {
       setActiveTab('back');
+      setLoading(false);
     }
-    if (formData?.cropedFront && formData?.front && formData?.cropedBack && formData?.back) {
-      closeModel();
+    if (loading) {
+      if (formData?.cropedFront && formData?.front && formData?.back && formData?.cropedBack) {
+        closeModel();
+        setLoading(false);
+      }
     }
   }, [formData]);
-
+  const getSide = () => {
+    if (formData?.front || formData?.back) {
+      setLoading(true);
+      setSide(Math.random());
+    }
+  };
   return (
     <div
-      className={`fixed left-0 z-10 top-0 flex h-full w-full items-center justify-center p-8 ${showModal ? 'opacity-100' : 'opacity-0'} transition-all duration-500`}
+      className={`fixed left-0 top-0 z-10 flex h-full w-full items-center justify-center p-8 ${showModal ? 'opacity-100' : 'pointer-events-none invisible opacity-0'} transition-all duration-500`}
     >
       <div className="relative w-full max-w-[1560px] overflow-hidden rounded-lg bg-white shadow-2xl">
         <button className="absolute right-4 top-4 z-[99]" onClick={() => closeModel()}>
@@ -76,57 +116,115 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
             <div className="flex h-20 items-center justify-center bg-[#BBA887] text-2xl">
               Design Side
             </div>
-            <button
-              className={`flex items-center gap-2 border-l-2 p-4 ${activeTab === 'front' ? 'border-[#BBA887] text-[#BBA887]' : 'border-transparent'}`}
-              onClick={() => setActiveTab('front')}
-            >
-              <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-sm text-white ${activeTab === 'front' ? 'bg-[#BBA887]' : 'bg-black'}`}
+            {useBothSide && (
+              <button
+                className={`flex items-center gap-2 border-l-2 p-4 ${activeTab === 'front' ? 'border-[#BBA887] text-[#BBA887]' : 'border-transparent'}`}
+                onClick={() => setActiveTab('front')}
               >
-                1
-              </span>
-              Front Side
-            </button>
-            <button
-              className={`flex items-center gap-2 border-l-2 p-4 ${activeTab === 'back' ? 'border-[#BBA887] text-[#BBA887]' : 'border-transparent'}`}
-              onClick={() => setActiveTab('back')}
-            >
-              <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-sm text-white ${activeTab === 'back' ? 'bg-[#BBA887]' : 'bg-black'}`}
+                Both Sides
+              </button>
+            )}
+            {!useBothSide && (
+              <button
+                className={`flex items-center gap-2 border-l-2 p-4 ${activeTab === 'front' ? 'border-[#BBA887] text-[#BBA887]' : 'border-transparent'}`}
+                onClick={() => setActiveTab('front')}
               >
-                2
-              </span>
-              Back Side
-            </button>
+                <span
+                  className={`flex h-5 w-5 items-center justify-center rounded-full text-sm text-white ${activeTab === 'front' ? 'bg-[#BBA887]' : 'bg-black'}`}
+                >
+                  1
+                </span>
+                Front Side
+              </button>
+            )}
+            {!useBothSide && (
+              <button
+                className={`flex items-center gap-2 border-l-2 p-4 ${activeTab === 'back' ? 'border-[#BBA887] text-[#BBA887]' : 'border-transparent'}`}
+                onClick={() => setActiveTab('back')}
+              >
+                <span
+                  className={`flex h-5 w-5 items-center justify-center rounded-full text-sm text-white ${activeTab === 'back' ? 'bg-[#BBA887]' : 'bg-black'}`}
+                >
+                  2
+                </span>
+                Back Side
+              </button>
+            )}
           </div>
-          <div className="flex-1 border-l border-[#BBA887] pt-6">
+          <div className="relative h-[calc(100vh-236px)] max-h-screen w-full flex-1 border-l border-[#BBA887] pt-6 md:h-[calc(95vh-200px)]">
             {activeTab === 'front' && formData?.front == '' && (
               <ImageUploader getImages={getImages} field="front" id="front" />
             )}
             {activeTab === 'back' && formData?.back == '' && (
               <ImageUploader getImages={getImages} field="back" id="back" />
             )}
-            {activeTab === 'front' && formData?.front != '' && (
-              <CustomPaddleImageEditor
-                image={formData?.front}
-                getImage={(e: any) => getEditedImage(e, 'cropedFront')}
-              />
-            )}
-            {activeTab === 'back' && formData?.back != '' && (
-              <CustomPaddleImageEditor
-                image={formData?.back}
-                getImage={(e: any) => getEditedImage(e, 'cropedBack')}
-              />
+            {(formData?.front != '' || formData?.back != '') && (
+              <>
+                <CustomPaddleImageEditor
+                  setReupload={setReupload}
+                  side={side}
+                  formData={formData}
+                  field="front"
+                  activeTab={activeTab}
+                  id="front-img-69"
+                  image={formData?.front}
+                  getInputImages={getImages}
+                  getImage={(e: any) =>
+                    useBothSide && activeTab === 'front'
+                      ? getBothFrontImage(e)
+                      : getEditedFrontImage(e, 'cropedFront')
+                  }
+                  className={
+                    activeTab === 'front' && formData?.front != ''
+                      ? 'absolute top-0 translate-x-0 transition-all duration-500'
+                      : 'absolute top-0 translate-x-full transition-all duration-500'
+                  }
+                />
+
+                <CustomPaddleImageEditor
+                  setReupload={setReupload}
+                  side={side}
+                  formData={formData}
+                  activeTab={activeTab}
+                  field="back"
+                  image={formData?.back}
+                  getInputImages={getImages}
+                  id="back-img-69"
+                  getImage={(e: any) =>
+                    useBothSide && activeTab === 'back'
+                      ? getBothBackImage(e)
+                      : getEditedImage(e, 'cropedBack')
+                  }
+                  className={
+                    activeTab === 'back' && formData?.back != ''
+                      ? 'absolute top-0 translate-x-0 transition-all duration-500'
+                      : 'absolute top-0 translate-x-full transition-all duration-500'
+                  }
+                />
+              </>
             )}
           </div>
         </div>
-        <div className='w-full flex py-5 justify-center flex-col gap-3 items-center border-t border-[#BBA887]' >
-          <div><label> <input type='checkbox'/> Use Same Image For Both</label></div>
-          <CustomButton className='bg-[#bba887] text-2xl   flex px-10 py-2 text-white rounded-2xl  max-w-min text-nowrap  ' labelText='Save' />
-          </div> 
-
+        <div className="flex w-full flex-col items-center justify-center gap-3 border-t border-[#BBA887] py-5">
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={useBothSide}
+                onChange={(e) =>
+                  formData?.front || formData?.back ? setuseBothSide(e.target.checked) : ''
+                }
+              />{' '}
+              Use Same Image For Both
+            </label>
+          </div>
+          <CustomButton
+            onClick={() => getSide()}
+            className={`flex max-w-min text-nowrap rounded-2xl bg-[#bba887] px-10 py-2 text-2xl text-white ${loading ? 'pointer-events-none opacity-50' : ''}`}
+            labelText="Save"
+          />
+        </div>
       </div>
-      
     </div>
   );
 };

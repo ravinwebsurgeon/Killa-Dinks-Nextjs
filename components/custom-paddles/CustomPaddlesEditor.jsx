@@ -155,7 +155,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
             <div className="thumbnail-images w-full max-w-[100px]">
               <div className="rounded-lg border border-gray-200 p-3">
                 <CustomPaddleSvg
-                  image={paddlesData?.cropedFront}
+                  image={selectedSide === 'front' ? paddlesData?.cropedFront : paddlesData?.cropedBack}
                   paddleEdge={
                     paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                   }
@@ -221,7 +221,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
 
                 {selectedSide === 'back' && (
                   <CustomPaddleSvg
-                    image={paddlesData?.cropedFront}
+                    image={paddlesData?.cropedBack}
                     paddleEdge={
                       paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                     }
@@ -306,14 +306,14 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                   Start Design
                 </button>
 
-                {openModal && (
+  
                   <CustomPaddlesEditorPopup
                     open={openModal}
                     closePopup={closePopup}
                     formData={paddlesData}
                     setFormData={setPaddlesData}
                   />
-                )}
+           
               </div>
             </div>
             <div className="mt-5">
