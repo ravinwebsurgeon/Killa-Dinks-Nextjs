@@ -7,7 +7,6 @@ import logo from '../../public/assets/logo.png';
 import user from '../../public/assets/user.png';
 import client from '../../sanity/lib/client';
 import { urlFor } from '../../sanity/lib/image';
-import Dropdown from './Dropdown';
 
 export default function HomePageBanner({ menu }: any) {
 
@@ -81,7 +80,7 @@ export default function HomePageBanner({ menu }: any) {
     fetchData();
   }, []);
 
- 
+ console.log(menu)
 
 
   return (
@@ -112,8 +111,8 @@ export default function HomePageBanner({ menu }: any) {
                     //   return <Dropdown key={index} title={item.title} options={item.children} />;
                     // }
                     return (
-                      <Link key={index} className="" href={url}>
-                        {item.title}
+                      <Link  key={index} className="" href={url}>
+                        {item.title == 'Custom Paddle' ? 'Custom Paddle Builder' : item.title}
                       </Link>
                     );
                   })}
