@@ -8,7 +8,7 @@ const ShopBanner = ({ products }: any) => {
     }
     return (
         <div>
-            <section className="shop-our-brand  flex justify-center mx-auto px-5 xl:px-8">
+            <section className="shop-our-brand  flex justify-center mx-auto px-5 xl:px-[100px]">
                 <div className="w-full px-2 md:px-[20px]   xl:px-[43px] sm:px-8 h-auto bg-[#BBA887] rounded-[9px] lg:rounded-[50px]">
 
                     <div className="text-white  font-[500] text-[18px] md:text-[32px] sm:text-[40px] leading-[48px] sm:leading-[60px] flex justify-center items-center w-full pt-4 xl:pt-[80px] ">
@@ -25,9 +25,9 @@ const ShopBanner = ({ products }: any) => {
                                                 <img src={item.images[0].url} alt="" className="w-[250px] h-[250px] transition-transform duration-500 ease-in-out group-hover:scale-110" />
                                             </div>
                                             <div className=" flex flex-col gap-1 pt-[10px] pb-[20px] px-5">
-                                                <div className=" text-[16px] sm:text-[18px] w-full truncate ">{item.title}</div>
+                                                <div className=" text-[16px] ] w-full truncate ">{item.title}</div>
                                                 <div className="text-[18px] sm:text-[20px]">${item.priceRange.maxVariantPrice.amount}{" "} USD</div>
-                                                <div onClick={()=>handleClick(item?.handle)} className="my-[10px] py-[6px] max-w-[200px] text-[16px] sm:text-[18px] text-[#BBA887] bg-[#FAF7EB] px-6 rounded-[20px]">
+                                                <div onClick={()=>handleClick(item?.handle)} className="my-[10px] py-[6px] max-w-[200px] text-[16px] sm:text-[18px] text-[#BBA887] bg-white px-6 rounded-[20px]">
                                                     Choose Options
                                                 </div>
                                             </div>

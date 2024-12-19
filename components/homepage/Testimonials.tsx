@@ -16,7 +16,6 @@ const Testimonials = () => {
   const [reviews, setReviews] = useState<any>(null);
   const [testimonial, setTestimonial] = useState<any>();
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,22 +50,21 @@ const Testimonials = () => {
     fetchReviews();
   }, []);
 
-  const [ description,setDescription] = useState<any>(true)
+  const [description, setDescription] = useState<any>(true);
   const truncateText = (text: string, maxWords: number = 50) => {
-    const words = text.split(' ');
-    if (words.length > maxWords) {
-      return words.slice(0, maxWords).join(' ') + '...';
+    const words = text?.split(' ');
+    if (words?.length > maxWords) {
+      return words.slice(0, maxWords)?.join(' ') + '...';
     }
     return text;
   };
-  const showButton = (text: string, maxWords: number = 50)=>{
+  const showButton = (text: string, maxWords: number = 50) => {
     const words = text.split(' ');
-    if (words.length > maxWords) {
-      return true
+    if (words?.length > maxWords) {
+      return true;
     }
-    return false
-  }
-
+    return false;
+  };
 
   return (
     <div>
@@ -75,11 +73,11 @@ const Testimonials = () => {
           <div className="relative mx-5 pt-[40px] md:pt-[80px]">
             <div className="]">
               <div className="flex justify-center text-[24px] font-medium md:text-[40px]">
-                {' '}
-                {testimonial[0]?.text && testimonial[0]?.text}
+                
+                {testimonial[0] && <>{testimonial[0]?.text && testimonial[0]?.text}</>}
               </div>
-              <div className="flex justify-center text-[16px] md:text-[25px]">
-              {testimonial[0]?.subHeading && testimonial[0]?.subHeading}
+              <div className="flex justify-center text-black/50 text-[16px] md:text-[25px]">
+                {testimonial[0] &&<>{testimonial[0]?.subHeading && testimonial[0]?.subHeading}</>}
               </div>
             </div>
             <div className="slider-container my-[40px] mb-[40px] mt-[10px] md:mb-[80px]">
@@ -105,7 +103,7 @@ const Testimonials = () => {
                   // // When the width is 768px or more (tablet and above)
                   1400: {
                     slidesPerView: 3, // Show 2 slides
-                    spaceBetween: 20 // Space between slides
+                    spaceBetween: 53 // Space between slides
                   }
                 }}
               >
@@ -118,35 +116,32 @@ const Testimonials = () => {
                             <img
                               src={manImg.src}
                               alt=""
-                              className="imgx transform border-2 border-white"
+                              className="imgx transform border-[4px] border-white"
                             />
                           </div>
-                          <div className=" flex flex-col pt-[63px] justify-center gap-[30px]">
-                            <div className='flex flex-col gap-[10px] justify-center' >
-                              <div className="flex justify-center testimonial-review-name gap-[10px] font-[500] text-[30px]">
+                          <div className="flex flex-col justify-center gap-[30px] pt-[63px]">
+                            <div className="flex flex-col justify-center gap-[10px]">
+                              <div className="testimonial-review-name flex justify-center gap-[10px] text-[30px] font-[500]">
                                 {item.reviewer.name}
                               </div>
                               <div className="flex justify-center">
                                 <StarRating rating={item.rating} filled={'#FFE400'} />
                               </div>
                             </div>
-                            <div className="mx-4 flex px-2 justify-center text-center md:mx-auto xl:max-w-[300px]">
-                            {
-                              description ? <>{truncateText(item.body, 30)}</> : item.body
-                            }
+                            <div className="mx-4 flex justify-center px-2 text-center md:mx-auto xl:max-w-[300px]">
+                              {description ? <>{truncateText(item.body, 30)}</> : item.body}
                             </div>
                           </div>
                         </div>
-                        
-                         {
-                          showButton(item.body,30)?
-                          <button onClick={()=>setDescription(!description)} className="test-button button-read mx-auto my-[20px] flex rounded-[20px] bg-[#BBA887] px-[45px] py-[15px] font-medium text-white">
-                          {
-                            description ? 'Read More': 'Read Less'
-                          }
-                        </button> :null
-                         }
-                     
+
+                        {showButton(item.body, 30) ? (
+                          <button
+                            onClick={() => setDescription(!description)}
+                            className="test-button button-read mx-auto my-[20px] flex sm:text-[20px] rounded-[20px] bg-[#BBA887] px-[45px] py-[15px] font-medium text-white"
+                          >
+                            {description ? 'Read More' : 'Read Less'}
+                          </button>
+                        ) : null}
                       </div>
                     </SwiperSlide>
                   );
@@ -154,20 +149,23 @@ const Testimonials = () => {
               </Swiper>
 
               <div className="">
-                <div className="flex justify-center gap-2 py-2">
+                <div className="flex justify-center gap-5 py-2">
                   <div
-                    className="flex cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] px-4 py-6 shadow-md"
-                    onClick={() => {ourWorkRef.current?.slidePrev() 
-                      setDescription(true)}
-                    }
+                    className="flex cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] px-4 py-6 "
+                    onClick={() => {
+                      ourWorkRef.current?.slidePrev();
+                      setDescription(true);
+                    }}
                   >
                     <img src={arrowImg2.src} className="w-[30px]" alt="Previous" />
                   </div>
 
                   <div
-                    className="flex cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] px-4 py-6 shadow-md"
-                    onClick={() => {ourWorkRef.current?.slideNext()
-                       setDescription(true)}}
+                    className="flex cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] px-4 py-6 "
+                    onClick={() => {
+                      ourWorkRef.current?.slideNext();
+                      setDescription(true);
+                    }}
                   >
                     <img src={arrowImg1.src} className="w-[30px]" alt="Next" />
                   </div>

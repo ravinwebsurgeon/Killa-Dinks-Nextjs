@@ -37,7 +37,7 @@ const Footerx = () => {
   return (
     <footer className={`${router.includes('/sanity') ? 'hidden' : ''}`}>
       <section className="footer-container w-full flex-col items-center">
-        <div className="w-full flex-col bg-[#BBA887] px-4 text-white">
+        <div className="w-full flex-col bg-[#BBA887] px-4 pb-[41px] text-white">
           <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex lg:flex-row lg:pt-[40px]">
             <div className="w-full">
               {
@@ -58,7 +58,7 @@ const Footerx = () => {
                     {footerData &&
                       footerData[0]?.primaryMenu?.links?.map((item: any,index:number) => (
                         <Link key={index} href={item?.url||'#'}>
-                          <div className="cursor-pointer text-start">{item?.title}</div>
+                          <div className="cursor-pointer text-sm sm:text-base text-start">{item?.title}</div>
                         </Link>
                       ))}
                   </div>
@@ -71,7 +71,7 @@ const Footerx = () => {
                     {
                       footerData && footerData[0]?.secondaryMenu?.links?.map((item:any,index:number)=>(
                         <Link key={index} href={item?.url||'#'}>
-                        <div className="cursor-pointer text-start">{item?.title}</div>
+                        <div className="cursor-pointer text-sm sm:text-base text-start">{item?.title}</div>
                       </Link>
                       ))
                     }
@@ -90,7 +90,7 @@ const Footerx = () => {
                         {
                           footerData && footerData[0]?.tertiaryMenu?.links?.map((item:any,index:number)=>(
                             <Link key={index} href={item?.url||'#'}>
-                        <div className="cursor-pointer text-start">{item?.title}</div>
+                        <div className="cursor-pointer text-sm sm:text-base text-start">{item?.title}</div>
                       </Link>
                           ))
                         }
@@ -130,9 +130,9 @@ const Footerx = () => {
             </div>
           </div>
 
-          <div className="mx-auto my-[40px] flex h-[3px] w-full max-w-[1440px] justify-between bg-white"></div>
+          <div className="mx-auto my-[40px]  flex h-[1px] w-full max-w-[1440px] justify-between bg-white"></div>
 
-          <div className="mx-auto flex w-full max-w-[1440px] flex-wrap justify-between gap-3 sm:flex-nowrap">
+          <div className="mx-auto flex w-full max-w-[1440px]  flex-wrap justify-between gap-3 sm:flex-nowrap">
             <div className="w-full text-center flex items-center md:text-start">Copy Right 2024</div>
             <div className="flex w-full flex-wrap justify-center gap-[5px] sm:flex-nowrap sm:justify-end">
               <img src={b1.src} alt="" />

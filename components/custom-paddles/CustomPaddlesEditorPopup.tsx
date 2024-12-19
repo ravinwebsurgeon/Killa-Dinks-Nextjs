@@ -76,7 +76,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
     }
   }, [open]);
   useEffect(() => {
-    console.log(formData, activeTab);
+    // console.log(formData, activeTab);
 
     if (formData?.cropedFront && formData?.front && activeTab === 'front' && reupload == '') {
       setActiveTab('back');

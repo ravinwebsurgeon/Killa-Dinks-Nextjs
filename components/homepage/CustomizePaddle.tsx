@@ -33,11 +33,11 @@ const CustomizePaddle = () => {
   return (
     <div>
     <div className="perfect-paddle mt-[30px]">
-        <div className="text-center mt-4 mb-3 md:mt-[70px] md:mb-12">
+        <div className="text-center mt-4 mb-3 mx-4 md:mt-[70px] md:mb-12">
             <div className=" text-[24px] md:text-[40px] font-medium text-black">
                 {designData ? designData[0]?.text :null}
             </div>
-            <div className="text-[16px] md:text-[25px] text-gray-700">
+            <div className="text-[16px] md:text-[25px] text-black/50">
             {designData ? designData[0]?.subHeading :null}
             </div>
         </div>
@@ -55,7 +55,7 @@ const CustomizePaddle = () => {
             </div>
 
             {/* Vertical Divider for medium screens */}
-            <div className="w-[3px] h-auto md:h-[640px] bg-black xl:block hidden"></div>
+            <div className="w-[1px] h-auto md:h-[640px] bg-black/50 xl:block hidden"></div>
 
             {/* Step Sections */}
             <div className="flex flex-col space-y-10 max-w-[640px] mx-auto md:space-y-12">
@@ -67,7 +67,7 @@ const CustomizePaddle = () => {
                         <img
                             src={urlFor(item?.image)?.width(100)?.url()}
                             alt="Icon 1"
-                            className="w-[70px] h-[70px] hidden md:block"
+                            className="w-[77px] h-[77px] hidden md:block"
                         />
                     </div>
                     <div>

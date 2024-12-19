@@ -148,14 +148,17 @@ const CustomPaddlesEditor = ({ getProductData }) => {
     setOpenModal(false);
   };
   return (
-    <div className="bg-[#FAF7EB]">
-      <div className="mx-auto flex max-w-[1440px] gap-6 py-10">
-        <div className="flex-1">
+    <div id='custom-paddle-builder' className="bg-[#FAF7EB]">
+      <div className="xl:mx-auto mx-4 flex flex-col lg:flex-row max-w-[1440px] gap-6 py-10">
+        <div  className="flex-1">
           <div className="sticky top-0 flex gap-4">
-            <div className="thumbnail-images w-full max-w-[100px]">
+            <div className="thumbnail-images w-full hidden lg:block max-w-[100px]">
               <div className="rounded-lg border border-gray-200 p-3">
                 <CustomPaddleSvg
                   image={selectedSide === 'front' ? paddlesData?.cropedFront : paddlesData?.cropedBack}
+                  paddleInner={
+                    paddlesData?.type === 'raw-carbon-fiber' ?'#000': '#f2f2f2'
+                  }
                   paddleEdge={
                     paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                   }
@@ -182,11 +185,14 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                 />
               </div>
             </div>
-            <div className="main-gallery-images w-full">
-              <div className="relative w-full">
+            <div className="main-gallery-images  w-full">
+              <div className="relative max-w-[400px] mx-auto lg:max-w-full w-full">
                 {selectedSide === 'front' && (
                   <CustomPaddleSvg
                     image={paddlesData?.cropedFront}
+                    paddleInner={
+                      paddlesData?.type === 'raw-carbon-fiber' ?'#000': '#f2f2f2'
+                    }
                     paddleEdge={
                       paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                     }
@@ -213,7 +219,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                   />
                 )}
                 <div className="absolute bottom-0 right-0">
-                  <CustomPaddleBottomSvg bottomPiece={paddlesData?.bottomPiece} />
+                  <CustomPaddleBottomSvg bottomPiece={paddlesData?.type === 'raw-carbon-fiber' ?'#000':paddlesData?.bottomPiece} />
                   <div className="px-6 py-4 text-center text-sm font-[500] uppercase tracking-wide text-[#bba887]">
                     Bottom Piece
                   </div>
@@ -221,6 +227,9 @@ const CustomPaddlesEditor = ({ getProductData }) => {
 
                 {selectedSide === 'back' && (
                   <CustomPaddleSvg
+                  paddleInner={
+                    paddlesData?.type === 'raw-carbon-fiber' ?'#000': '#f2f2f2'
+                  }
                     image={paddlesData?.cropedBack}
                     paddleEdge={
                       paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
@@ -248,7 +257,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                   />
                 )}
               </div>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-center mt-4 gap-3">
               <div className="flex items-center justify-center bg-white p-2  rounded-full">
                 <button onClick={() => setSelectedSide('front')} className={` ${selectedSide === 'front' ? "text-[#fff] bg-[#bba887]" : ""} block cursor-pointer rounded-full  px-4 py-3 text-center text-sm font-[500] uppercase  `}>Front Side</button>
                 <button onClick={() => setSelectedSide('back')} className={`${selectedSide === 'back' ? "text-[#fff] bg-[#bba887]" : ""} block cursor-pointer rounded-full  px-4 py-3 text-center text-sm font-[500] uppercase  `}>Back Side</button>
@@ -258,7 +267,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
           </div>
         </div>
         <div className="flex-1">
-          <div className="max-w-[550px]">
+          <div className="max-w-[550px] mx-auto w-full">
             <div>
               <div className="mb-2 flex gap-3 text-base font-[500] uppercase tracking-wide text-[#bba887]">
                 1. Select Paddle Type

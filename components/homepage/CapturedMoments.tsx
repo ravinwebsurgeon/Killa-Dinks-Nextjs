@@ -55,7 +55,7 @@ const CapturedMoments = () => {
           <div className="flex justify-center pt-[80px] text-[24px] font-medium md:text-[40px]">
             {momentsData ? momentsData[0]?.text : null}
           </div>
-          <div className="flex justify-center text-[16px] md:text-[25px]">
+          <div className="flex text-black/50 justify-center text-[16px] md:text-[25px]">
             {momentsData ? momentsData[0]?.subHeading : null}
           </div>
         </div>
@@ -72,9 +72,9 @@ const CapturedMoments = () => {
           >
             {momentsData && momentsData[0]?.images?.map((item: any, index: number) =>(
               <SwiperSlide key={index} className="flex w-full max-w-[1440px] justify-center">
-              <div className="flex w-full max-w-[1440px] flex-wrap justify-center gap-3 lg:gap-[43px] xl:flex-nowrap">
+              <div className="flex w-full max-w-[1440px] flex-wrap justify-center gap-3 xl:gap-[43px] xl:flex-nowrap">
               
-                <div className="flex w-full flex-col items-center gap-3 lg:gap-[40px]">
+                <div className="flex w-full flex-col items-center gap-3 xl:gap-[40px]">
                   {/* Image 1 */}
                   <div className="captured-moments-slider-card group w-full max-w-[638px] overflow-hidden xl:min-h-[576px] xl:max-w-full">
                     <img
@@ -94,8 +94,8 @@ const CapturedMoments = () => {
                     />
                   </div>
                 </div>
-                <div className="flex w-full max-w-[638px] flex-col gap-3 lg:gap-[43px]">
-                  <div className="flex h-auto justify-start gap-3 lg:gap-[43px]">
+                <div className="flex w-full max-w-[638px] flex-col gap-3 xl:gap-[43px]">
+                  <div className="flex h-auto justify-start gap-3 xl:gap-[43px]">
                     {/* Image 3 */}
                     <div className="captured-moments-slider-card group max-w-[358px] overflow-hidden xl:min-h-[413px]">
                       <img
