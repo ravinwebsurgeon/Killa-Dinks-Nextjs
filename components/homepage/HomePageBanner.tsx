@@ -81,6 +81,8 @@ export default function HomePageBanner({ menu }: any) {
     fetchData();
   }, []);
 
+ 
+
 
   return (
     <div>
@@ -124,7 +126,7 @@ export default function HomePageBanner({ menu }: any) {
                     className="h-[30px] w-[30px] lg:h-[35px] lg:w-[35px]"
                     />
                     </Link>
-                  <CartModal />
+                  <CartModal   />
                 </div>
                 <div className="lg:hidden" onClick={toggleDrawer}>
               <div ref={drawerButtonRef} className="cursor-pointer space-y-2">

@@ -11,6 +11,7 @@ import Script from 'next/script';
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 import './globals.css';
+import { ContextProvider } from './context/Context';
 
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
@@ -65,6 +66,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       </head>
 
       <body className="">
+        <ContextProvider>
         <CartProvider cartPromise={cart}>
           <HomePageBanner className='' menu={sidemenu} />
            {/* <Navbar />  */}
@@ -76,6 +78,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         </CartProvider>
         <Popup/>
         <Footerx/>
+        </ContextProvider>
       </body>
     </html>
   );

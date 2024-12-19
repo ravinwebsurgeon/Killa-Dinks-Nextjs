@@ -8,7 +8,7 @@ import { DEFAULT_OPTION } from 'lib/constants';
 import { createUrl } from 'lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { createCartAndSetCookie, redirectToCheckout } from './actions';
 import { useCart } from './cart-context';
@@ -16,12 +16,16 @@ import CloseCart from './close-cart';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
 import OpenCart from './open-cart';
+import { ModalContext } from 'app/context/Context';
 
 type MerchandiseSearchParams = {
   [key: string]: string;
 };
 
 export default function CartModal() {
+   const context = useContext(ModalContext);
+   const {initialRender} =context
+    
   const { cart, updateCartItem } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
@@ -47,6 +51,18 @@ export default function CartModal() {
       
     }
   }, [isOpen, cart?.totalQuantity, quantityRef]);
+ 
+
+
+useEffect(()=>{
+  
+if(initialRender){
+  setIsOpen(true);
+}
+  
+
+  console.log(cart)
+},[cart?.totalQuantity])
 
 
   return (
