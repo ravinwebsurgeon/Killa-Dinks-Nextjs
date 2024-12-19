@@ -4,8 +4,9 @@ import clsx from 'clsx';
 import { addItem } from 'components/cart/actions';
 import { useProduct } from 'components/product/product-context';
 import { Product, ProductVariant } from 'lib/shopify/types';
-import { useActionState } from 'react';
+import { useActionState, useContext, useState } from 'react';
 import { useCart } from './cart-context';
+import { ModalContext} from '../../app/context/Context'
 
 function SubmitButton({
   availableForSale,
@@ -14,6 +15,10 @@ function SubmitButton({
   availableForSale: boolean;
   selectedVariantId: string | undefined;
 }) {
+
+  const context = useContext(ModalContext);
+  const { setInitialRender}= context;
+
   const buttonClasses =
     'relative flex w-full items-center justify-center rounded-lg  bg-[#BBA887] text-[white] hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white';
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
@@ -47,7 +52,7 @@ function SubmitButton({
       className={clsx(buttonClasses, {
         'hover:opacity-90': true
       })}
-      
+      onClick={()=>setInitialRender(true)}
     >
       <div className="absolute left-0 ml-4">
         {/* <PlusIcon className="h-5" /> */}
@@ -57,7 +62,7 @@ function SubmitButton({
   );
 }
 
-export function AddToCart({ product,productQuantity,attributes }: { product: Product,productQuantity:any,attributes?:any }) {
+export function AddToCart({ product,productQuantity,attributes, }: { product: Product,productQuantity:any,attributes?:any }) {
 
  
   const { variants, availableForSale } = product;
@@ -79,7 +84,6 @@ export function AddToCart({ product,productQuantity,attributes }: { product: Pro
 
   // console.log(selectedVariantId,productQuantity)
   // console.log(attributes)
-  
 
   const finalVariant = variants.find((variant) => variant.id === selectedVariantId)!;
   

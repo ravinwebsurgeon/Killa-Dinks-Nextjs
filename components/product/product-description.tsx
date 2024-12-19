@@ -6,12 +6,13 @@ import { Product } from 'lib/shopify/types';
 import { VariantSelector } from './variant-selector';
 import Counter from 'components/productDetails/Counter';
 import Accordion from 'components/productDetails/Accordion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function ProductDescription({ product }: { product: Product }) {
 
 
-  const [productQuantity,setProductQuantity] = useState(1)
+  const [productQuantity,setProductQuantity] = useState(1);
+ 
   const increase = () => setProductQuantity((prevCount) => prevCount + 1);
   const decrease = () => setProductQuantity((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
 
@@ -27,6 +28,7 @@ export function ProductDescription({ product }: { product: Product }) {
       content:'This is a limited edition collaboration and ALL SALES ARE FINAL!'
     }
   ]
+ 
   
   return (
     <div className='flex flex-col gap-4' >
@@ -43,7 +45,7 @@ export function ProductDescription({ product }: { product: Product }) {
       <div className='text-xs xl:text-sm text-yellow-900/70' >Shipping calculated at checkout.</div>
       <VariantSelector options={product.options} variants={product.variants} />
       <Counter quantity={productQuantity} increase={increase} decrease={decrease} />
-      <AddToCart productQuantity={productQuantity} product={product} />
+      <AddToCart  productQuantity={productQuantity} product={product} />
       {/* {product.descriptionHtml ? (
         <Prose
           className=" text-sm leading-tight dark:text-white/[60%]"
