@@ -2,7 +2,7 @@
 import CartModal from 'components/cart/modal';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import logo from '../../public/assets/logo.png';
 import user from '../../public/assets/user.png';
 import client from '../../sanity/lib/client';
@@ -13,6 +13,8 @@ export default function HomePageBanner({ menu }: any) {
 
   // State to manage the visibility of the mobile drawer
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const drawerRef = useRef<any| null>(null); // Reference for the mobile drawer
+  const drawerButtonRef = useRef<any | null>(null);
   const [heroImage,setHeroImage] =useState(null)
 
   const toggleDrawer = () => {
@@ -43,6 +45,25 @@ export default function HomePageBanner({ menu }: any) {
   }
  
   const imageSrc = getImageSrc(router) || '';
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // If the click is outside the drawer or the hamburger button, close the drawer
+      if (
+        drawerRef.current &&
+        !drawerRef.current?.contains(event.target as Node ) &&
+        drawerButtonRef.current &&
+        !drawerButtonRef.current?.contains(event.target as Node)
+      ) {
+        setDrawerOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,11 +81,12 @@ export default function HomePageBanner({ menu }: any) {
     fetchData();
   }, []);
 
+
   return (
     <div>
-      <header className={`bigger-navbar z-50  bg-[#FAF7EB] lg:pt-[47px] ${router.includes('/sanity') ? 'hidden' : ''}`}>
+      <header className={`bigger-navbar z-50 flex !w-full  justify-center  bg-[#FAF7EB] lg:pt-[47px] ${router.includes('/sanity') ? 'hidden' : ''}`}>
         {/* Main Banner */}
-        <div className={` banner bg-black  relative  gap-[30px]   lg:mx-[20px] lg:rounded-t-[50px] xl:mx-[43px]  ${containerClass}`}>
+        <div className={` banner bg-black w-full  relative  gap-[30px]   lg:mx-[20px] lg:rounded-t-[50px] xl:mx-[43px]  ${containerClass}`}>
           <div className={`z-50 flex flex-col  h-full max-h-[800px] w-full rounded-[50px] `}>
             <div className={`  py-[13px] lg:flex  ${bannerClass}`}>
               <div className="mx-auto flex items-center justify-around lg:justify-center gap-[30px] text-white xl:w-full xl:max-w-[1440px] xl:justify-between xl:px-5">
@@ -75,7 +97,7 @@ export default function HomePageBanner({ menu }: any) {
                     className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
                   />
                 </Link>
-                <div className="lg:flex items-center hidden gap-[30px] xl:text-[18px]">
+                <div className="lg:flex items-center hidden gap-[30px]  xl:text-[18px]">
                   {menu.map((item: any, index: any) => {
                     let url: string = new URL(item.path).pathname;
 
@@ -83,9 +105,10 @@ export default function HomePageBanner({ menu }: any) {
                       url = '/collections'; // Change the URL for 'Shop'
                     }
 
-                    if (item.children.length > 0) {
-                      return <Dropdown key={index} title={item.title} options={item.children} />;
-                    }
+
+                    // if (item.children.length > 0) {
+                    //   return <Dropdown key={index} title={item.title} options={item.children} />;
+                    // }
                     return (
                       <Link key={index} className="" href={url}>
                         {item.title}
@@ -104,7 +127,7 @@ export default function HomePageBanner({ menu }: any) {
                   <CartModal />
                 </div>
                 <div className="lg:hidden" onClick={toggleDrawer}>
-              <div className="cursor-pointer space-y-2">
+              <div ref={drawerButtonRef} className="cursor-pointer space-y-2">
                 <div className="h-[2px] w-8 rounded bg-white"></div>
                 <div className="h-[2px] w-8 rounded bg-white"></div>
                 <div className="h-[2px] w-8 rounded bg-white"></div>
@@ -120,7 +143,7 @@ export default function HomePageBanner({ menu }: any) {
               height={800}
               width={1820}
               src={imageSrc}
-              className=" min-h-[400px] object-cover  w-full"
+              className=" min-h-[400px]  object-cover  w-full"
               alt=""
             />
               </div>:null
@@ -131,6 +154,7 @@ export default function HomePageBanner({ menu }: any) {
 
           {/* Mobile Drawer (Hamburger Menu) */}
           <div
+           ref={drawerRef}
             className={`!z-1000 fixed right-0 top-0 z-50 h-full w-full max-w-[320px] transform bg-[#faf7eb] text-black transition-transform duration-300 ease-in-out lg:hidden ${
               isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
             }`}

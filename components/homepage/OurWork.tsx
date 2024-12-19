@@ -34,13 +34,13 @@ const OurWork = () => {
   }, []);
 
   return (
-    <div>
+    <div className='' >
       <div className="custum-paddles">
         <div className="mb-3 mt-4 text-center md:mb-12 md:mt-[80px]">
           <div className="text-[24px] font-medium text-black md:text-[40px]">
             {ouWorkData ? ouWorkData[0]?.text : null}
           </div>
-          <div className="text-[16px] text-gray-700 md:text-[25px]">
+          <div className="text-[16px] text-black/50 md:text-[25px]">
             {ouWorkData ? ouWorkData[0]?.subHeading : null}
           </div>
         </div>
@@ -92,7 +92,7 @@ const OurWork = () => {
                         className="w-full bg-[FAF7EB] transition-transform duration-500 ease-in-out group-hover:scale-110"
                       />
                     </div>
-                    <div className="flex items-center justify-center border-t py-3 text-[18px] md:py-[30px] md:text-[24px]">
+                    <div className="flex items-center justify-center text-black/50 font-[500] border-t py-3 text-[18px] md:py-[30px] md:text-[24px]">
                       {item?.headline || 'Custom Paddle'}
                     </div>
                   </div>

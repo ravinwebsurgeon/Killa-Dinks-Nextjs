@@ -26,10 +26,10 @@
   font-weight:600;
   font-style: normal;
 }
-
+/* 
 img {
   border-radius: 4px;
-}
+} */
 
 .custum-paddles .slider-container {
   max-width: 1640px;
@@ -295,17 +295,37 @@ img {
 .testimonials 
  .swiper-slide:not(.swiper-slide-active) > div {
     max-width: 405px;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: white;
+    border: 1px solid #0000000D;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    
     
   
 }
 
 .testimonial-review-name{
-      color: #BBA887;
+  color: #BBA887;
 }
 .testimonials 
-.swiper-slide.w-full.swiper-slide-next  >div {
-    margin: 0 0 0 auto;
+ .swiper-slide:not(.swiper-slide-active) img{
+  border: none;
+ }
+ .testimonials 
+ .swiper-slide.w-full.swiper-slide-next  >div {
+     margin: 0 0 0 auto;
+ }
+ .testimonials 
+ .swiper-slide:not(.swiper-slide-active)  {
+   
+  align-self: flex-end;
+    
+  
 }
+ /* .testimonials 
+ .swiper-slide.w-full.swiper-slide-next   {
+     align-self: flex-end;
+ } */
 
 .testimonials 
 .swiper-initialized{

@@ -1,5 +1,6 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import sendEmail from 'lib/nodemailer/sendEmail';
 
 const Page = () => {
   // State to hold form values and errors
@@ -15,6 +16,14 @@ const Page = () => {
     email: '',
     phone: '',
     comment: '',
+  });
+
+  const [formStatus, setFormStatus] = useState<{
+    message: string;
+    type: 'success' | 'error' | '';
+  }>({
+    message: '',
+    type: '',
   });
 
   // Handle input change
@@ -71,16 +80,67 @@ const Page = () => {
     setErrors(newErrors); 
     return isValid;
   };
-
+  
+  
   // Handle form submission
-  const handleSubmit = (e:any) => {
+  const handleSubmit = async(e: any) => {
     e.preventDefault();
     if (validate()) {
-      // Form is valid, submit the data
-      console.log('Form submitted', formData);
+      const emailBody = `
+        <div>
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${formData.name}</p>
+          <p><strong>Email:</strong> ${formData.email}</p>
+          <p><strong>Phone Number:</strong> ${formData.phone}</p>
+          <p><strong>Comment:</strong></p>
+          <p>${formData.comment}</p>
+        </div>
+      `;
+  
+      // sendEmail(
+      //   formData?.email, // Replace with your email address
+      //   'New Contact Form Submission'
+      //   ,
+      //   emailBody // Pass the email body
+      // );
       
+      // Form is valid, submit the data
+      // console.log('Form submitted', formData);
+      const result = await sendEmail(
+        // formData?.email, // Replace with your email address
+        'New Contact Form Submission',
+        emailBody // Pass the email body
+      );
+
+      if (result === true) {
+        // Success
+        setFormStatus({
+          message: 'Your message has been sent successfully!',
+          type: 'success',
+        });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          comment: '',
+        });
+        setErrors({
+          name: '',
+          email: '',
+          phone: '',
+          comment: '',
+        });
+      } else {
+        // Error
+        setFormStatus({
+          message: 'There was an error sending your message. Please try again later.',
+          type: 'error',
+        });
+      }
     }
   };
+
+  
 
   return (
     <div className="flex flex-col gap-4 bg-[#FAF7EB]">
@@ -155,8 +215,21 @@ const Page = () => {
               >
                 Send
               </button>
+              {formStatus.message && (
+            <div
+              className={`mt-4 text-center p-3 rounded-lg ${
+                formStatus.type === 'success'
+                  ? 'bg-green-100 text-green-800'
+                  : 'bg-red-100 text-red-800'
+              }`}
+            >
+              {formStatus.message}
+            </div>
+          )}
             </form>
+            
           </div>
+          
         </div>
       </div>
     </div>

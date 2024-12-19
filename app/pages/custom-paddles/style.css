@@ -6,6 +6,16 @@
     display: block;
 }
 
+@media (max-width:768px){
+    .main-gallery-images svg {
+        width: 250px;
+        
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
 .thumbnail-images svg {
     width: 100%;
     height: auto;
