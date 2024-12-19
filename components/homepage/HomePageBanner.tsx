@@ -112,7 +112,7 @@ export default function HomePageBanner({ menu }: any) {
                     // }
                     return (
                       <Link  key={index} className="" href={url}>
-                        {item.title == 'Custom Paddle' ? 'Custom Paddle Builder' : item.title}
+                        {item.title == 'Custom Paddles' ? 'Custom Paddle Builder' : item.title}
                       </Link>
                     );
                   })}
