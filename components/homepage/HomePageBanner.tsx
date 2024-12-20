@@ -80,8 +80,6 @@ export default function HomePageBanner({ menu }: any) {
     fetchData();
   }, []);
 
- console.log(menu)
-
 
   return (
     <div>

@@ -15,21 +15,6 @@ import program from 'public/assets/affiliate-program.webp';
 function Ambassador() {
   const [ambassadorData, setAmbassadorData] = useState<any>();
 
-  const commitmentData = [
-    {
-      title: 'Age',
-      desc: 'You must be 18 or older to join.'
-    },
-    {
-      title: 'Location',
-      desc: 'This program is currently open only to U.S. Residents only.'
-    },
-    {
-      title: 'Commitment',
-      desc: 'Be genuine in sharing your love for Oceanfoam. Our ideal Ambassadors are those who truly care about a sustainable lifestyle and believe in making choices that positively impact the planet.'
-    }
-  ];
-
   const data = [
     {
       img: img1,
@@ -69,15 +54,6 @@ function Ambassador() {
         {ambassadorData && ambassadorData[0]?.text}
       </div>
 
-      {/* <div className="mx-4 flex flex-col gap-8 text-center text-xl font-[500] tracking-[1px] text-[#bba887] md:text-4xl">
-        <div>Introducing the Killa Dinks Affiliate Program!</div>
-        <div className="mx-auto max-w-[800px] text-center text-sm font-normal md:text-base">
-          Are you passionate about pickleball and want to be a part of a unique pickleball
-          community? Join us in spreading the love for the sport by becoming a Killa Dinks
-          Ambassador. Our affiliate program is your opportunity to be a brand advocate and earn
-          while doing what you love.
-        </div>
-      </div> */}
       <div>
         <div>
           <img src={topborder.src} />
@@ -110,34 +86,6 @@ function Ambassador() {
           <img src={bottomborder.src} />
         </div>
       </div>
-      {/* <div className="mx-4 flex flex-col items-center">
-        <div className="flex flex-col gap-3 text-center text-4xl font-[500] text-[#bba887]">
-          <div className="text text-center text-xl tracking-[1px] sm:text-3xl">
-            Levels & Rewards
-          </div>
-          <div className="mx-auto max-w-[800px] text-center text-sm font-normal sm:text-xl">
-            Our Ambassador Program is structured in levels, giving you access to bigger rewards and
-            perks as your impact grows. The more you share, the more you can earn and experience:
-          </div>
-        </div>
-
-        <div className="py-8">
-          <img src={program.src} />
-        </div>
-      </div> */}
-
-      {/* <div className="mx-4 my-8 flex flex-col gap-4">
-        <div className="mx-auto max-w-[800px] text-center text-lg font-normal text-[#bba887]">
-          To keep things straightforward, we ask that Ambassadors meet a few basic criteria:
-        </div>
-        <ul className="mx-auto flex max-w-[660px] flex-col gap-1 px-10 text-black/70">
-          {commitmentData?.map((item) => (
-            <li className="list-disc text-sm">
-              <span className="text-base font-medium text-black">{item.title}</span>: {item.desc}
-            </li>
-          ))}
-        </ul> */}
-      {/* </div> */}
       <div className='flex flex-col mx-4 gap-4 my-8'>
       <div className="flex w-full justify-center text-[#bba887] font-[500] text-2xl sm:text-4xl"> Ready to Join?</div>
       <div className="flex w-full text-center justify-center text-black/70">

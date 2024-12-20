@@ -30,7 +30,6 @@ const NewsLetter = () => {
       });
       const data = await response.json();
       if (data) {
-        console.log(' data ')
         if (data.result?.errors?.email) {
           setError('Email has been Already Subscribed');
         }
