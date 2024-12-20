@@ -60,8 +60,6 @@ if(initialRender){
   setIsOpen(true);
 }
   
-
-  console.log(cart)
 },[cart?.totalQuantity])
 
 

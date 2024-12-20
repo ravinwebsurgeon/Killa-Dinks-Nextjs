@@ -17,8 +17,7 @@ const CustumPaddles = async () => {
     <ProductProvider>
 
       <CustomPaddlesEditor getProductData={getProductData}   />
-      <Collage/>
-      <HowItWorks/>
+      
       
 
     </ProductProvider>
