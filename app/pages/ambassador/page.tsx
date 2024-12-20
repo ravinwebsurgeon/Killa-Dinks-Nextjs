@@ -64,12 +64,12 @@ function Ambassador() {
     fetchData();
   }, []);
   return (
-    <div className="relative mx-auto flex w-full flex-col bg-[#FAF7EB] pb-8 pt-8 lg:pb-16 lg:pt-16">
+    <div className="relative mx-auto flex w-full flex-col bg-[#FAF7EB] pb-8 lg:pb-16 ">
       <div className="absolute -top-12 flex w-full justify-center text-center text-2xl font-[600] tracking-[1px] text-[#FAF7EB] lg:text-5xl xl:-top-[10%]">
         {ambassadorData && ambassadorData[0]?.text}
       </div>
 
-      <div className="mx-4 flex flex-col gap-8 text-center text-xl font-[500] tracking-[1px] text-[#bba887] md:text-4xl">
+      {/* <div className="mx-4 flex flex-col gap-8 text-center text-xl font-[500] tracking-[1px] text-[#bba887] md:text-4xl">
         <div>Introducing the Killa Dinks Affiliate Program!</div>
         <div className="mx-auto max-w-[800px] text-center text-sm font-normal md:text-base">
           Are you passionate about pickleball and want to be a part of a unique pickleball
@@ -77,7 +77,7 @@ function Ambassador() {
           Ambassador. Our affiliate program is your opportunity to be a brand advocate and earn
           while doing what you love.
         </div>
-      </div>
+      </div> */}
       <div>
         <div>
           <img src={topborder.src} />
@@ -110,7 +110,7 @@ function Ambassador() {
           <img src={bottomborder.src} />
         </div>
       </div>
-      <div className="mx-4 flex flex-col items-center">
+      {/* <div className="mx-4 flex flex-col items-center">
         <div className="flex flex-col gap-3 text-center text-4xl font-[500] text-[#bba887]">
           <div className="text text-center text-xl tracking-[1px] sm:text-3xl">
             Levels & Rewards
@@ -124,9 +124,9 @@ function Ambassador() {
         <div className="py-8">
           <img src={program.src} />
         </div>
-      </div>
+      </div> */}
 
-      <div className="mx-4 my-8 flex flex-col gap-4">
+      {/* <div className="mx-4 my-8 flex flex-col gap-4">
         <div className="mx-auto max-w-[800px] text-center text-lg font-normal text-[#bba887]">
           To keep things straightforward, we ask that Ambassadors meet a few basic criteria:
         </div>
@@ -136,8 +136,8 @@ function Ambassador() {
               <span className="text-base font-medium text-black">{item.title}</span>: {item.desc}
             </li>
           ))}
-        </ul>
-      </div>
+        </ul> */}
+      {/* </div> */}
       <div className='flex flex-col mx-4 gap-4 my-8'>
       <div className="flex w-full justify-center text-[#bba887] font-[500] text-2xl sm:text-4xl"> Ready to Join?</div>
       <div className="flex w-full text-center justify-center text-black/70">

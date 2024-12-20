@@ -63,7 +63,7 @@ const HowItWorks = () => {
               </div>
             ))}
           </div>
-          <Link href={'#custom-paddle-builder'} className='bg-[#BBA887]  mt-6  px-6 py-4 text-xl rounded-lg text-white  mx-auto'  >Get Started</Link>
+          <Link href={'/pages/custom-paddles'} className='bg-[#BBA887]  mt-6  px-6 py-4 text-xl rounded-lg text-white  mx-auto'  >Get Started</Link>
         </div>
       </div>
       <div className="bg-[#faf7eb] pb-16">

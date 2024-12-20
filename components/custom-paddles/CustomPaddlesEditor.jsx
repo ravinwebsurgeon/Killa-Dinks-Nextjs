@@ -149,7 +149,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
   };
   return (
     <div id='custom-paddle-builder' className="bg-[#FAF7EB]">
-      <div className="xl:mx-auto mx-4 flex flex-col lg:flex-row max-w-[1440px] gap-6 py-10">
+      <div className="xl:mx-auto mx-4 md:mx-5 xl:pl-[43px] flex flex-col lg:flex-row max-w-[1440px] gap-6 py-10">
         <div  className="flex-1">
           <div className="sticky top-0 flex gap-4">
             <div className="thumbnail-images w-full hidden lg:block max-w-[100px]">

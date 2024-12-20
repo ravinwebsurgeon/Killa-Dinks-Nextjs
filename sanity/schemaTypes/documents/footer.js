@@ -37,7 +37,7 @@ export default defineType({
           title: 'Links',
           type: 'array',
           of: [{type: 'object', fields: [
-            {name: 'title', title: 'Title', type: 'string', validation: (Rule) => Rule.required().max(20)},
+            {name: 'title', title: 'Title', type: 'string', validation: (Rule) => Rule.required().max(25)},
             {name: 'url', title: 'URL', type: 'string', validation: (Rule) => Rule.required()}
           ]}],
           validation: (Rule) => Rule.min(1),
