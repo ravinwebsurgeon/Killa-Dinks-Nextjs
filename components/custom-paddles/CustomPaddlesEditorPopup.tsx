@@ -22,6 +22,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
 
       const reader = new FileReader();
       reader.onload = async () => {
+        console.log(reader.result);
         
         setFormData((prev: any) => ({
           ...prev,

@@ -167,6 +167,9 @@ const CustomPaddlesEditor = ({ getProductData }) => {
   
   
 
+  useEffect(() => {
+    console.log(paddlesData);
+  }, [paddlesData]);
   const selectColors = [
     {
       heading: 'Edgeguard',
@@ -537,8 +540,13 @@ const CustomPaddlesEditor = ({ getProductData }) => {
             </div>
             {/* <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button> */}
             {getProductData && (
+<<<<<<< HEAD
               <div className="mt-5">
                 <AddToCartBuilder
+=======
+              <div className="mt-5" onClick={submitButton}>
+                <AddToCart
+>>>>>>> 981d110b (Asw S3 integrated)
                   product={getProductData}
                   productQuantity={1}
                   submitButton={submitButton}
