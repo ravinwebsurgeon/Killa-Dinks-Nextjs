@@ -59,6 +59,78 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       reader.readAsDataURL(file);
     }
   };
+
+  const submitButton = async () => {
+    try {
+      // Array of image data and types to upload
+      const imagesToUpload = [
+        { data: paddlesData?.front, name: `front/${Date.now()}`, type: 'image/png' },
+        { data: paddlesData?.back, name: `back/${Date.now()}`, type: 'image/png' },
+        { data: paddlesData?.cropedFront, name: `cropped-front/${Date.now()}`, type: 'image/png' },
+        { data: paddlesData?.cropedBack, name: `cropped-back/${Date.now()}`, type: 'image/png' },
+      ];
+  
+      // Function to convert base64 to binary
+      const convertBase64ToBinary = (base64String) => {
+        const strippedBase64 = base64String.replace(/^data:image\/\w+;base64,/, "");
+        const binaryString = atob(strippedBase64);
+        const binaryData = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          binaryData[i] = binaryString.charCodeAt(i);
+        }
+        return binaryData;
+      };
+  
+      // Iterate over each image to upload
+      for (const { data, name, type } of imagesToUpload) {
+        if (!data) {
+          console.error(`No data found for ${name}`);
+          continue;
+        }
+  
+        // Request presigned URL
+        const response = await fetch('/api/imageUpload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fileName: name,
+            fileType: type,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error(`Failed to get presigned URL for ${name}`);
+        }
+  
+        const { uploadUrl } = await response.json();
+  
+        // Convert image data to binary
+        const binaryData = convertBase64ToBinary(data);
+  
+        // Upload to S3
+        const uploadResponse = await fetch(uploadUrl, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': type,
+          },
+          body: binaryData, // Correct usage is `body` not `Body`
+        });
+  
+        if (!uploadResponse.ok) {
+          throw new Error(`File upload failed for ${name}`);
+        }
+  
+        console.log(`File uploaded successfully: ${name}`);
+        console.log('Uploaded file can be accessed at:', uploadUrl.split('?')[0]); // Removing query params for the public URL
+      }
+  
+      console.log('All files uploaded successfully!');
+    } catch (error) {
+      console.error('Error uploading files:', error);
+    }
+  };
+  
+  
   useEffect(() => {
     console.log(paddlesData);
   }, [paddlesData]);
@@ -182,6 +254,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                         ? '#000'
                         : '#fff'
                   }
+                  clipPathId={'paddleClip1'}
                 />
               </div>
             </div>
@@ -216,6 +289,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                           ? '#000'
                           : '#fff'
                     }
+                    paddleClip={'paddleClip2'}
                   />
                 )}
                 <div className="absolute bottom-0 right-0">
@@ -362,7 +436,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
             </div>
             {/* <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button> */}
             {getProductData && (
-              <div className="mt-5">
+              <div className="mt-5" onClick={submitButton}>
                 <AddToCart
                   product={getProductData}
                   productQuantity={1}

@@ -56,7 +56,7 @@ function SortFilterItem({ item }: { item: SortFilterItem }) {
           'underline underline-offset-4 font-semibold tracking-[1px]': active
         })}
       >
-        {item.title}
+        {item?.title}
       </DynamicTag>
     </li>
   );

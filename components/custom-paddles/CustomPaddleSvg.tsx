@@ -1,4 +1,3 @@
-import img from '../../public/assets/badmitionPlayImg.png';
 const CustomPaddleSvg = ({
   paddleEdge,
   paddleGrip,
@@ -6,14 +5,15 @@ const CustomPaddleSvg = ({
   paddleText,
   paddleGripStroke,
   paddleInner,
-  image
+  image,
+  clipPathId = "paddleClip"
 }: any) => {
   return (
     <svg version="1.1" x="0px" y="0px" width={591} height={1146} viewBox="0 0 590.75 1145.6">
       {image ? (
         <>
           <defs>
-            <clipPath id="paddleClip">
+            <clipPath id={clipPathId}>
               <path
                 fill={paddleInner || '#f2f2f2'}
                 d="M250.98,1126.21h81.21v-8.15l3.45-254.07c0.15-7.02,0.59-14.13,1.32-21.11c2.29-22.03,8.12-43.42,17.34-63.57
@@ -31,7 +31,7 @@ const CustomPaddleSvg = ({
             x="0"
             y="-8"
             className="relative top-2 w-full"
-            clipPath="url(#paddleClip)"
+            clipPath={`url(#${clipPathId})`}
           />
         </>
       ) : (

@@ -27,13 +27,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       router.push(item);
   }
   return (
-    <Link  href={`/product/${product.handle}`}   className="w-full flex min-w-[333px]   min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
+    <Link  href={`/product/${product.handle}`}   className="w-full flex  min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
       {/* Image Container with Hover Effect */}
-      <div className="relative group  h-full max-h-[350px]  min-h-[350px] bg-[#FAF7EB]  rounded-t-[20px] flex justify-center items-center overflow-hidden transition-transform duration-500 ease-in-out">
+      <div className="relative group  h-full max-h-[295px]  min-h-[295px] bg-[#FAF7EB]  rounded-t-[20px] flex justify-center items-center overflow-hidden transition-transform duration-500 ease-in-out">
         <img 
           src={product?.featuredImage?.url || placeholder.src } 
           alt={product?.title} 
-          className=" w-full h-full group-hover:scale-105 object-contain transition-all duration-300 ease-in-out" 
+          className=" group-hover:scale-105 w-full max-h-[295px] h-full object-contain   transition-all duration-300 ease-in-out" 
         />
         {/* Optional: Add a subtle overlay on image */}
        
