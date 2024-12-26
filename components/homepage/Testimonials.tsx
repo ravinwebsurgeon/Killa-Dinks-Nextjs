@@ -20,7 +20,7 @@ const Testimonials = () => {
     const fetchData = async () => {
       try {
         const result = await client.fetch(`*[_type == "testimonials"]`);
-        if (result.length > 0) {
+        if (result?.length > 0) {
           setTestimonial(result);
         }
       } catch (error) {
@@ -41,7 +41,7 @@ const Testimonials = () => {
         }
 
         const data = await response.json();
-        setReviews(data.reviews);
+        setReviews(data?.reviews);
       } catch (error) {
         console.error(error);
       }
@@ -74,10 +74,10 @@ const Testimonials = () => {
             <div className="]">
               <div className="flex justify-center text-[24px] font-medium md:text-[40px]">
                 
-                {testimonial[0] && <>{testimonial[0]?.text && testimonial[0]?.text}</>}
+                {testimonial && <>{testimonial[0]?.text && testimonial[0]?.text}</>}
               </div>
               <div className="flex justify-center text-black/50 text-[16px] md:text-[25px]">
-                {testimonial[0] &&<>{testimonial[0]?.subHeading && testimonial[0]?.subHeading}</>}
+                {testimonial &&<>{testimonial[0]?.subHeading && testimonial[0]?.subHeading}</>}
               </div>
             </div>
             <div className="slider-container my-[40px] mb-[40px] mt-[10px] md:mb-[80px]">
@@ -122,14 +122,14 @@ const Testimonials = () => {
                           <div className="flex flex-col justify-center gap-[30px] pt-[63px]">
                             <div className="flex flex-col justify-center gap-[10px]">
                               <div className="testimonial-review-name flex justify-center gap-[10px] text-[30px] font-[500]">
-                                {item.reviewer.name}
+                                {item?.reviewer?.name}
                               </div>
                               <div className="flex justify-center">
-                                <StarRating rating={item.rating} filled={'#FFE400'} />
+                                <StarRating rating={item?.rating} filled={'#FFE400'} />
                               </div>
                             </div>
                             <div className="mx-4 flex justify-center px-2 text-center md:mx-auto xl:max-w-[300px]">
-                              {description ? <>{truncateText(item.body, 30)}</> : item.body}
+                              {description ? <>{truncateText(item?.body, 30)}</> : item?.body}
                             </div>
                           </div>
                         </div>
@@ -153,7 +153,7 @@ const Testimonials = () => {
                   <div
                     className="flex cursor-pointer items-center justify-center rounded-full border-[2px] border-[#BBA887] px-4 py-6 "
                     onClick={() => {
-                      ourWorkRef.current?.slidePrev();
+                      ourWorkRef?.current?.slidePrev();
                       setDescription(true);
                     }}
                   >
