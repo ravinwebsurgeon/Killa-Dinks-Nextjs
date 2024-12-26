@@ -1,15 +1,26 @@
 'use client';
+<<<<<<< HEAD
 import { AddToCartBuilder } from 'components/cart/add-to-cart';
 import { toPng } from 'html-to-image';
 
 import { useRef, useState } from 'react';
+=======
+import { AddToCart } from 'components/cart/add-to-cart';
+import { useEffect, useRef, useState } from 'react';
+>>>>>>> 9ca97306 (image Loader added)
 import CustomPaddleBottomSvg from './CustomPaddleBottomSvg';
 import CustomPaddleSvg from './CustomPaddleSvg';
 import CustomPaddlesEditorPopup from './CustomPaddlesEditorPopup';
+import UploadWithLoader from 'components/common/LoaderModal';
 const CustomPaddlesEditor = ({ getProductData }) => {
   const capture = useRef();
   const [selectedSide, setSelectedSide] = useState('front');
   const [openModal, setOpenModal] = useState(false);
+  const [uploadingImages, setUploadingImages] = useState(false);
+  const [imagesError, setImagesError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success,setSuccess] = useState(false)
+
   const [paddlesData, setPaddlesData] = useState({
     type: 'fiberglass',
     frontImage: '',
@@ -47,7 +58,15 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       : null,
     paddlesData?.bottomPiece && paddlesData?.type !== 'raw-carbon-fiber'
       ? { key: 'Bottom Piece', value: paddlesData.bottomPiece }
+<<<<<<< HEAD
       : null
+=======
+      : null,
+    paddlesData?.front ? { key: 'Front', value: paddlesData.front } : null,
+    paddlesData?.back ? { key: 'Back', value: paddlesData.back } : null,
+    paddlesData?.cropedFront ? { key: 'Cropped Front', value: paddlesData.cropedFront } : null,
+    paddlesData?.cropedBack ? { key: 'Cropped Back', value: paddlesData.cropedBack } : null
+>>>>>>> 9ca97306 (image Loader added)
   ].filter((attr) => attr !== null); // Filter out null values
   const onCapture = () => {
     toPng(capture.current, { cacheBust: true })
@@ -79,6 +98,19 @@ const CustomPaddlesEditor = ({ getProductData }) => {
     }
   };
   const submitButton = async () => {
+    if (
+      !paddlesData.front ||
+      !paddlesData.back ||
+      !paddlesData?.cropedFront ||
+      !paddlesData?.cropedBack
+    ) {
+      
+      setUploadingImages(true);
+      setImagesError(true);
+      setErrorMessage('Please Upload the Both Images');
+      return;
+    }
+
     try {
     
       const imagesToUpload = [
@@ -90,7 +122,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       ];
   
       const convertBase64ToBinary = (base64String) => {
-        const strippedBase64 = base64String.replace(/^data:image\/\w+;base64,/, "");
+        const strippedBase64 = base64String.replace(/^data:image\/\w+;base64,/, '');
         const binaryString = atob(strippedBase64);
         const binaryData = new Uint8Array(binaryString.length);
         for (let i = 0; i < binaryString.length; i++) {
@@ -315,6 +347,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
         </div>
         </div>
       </div>
+    {/* <div id="custom-paddle-builder" className="bg-[#FAF7EB]"> */}
       <div className="mx-4 flex max-w-[1440px] flex-col gap-6 py-10 md:mx-5 lg:flex-row xl:mx-auto xl:pl-[43px]">
         <div className="flex-1">
           <div className="sticky top-0 flex gap-4">
@@ -539,13 +572,8 @@ const CustomPaddlesEditor = ({ getProductData }) => {
             </div>
             {/* <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button> */}
             {getProductData && (
-<<<<<<< HEAD
               <div className="mt-5">
                 <AddToCartBuilder
-=======
-              <div className="mt-5" onClick={submitButton}>
-                <AddToCart
->>>>>>> 981d110b (Asw S3 integrated)
                   product={getProductData}
                   productQuantity={1}
                   submitButton={submitButton}
@@ -556,6 +584,13 @@ const CustomPaddlesEditor = ({ getProductData }) => {
           </div>
         </div>
       </div>
+      <UploadWithLoader
+        error={imagesError}
+        errorMessage={errorMessage}
+        uploadImages={uploadingImages}
+        setUploadingImages={setUploadingImages}
+        success={success}
+      />
     </div>
   );
 };
