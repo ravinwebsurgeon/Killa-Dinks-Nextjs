@@ -12,11 +12,17 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
   const [side, setSide] = useState(0);
   const [loading, setLoading] = useState(false);
   const [useBothSide, setuseBothSide] = useState(false);
-  const getImages = (e: any, field: any) => {
+  const [file, setFile] = useState(null);
+
+  const getImages = async (e: any, field: any) => {
+
     const file = e.target.files[0];
     if (e.target.files) {
+      console.log(file);
+
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = async () => {
+        
         setFormData((prev: any) => ({
           ...prev,
           [field]: reader.result
@@ -28,6 +34,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
       reader.readAsDataURL(file);
     }
   };
+
   const getEditedImage = (e: any, field: any) => {
     setFormData((prev: any) => ({
       ...prev,
@@ -97,7 +104,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
   };
   return (
     <div
-      className={`fixed left-0 top-0 z-10 flex h-full w-full items-center justify-center p-8 ${showModal ? 'opacity-100' : 'pointer-events-none invisible opacity-0'} transition-all duration-500`}
+      className={`fixed left-0 top-0 z-10 flex h-full w-full items-center justify-center px-2 py-8 sm:p-8 ${showModal ? 'opacity-100' : 'pointer-events-none invisible opacity-0'} transition-all duration-500`}
     >
       <div className="relative w-full max-w-[1560px] overflow-hidden rounded-lg bg-white shadow-2xl">
         <button className="absolute right-4 top-4 z-[99]" onClick={() => closeModel()}>
@@ -111,8 +118,8 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
             <path d="M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z" />
           </svg>
         </button>
-        <div className="flex">
-          <div className="w-full max-w-[176px]">
+        <div className="flex flex-col h-[calc(100vh-130px)] sm:h-auto sm:flex-row">
+          <div className="w-full sm:max-w-[176px]">
             <div className="flex h-20 items-center justify-center bg-[#BBA887] text-2xl">
               Design Side
             </div>
@@ -151,7 +158,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
               </button>
             )}
           </div>
-          <div className="relative h-[calc(100vh-236px)] max-h-screen w-full flex-1 border-l border-[#BBA887] pt-6 md:h-[calc(95vh-200px)]">
+          <div className="relative max-h-screen w-full flex-1 border-[#BBA887] pt-6 h-[calc(100vh-236px)] sm:border-l md:h-[calc(95vh-200px)]">
             {activeTab === 'front' && formData?.front == '' && (
               <ImageUploader getImages={getImages} field="front" id="front" />
             )}
@@ -207,7 +214,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
         </div>
         <div className="flex w-full flex-col items-center justify-center gap-3 border-t border-[#BBA887] py-5">
           <div>
-            <label>
+            <label className="text-sm sm:text-base">
               <input
                 type="checkbox"
                 checked={useBothSide}
@@ -220,7 +227,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
           </div>
           <CustomButton
             onClick={() => getSide()}
-            className={`flex max-w-min text-nowrap rounded-2xl bg-[#bba887] px-10 py-2 text-2xl text-white ${loading ? 'pointer-events-none opacity-50' : ''}`}
+            className={`flex max-w-min text-nowrap rounded-2xl bg-[#bba887] px-10 py-2 text-white sm:text-2xl ${loading ? 'pointer-events-none opacity-50' : ''}`}
             labelText="Save"
           />
         </div>
