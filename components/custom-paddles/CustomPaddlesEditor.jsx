@@ -1,13 +1,10 @@
 'use client';
-<<<<<<< HEAD
 import { AddToCartBuilder } from 'components/cart/add-to-cart';
 import { toPng } from 'html-to-image';
 
 import { useRef, useState } from 'react';
-=======
 import { AddToCart } from 'components/cart/add-to-cart';
 import { useEffect, useRef, useState } from 'react';
->>>>>>> 9ca97306 (image Loader added)
 import CustomPaddleBottomSvg from './CustomPaddleBottomSvg';
 import CustomPaddleSvg from './CustomPaddleSvg';
 import CustomPaddlesEditorPopup from './CustomPaddlesEditorPopup';
