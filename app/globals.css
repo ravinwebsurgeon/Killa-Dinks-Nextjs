@@ -643,3 +643,7 @@ color: #BBA887 !important;
 .jdgm-paginate{
   border-top: 1px solid #BBA887 !important;
 }
+.both-sides svg{
+  max-height: 90vh;
+  width: auto;
+}

@@ -1,10 +1,12 @@
 'use client';
-import { AddToCart } from 'components/cart/add-to-cart';
-import { useEffect, useState } from 'react';
+import { AddToCartBuilder } from 'components/cart/add-to-cart';
+import { toPng } from 'html-to-image';
+import { useEffect, useRef, useState } from 'react';
 import CustomPaddleBottomSvg from './CustomPaddleBottomSvg';
 import CustomPaddleSvg from './CustomPaddleSvg';
 import CustomPaddlesEditorPopup from './CustomPaddlesEditorPopup';
 const CustomPaddlesEditor = ({ getProductData }) => {
+  const capture = useRef();
   const [selectedSide, setSelectedSide] = useState('front');
   const [openModal, setOpenModal] = useState(false);
   const [paddlesData, setPaddlesData] = useState({
@@ -33,10 +35,18 @@ const CustomPaddlesEditor = ({ getProductData }) => {
   const attributesArr = [
     paddlesData?.type ? { key: 'Type', value: paddlesData.type } : null,
     paddlesData?.frontImage ? { key: 'Front Image', value: paddlesData.frontImage } : null,
-    paddlesData?.paddleEdge && paddlesData?.type !== 'raw-carbon-fiber' ? { key: 'Edge', value: paddlesData.paddleEdge } : null,
-    paddlesData?.paddleBand && paddlesData?.type !== 'raw-carbon-fiber' ? { key: 'Paddle Band', value: paddlesData.paddleBand } : null,
-    paddlesData?.paddleGrip && paddlesData?.type !== 'raw-carbon-fiber' ?{ key: 'Grip', value: paddlesData.paddleGrip } : null,
-    paddlesData?.bottomPiece && paddlesData?.type !== 'raw-carbon-fiber' ? { key: 'Bottom Piece', value: paddlesData.bottomPiece } : null,
+    paddlesData?.paddleEdge && paddlesData?.type !== 'raw-carbon-fiber'
+      ? { key: 'Edge', value: paddlesData.paddleEdge }
+      : null,
+    paddlesData?.paddleBand && paddlesData?.type !== 'raw-carbon-fiber'
+      ? { key: 'Paddle Band', value: paddlesData.paddleBand }
+      : null,
+    paddlesData?.paddleGrip && paddlesData?.type !== 'raw-carbon-fiber'
+      ? { key: 'Grip', value: paddlesData.paddleGrip }
+      : null,
+    paddlesData?.bottomPiece && paddlesData?.type !== 'raw-carbon-fiber'
+      ? { key: 'Bottom Piece', value: paddlesData.bottomPiece }
+      : null,
     paddlesData?.front ? { key: 'Front', value: paddlesData.front } : null,
     paddlesData?.back ? { key: 'Back', value: paddlesData.back } : null,
     paddlesData?.cropedFront ? { key: 'Cropped Front', value: paddlesData.cropedFront } : null,
@@ -74,15 +84,18 @@ const CustomPaddlesEditor = ({ getProductData }) => {
         {
           label: 'White',
           code: '#fff'
-        },{
-          label:'Red',
-          code :'#cb2436'
-        },{
-          label:'Pink',
-          code:'#f761c2'
-        },{
-          label:'Blue',
-          code:'#1a35a8'
+        },
+        {
+          label: 'Red',
+          code: '#cb2436'
+        },
+        {
+          label: 'Pink',
+          code: '#f761c2'
+        },
+        {
+          label: 'Blue',
+          code: '#1a35a8'
         }
       ]
     },
@@ -97,20 +110,22 @@ const CustomPaddlesEditor = ({ getProductData }) => {
         {
           label: 'White',
           code: '#fff'
-        },{
+        },
+        {
           labe: 'Pink',
-          code :'#eb65ad'
+          code: '#eb65ad'
         },
         {
-          label:'Blue',
-          code:'#1d3783'
-        },{
-          label:'Red',
-          code:'#c03935'
+          label: 'Blue',
+          code: '#1d3783'
         },
         {
-         label:'Brown',
-          code:'#a04a25'
+          label: 'Red',
+          code: '#c03935'
+        },
+        {
+          label: 'Brown',
+          code: '#a04a25'
         }
       ]
     },
@@ -128,7 +143,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
         }
       ]
     },
-    
+
     {
       heading: 'Bottom Piece',
       field: 'bottomPiece',
@@ -147,18 +162,80 @@ const CustomPaddlesEditor = ({ getProductData }) => {
   const closePopup = () => {
     setOpenModal(false);
   };
+  const onCapture = () => {
+    toPng(capture.current, { cacheBust: true })
+      .then((dataUrl) => {
+       console.log(dataUrl);
+       
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
-    <div id='custom-paddle-builder' className="bg-[#FAF7EB]">
-      <div className="xl:mx-auto mx-4 md:mx-5 xl:pl-[43px] flex flex-col lg:flex-row max-w-[1440px] gap-6 py-10">
-        <div  className="flex-1">
+    <div id="custom-paddle-builder" className="bg-[#FAF7EB]"> 
+      <div className="both-sides flex gap-6 fixed top-0 left-0 z-[-1]" >
+        <div className='flex gap-6' ref={capture}>
+          <div className='flex-1'>
+          <div className='text-[#bba887] block text-center text-2xl my-6 font-[500] uppercase'>Front Side</div>
+        <CustomPaddleSvg
+          image={paddlesData?.cropedFront}
+          paddleInner={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : '#f2f2f2'}
+          paddleEdge={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge}
+          paddleGrip={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleGrip}
+          paddleBand={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleBand}
+          paddleText={
+            paddlesData?.type === 'raw-carbon-fiber'
+              ? '#fff'
+              : paddlesData?.paddleBand === '#fff'
+                ? '#000'
+                : '#fff'
+          }
+          paddleGripStroke={
+            paddlesData?.type === 'raw-carbon-fiber'
+              ? '#fff'
+              : paddlesData?.paddleGrip === '#fff'
+                ? '#000'
+                : '#fff'
+          }
+        />
+        </div>
+        <div className='flex-1'>
+        <div className='text-[#bba887] block text-center text-2xl my-6 font-[500] uppercase'>Back Side</div>
+        <CustomPaddleSvg
+          paddleInner={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : '#f2f2f2'}
+          image={paddlesData?.cropedBack}
+          paddleEdge={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge}
+          paddleGrip={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleGrip}
+          paddleBand={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleBand}
+          paddleText={
+            paddlesData?.type === 'raw-carbon-fiber'
+              ? '#fff'
+              : paddlesData?.paddleBand === '#fff'
+                ? '#000'
+                : '#fff'
+          }
+          paddleGripStroke={
+            paddlesData?.type === 'raw-carbon-fiber'
+              ? '#fff'
+              : paddlesData?.paddleGrip === '#fff'
+                ? '#000'
+                : '#fff'
+          }
+        />
+        </div>
+        </div>
+      </div>
+      <div className="mx-4 flex max-w-[1440px] flex-col gap-6 py-10 md:mx-5 lg:flex-row xl:mx-auto xl:pl-[43px]">
+        <div className="flex-1">
           <div className="sticky top-0 flex gap-4">
-            <div className="thumbnail-images w-full hidden lg:block max-w-[100px]">
+            <div className="thumbnail-images hidden w-full max-w-[100px] lg:block">
               <div className="rounded-lg border border-gray-200 p-3">
                 <CustomPaddleSvg
-                  image={selectedSide === 'front' ? paddlesData?.cropedFront : paddlesData?.cropedBack}
-                  paddleInner={
-                    paddlesData?.type === 'raw-carbon-fiber' ?'#000': '#f2f2f2'
+                  image={
+                    selectedSide === 'front' ? paddlesData?.cropedFront : paddlesData?.cropedBack
                   }
+                  paddleInner={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : '#f2f2f2'}
                   paddleEdge={
                     paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                   }
@@ -185,14 +262,13 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                 />
               </div>
             </div>
-            <div className="main-gallery-images  w-full">
-              <div className="relative max-w-[400px] mx-auto lg:max-w-full w-full">
+
+            <div className="main-gallery-images w-full">
+              <div className="relative mx-auto w-full max-w-[400px] lg:max-w-full">
                 {selectedSide === 'front' && (
                   <CustomPaddleSvg
                     image={paddlesData?.cropedFront}
-                    paddleInner={
-                      paddlesData?.type === 'raw-carbon-fiber' ?'#000': '#f2f2f2'
-                    }
+                    paddleInner={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : '#f2f2f2'}
                     paddleEdge={
                       paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
                     }
@@ -219,7 +295,11 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                   />
                 )}
                 <div className="absolute bottom-0 right-0">
-                  <CustomPaddleBottomSvg bottomPiece={paddlesData?.type === 'raw-carbon-fiber' ?'#000':paddlesData?.bottomPiece} />
+                  <CustomPaddleBottomSvg
+                    bottomPiece={
+                      paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.bottomPiece
+                    }
+                  />
                   <div className="px-6 py-4 text-center text-sm font-[500] uppercase tracking-wide text-[#bba887]">
                     Bottom Piece
                   </div>
@@ -227,9 +307,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
 
                 {selectedSide === 'back' && (
                   <CustomPaddleSvg
-                  paddleInner={
-                    paddlesData?.type === 'raw-carbon-fiber' ?'#000': '#f2f2f2'
-                  }
+                    paddleInner={paddlesData?.type === 'raw-carbon-fiber' ? '#000' : '#f2f2f2'}
                     image={paddlesData?.cropedBack}
                     paddleEdge={
                       paddlesData?.type === 'raw-carbon-fiber' ? '#000' : paddlesData?.paddleEdge
@@ -257,17 +335,27 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                   />
                 )}
               </div>
-              <div className="flex items-center justify-center mt-4 gap-3">
-              <div className="flex items-center justify-center bg-white p-2  rounded-full">
-                <button onClick={() => setSelectedSide('front')} className={` ${selectedSide === 'front' ? "text-[#fff] bg-[#bba887]" : ""} block cursor-pointer rounded-full  px-4 py-3 text-center text-sm font-[500] uppercase  `}>Front Side</button>
-                <button onClick={() => setSelectedSide('back')} className={`${selectedSide === 'back' ? "text-[#fff] bg-[#bba887]" : ""} block cursor-pointer rounded-full  px-4 py-3 text-center text-sm font-[500] uppercase  `}>Back Side</button>
-              </div>
+              <div className="mt-4 flex items-center justify-center gap-3">
+                <div className="flex items-center justify-center rounded-full bg-white p-2">
+                  <button
+                    onClick={() => setSelectedSide('front')}
+                    className={` ${selectedSide === 'front' ? 'bg-[#bba887] text-[#fff]' : ''} block cursor-pointer rounded-full px-4 py-3 text-center text-sm font-[500] uppercase`}
+                  >
+                    Front Side
+                  </button>
+                  <button
+                    onClick={() => setSelectedSide('back')}
+                    className={`${selectedSide === 'back' ? 'bg-[#bba887] text-[#fff]' : ''} block cursor-pointer rounded-full px-4 py-3 text-center text-sm font-[500] uppercase`}
+                  >
+                    Back Side
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="flex-1">
-          <div className="max-w-[550px] mx-auto w-full">
+          <div className="mx-auto w-full max-w-[550px]">
             <div>
               <div className="mb-2 flex gap-3 text-base font-[500] uppercase tracking-wide text-[#bba887]">
                 1. Select Paddle Type
@@ -315,14 +403,12 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                   Start Design
                 </button>
 
-  
-                  <CustomPaddlesEditorPopup
-                    open={openModal}
-                    closePopup={closePopup}
-                    formData={paddlesData}
-                    setFormData={setPaddlesData}
-                  />
-           
+                <CustomPaddlesEditorPopup
+                  open={openModal}
+                  closePopup={closePopup}
+                  formData={paddlesData}
+                  setFormData={setPaddlesData}
+                />
               </div>
             </div>
             <div className="mt-5">
@@ -336,7 +422,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                       <div className="border-b border-black px-6 py-4 text-center text-sm font-[500] uppercase tracking-wide text-[#bba887]">
                         {item?.heading}
                       </div>
-                      <div className="flex justify-center flex-wrap gap-5 border-b border-black px-5 py-4">
+                      <div className="flex flex-wrap justify-center gap-5 border-b border-black px-5 py-4">
                         {item?.colors &&
                           item?.colors.map((childItem, i) => (
                             <button
@@ -363,7 +449,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
             {/* <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button> */}
             {getProductData && (
               <div className="mt-5">
-                <AddToCart
+                <AddToCartBuilder
                   product={getProductData}
                   productQuantity={1}
                   attributes={attributesArr}
