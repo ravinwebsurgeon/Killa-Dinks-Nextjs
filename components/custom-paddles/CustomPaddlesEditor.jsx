@@ -1,7 +1,8 @@
 'use client';
 import { AddToCartBuilder } from 'components/cart/add-to-cart';
 import { toPng } from 'html-to-image';
-import { useEffect, useRef, useState } from 'react';
+
+import { useRef, useState } from 'react';
 import CustomPaddleBottomSvg from './CustomPaddleBottomSvg';
 import CustomPaddleSvg from './CustomPaddleSvg';
 import CustomPaddlesEditorPopup from './CustomPaddlesEditorPopup';
@@ -46,13 +47,21 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       : null,
     paddlesData?.bottomPiece && paddlesData?.type !== 'raw-carbon-fiber'
       ? { key: 'Bottom Piece', value: paddlesData.bottomPiece }
-      : null,
-    paddlesData?.front ? { key: 'Front', value: paddlesData.front } : null,
-    paddlesData?.back ? { key: 'Back', value: paddlesData.back } : null,
-    paddlesData?.cropedFront ? { key: 'Cropped Front', value: paddlesData.cropedFront } : null,
-    paddlesData?.cropedBack ? { key: 'Cropped Back', value: paddlesData.cropedBack } : null
+      : null
   ].filter((attr) => attr !== null); // Filter out null values
-
+  const onCapture = () => {
+    toPng(capture.current, { cacheBust: true })
+      .then((dataUrl) => {       
+       setPaddlesData((prev)=>({
+        ...prev,
+        preview:dataUrl
+       }))
+       
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const getImages = (e, field) => {
     const file = e.target.files[0];
     if (e.target.files) {
@@ -69,18 +78,17 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       reader.readAsDataURL(file);
     }
   };
-
   const submitButton = async () => {
     try {
-      // Array of image data and types to upload
+    
       const imagesToUpload = [
-        { data: paddlesData?.front, name: `front/${Date.now()}`, type: 'image/png' },
-        { data: paddlesData?.back, name: `back/${Date.now()}`, type: 'image/png' },
-        { data: paddlesData?.cropedFront, name: `cropped-front/${Date.now()}`, type: 'image/png' },
-        { data: paddlesData?.cropedBack, name: `cropped-back/${Date.now()}`, type: 'image/png' },
+        { data: paddlesData?.front, name: `front/${Date.now()}`, type: 'image/png', key: 'front' },
+        { data: paddlesData?.back, name: `back/${Date.now()}`, type: 'image/png', key: 'back' },
+        { data: paddlesData?.cropedFront, name: `cropped-front/${Date.now()}`, type: 'image/png', key: 'croppedFront' },
+        { data: paddlesData?.cropedBack, name: `cropped-back/${Date.now()}`, type: 'image/png', key: 'croppedBack' },
+        { data: paddlesData?.preview, name: `preview/${Date.now()}`, type: 'image/png', key: 'preview' },
       ];
   
-      // Function to convert base64 to binary
       const convertBase64ToBinary = (base64String) => {
         const strippedBase64 = base64String.replace(/^data:image\/\w+;base64,/, "");
         const binaryString = atob(strippedBase64);
@@ -91,59 +99,74 @@ const CustomPaddlesEditor = ({ getProductData }) => {
         return binaryData;
       };
   
-      // Iterate over each image to upload
-      for (const { data, name, type } of imagesToUpload) {
+      const uploadResults = {}; // To store successful uploads as { key: url }
+      const failedUploads = []; // To track failed upload indices
+  
+      for (const [index, { data, name, type, key }] of imagesToUpload.entries()) {
         if (!data) {
           console.error(`No data found for ${name}`);
+          failedUploads.push(key);
           continue;
         }
   
-        // Request presigned URL
-        const response = await fetch('/api/imageUpload', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fileName: name,
-            fileType: type,
-          }),
-        });
+        try {
+          const response = await fetch('/api/imageUpload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fileName: name,
+              fileType: type,
+            }),
+          });
   
-        if (!response.ok) {
-          throw new Error(`Failed to get presigned URL for ${name}`);
+          if (!response.ok) {
+            throw new Error(`Failed to get presigned URL for ${name}`);
+          }
+  
+          const { uploadUrl } = await response.json();
+          const binaryData = convertBase64ToBinary(data);
+  
+          const uploadResponse = await fetch(uploadUrl, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': type,
+            },
+            body: binaryData,
+          });
+  
+          if (!uploadResponse.ok) {
+            throw new Error(`File upload failed for ${name}`);
+          }
+  
+          const fileUrl = uploadUrl.split('?')[0]; 
+          uploadResults[key] = fileUrl;
+  
+          console.log(`File uploaded successfully: ${name}`);
+          console.log('Uploaded file can be accessed at:', fileUrl);  
+     
+        } catch (uploadError) {
+          console.error(`Error uploading ${name}:`, uploadError);
+          failedUploads.push(key); // Track failed key
         }
-  
-        const { uploadUrl } = await response.json();
-  
-        // Convert image data to binary
-        const binaryData = convertBase64ToBinary(data);
-  
-        // Upload to S3
-        const uploadResponse = await fetch(uploadUrl, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': type,
-          },
-          body: binaryData, // Correct usage is `body` not `Body`
-        });
-  
-        if (!uploadResponse.ok) {
-          throw new Error(`File upload failed for ${name}`);
-        }
-  
-        console.log(`File uploaded successfully: ${name}`);
-        console.log('Uploaded file can be accessed at:', uploadUrl.split('?')[0]); // Removing query params for the public URL
       }
   
-      console.log('All files uploaded successfully!');
+      const allUploaded = failedUploads.length === 0;
+  
+      if (allUploaded) {
+        console.log('All files uploaded successfully!');
+      } else {
+        console.error('Some uploads failed:', failedUploads);
+      }
+  
+      return { allUploaded, uploadResults, failedUploads };
     } catch (error) {
-      console.error('Error uploading files:', error);
+      console.error('Error during the upload process:', error);
+      return { allUploaded: false, uploadResults: {}, failedUploads: [] };
     }
   };
   
   
-  useEffect(() => {
-    console.log(paddlesData);
-  }, [paddlesData]);
+
   const selectColors = [
     {
       heading: 'Edgeguard',
@@ -233,17 +256,9 @@ const CustomPaddlesEditor = ({ getProductData }) => {
   ];
   const closePopup = () => {
     setOpenModal(false);
+    onCapture();
   };
-  const onCapture = () => {
-    toPng(capture.current, { cacheBust: true })
-      .then((dataUrl) => {
-       console.log(dataUrl);
-       
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
   return (
     <div id="custom-paddle-builder" className="bg-[#FAF7EB]"> 
       <div className="both-sides flex gap-6 fixed top-0 left-0 z-[-1]" >
@@ -526,6 +541,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                 <AddToCartBuilder
                   product={getProductData}
                   productQuantity={1}
+                  submitButton={submitButton}
                   attributes={attributesArr}
                 />
               </div>
