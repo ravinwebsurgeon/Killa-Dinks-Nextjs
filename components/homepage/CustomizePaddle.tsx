@@ -33,7 +33,7 @@ const CustomizePaddle = () => {
   return (
     <div>
     <div className="perfect-paddle mt-[30px]">
-        <div className="text-center mt-4 mb-3 mx-4 md:mt-[70px] md:mb-12">
+        <div className="text-center mt-4 mb-8 flex flex-col gap-1 md:gap-0 mx-4 md:mt-[70px] md:mb-12">
             <div className=" text-[24px] md:text-[40px] font-medium text-black">
                 {designData ? designData[0]?.text :null}
             </div>
@@ -43,10 +43,10 @@ const CustomizePaddle = () => {
         </div>
 
         {/* Responsive flex container */}
-        <div className="flex flex-col mx-4 md:mx-[20px] xl:flex-row md:gap-8 justify-center items-center space-y-4 md:space-y-0 md:space-x-12">
+        <div className="flex flex-col mx-4 md:mx-[20px] xl:flex-row md:gap-8 justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
 
             {/* Image Section */}
-            <div className="flex-shrink-0 ">
+            <div className="flex-shrink-0  ">
               {designData[0]?.image &&   <img
                     src={urlFor(designData[0]?.image)?.width(800)?.url()}
                     alt="Paddle Design"

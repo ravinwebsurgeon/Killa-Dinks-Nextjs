@@ -168,7 +168,6 @@ const CustomPaddlesEditor = ({ getProductData }) => {
   
 
   useEffect(() => {
-    console.log(paddlesData);
   }, [paddlesData]);
   const selectColors = [
     {

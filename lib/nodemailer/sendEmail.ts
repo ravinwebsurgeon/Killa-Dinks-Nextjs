@@ -15,28 +15,7 @@ const sendEmail = async (
    subject: any, html: any, 
     // attachment: any
 ) => {
-//   if (attachment) {
-//     const mailOptions = {
-//       from: 'thefabcodeuser9@gmail.com',
-//       to: 'thefabcodeuser9@gmail.com',
-//       subject,
-//       html,
-//         attachments: [
-//           {
-//             path: attachment
-//           }
-//         ],
-//     };
 
-//     try {
-//         console.log(mailOptions)
-//       const info = await transporter.sendMail(mailOptions);
-//       return true;
-//     } catch (error) {
-//       return JSON.stringify(error);
-//     }
-//   } 
-//   else {
     const mailOptions = {
       from: 'killadinks735@gmail.com',
       to:'killadinks@gmail.com',

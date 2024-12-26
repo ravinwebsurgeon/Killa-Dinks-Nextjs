@@ -54,9 +54,7 @@ function CustomPaddlesImageEditor({
     });
   };
   const handleEditorProcess = async (imageState) => {      
-    return fileToDataURL(imageState.dest).then((dataURL) => {
-      console.log(dataURL);
-      
+    return fileToDataURL(imageState.dest).then((dataURL) => {      
       return dataURL;
     });
   };
