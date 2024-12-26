@@ -8,8 +8,6 @@ import FilterItemDropdown from 'components/layout/search/filter/dropdown';
 import Footerx from 'components/homepage/Footerx';
 
 export default async function SearchLayout({ children }: { children: React.ReactNode }) {
-  const sidemenu = await getMenu('sidebar-collections');
-  console.log(sidemenu);
   return (
     <div className="bg-[#faf7eb] pt-8 lg:pt-[47px]">
       <div className="mx-4 flex flex-col gap-4 pb-4 text-black sm:pt-[47px] md:mx-[20px] lg:flex-row xl:mx-[43px] xl:gap-8 dark:text-white">

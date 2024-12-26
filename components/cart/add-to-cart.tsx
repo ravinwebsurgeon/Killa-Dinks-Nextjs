@@ -69,8 +69,6 @@ export function AddToCart({ product,productQuantity,attributes, }: { product: Pr
   const { addCartItem } = useCart();
   const { state } = useProduct();
   const [message, formAction] = useActionState(addItem, null);
-
-  // console.log(product, 'add')
   
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every((option) => option.value === state[option.name.toLowerCase()])
@@ -79,11 +77,6 @@ export function AddToCart({ product,productQuantity,attributes, }: { product: Pr
   const selectedVariantId = variant?.id || defaultVariantId;
   
   const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity, attributes: attributes });
-  // const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity});
-  // console.log(product)
-
-  // console.log(selectedVariantId,productQuantity)
-  // console.log(attributes)
 
   const finalVariant = variants.find((variant) => variant.id === selectedVariantId)!;
   

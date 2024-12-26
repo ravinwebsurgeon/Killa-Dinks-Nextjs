@@ -119,20 +119,15 @@ const CustomPaddlesEditor = ({ getProductData }) => {
         if (!uploadResponse.ok) {
           throw new Error(`File upload failed for ${name}`);
         }
-  
-        console.log(`File uploaded successfully: ${name}`);
-        console.log('Uploaded file can be accessed at:', uploadUrl.split('?')[0]); // Removing query params for the public URL
       }
   
-      console.log('All files uploaded successfully!');
     } catch (error) {
-      console.error('Error uploading files:', error);
+       throw new Error('Erros Occurred while Uploading')
     }
   };
   
   
   useEffect(() => {
-    console.log(paddlesData);
   }, [paddlesData]);
   const selectColors = [
     {
