@@ -20,7 +20,6 @@ export default function Popup() {
         const result = await client.fetch(`*[_type == "popup"]`);
 
         if (result.length > 0) {
-          console.log(result[0]);
           setPopupData(result);
         }
       } catch (error) {

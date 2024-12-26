@@ -231,6 +231,25 @@ img {
 .shopbanner-card{
  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr))
 }
+@media (max-width:1670px){
+  .shopbanner-card{
+    display: none;
+  }
+  
+}
+
+@media (min-width:1670px){
+  .shopbanner-slider{
+    display: none;
+  }
+}
+
+
+@media (min-width:500px){
+  .shopbanner-slider .swiper-wrapper{
+    padding-left: 20px;
+  }
+}
 
 @media (max-width:1600px){
   /* .shopbanner-card{
@@ -412,7 +431,7 @@ img {
 .collection-cards {
   display: grid;
   
-  grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+  grid-template-columns: repeat(auto-fit, minmax(235px, 298px));
    /* adjust gap if needed */
   width: 100%; /* ensure it spans full width */
   box-sizing: border-box; /* this ensures padding/border is included in width */
@@ -642,4 +661,12 @@ color: #BBA887 !important;
 }
 .jdgm-paginate{
   border-top: 1px solid #BBA887 !important;
+}
+
+.shopbanner-slider .swiper-pagination{
+ bottom: 0px !important;
+ z-index: 70;
+}
+.shopbanner-slider .swiper-pagination-bullet-active{
+  background-color: #fff;
 }
