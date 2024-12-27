@@ -2,7 +2,7 @@
 import { AddToCartBuilder } from 'components/cart/add-to-cart';
 import { toPng } from 'html-to-image';
 
-import { useRef, useState } from 'react';
+// import { useRef, useState } from 'react';
 import { AddToCart } from 'components/cart/add-to-cart';
 import { useEffect, useRef, useState } from 'react';
 import CustomPaddleBottomSvg from './CustomPaddleBottomSvg';
@@ -16,7 +16,8 @@ const CustomPaddlesEditor = ({ getProductData }) => {
   const [uploadingImages, setUploadingImages] = useState(false);
   const [imagesError, setImagesError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [success,setSuccess] = useState(false)
+  const [success,setSuccess] = useState(false);
+  const [uploaded,setUploaded] = useState(false)
 
   const [paddlesData, setPaddlesData] = useState({
     type: 'fiberglass',
@@ -55,15 +56,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       : null,
     paddlesData?.bottomPiece && paddlesData?.type !== 'raw-carbon-fiber'
       ? { key: 'Bottom Piece', value: paddlesData.bottomPiece }
-<<<<<<< HEAD
       : null
-=======
-      : null,
-    paddlesData?.front ? { key: 'Front', value: paddlesData.front } : null,
-    paddlesData?.back ? { key: 'Back', value: paddlesData.back } : null,
-    paddlesData?.cropedFront ? { key: 'Cropped Front', value: paddlesData.cropedFront } : null,
-    paddlesData?.cropedBack ? { key: 'Cropped Back', value: paddlesData.cropedBack } : null
->>>>>>> 9ca97306 (image Loader added)
   ].filter((attr) => attr !== null); // Filter out null values
   const onCapture = () => {
     toPng(capture.current, { cacheBust: true })
@@ -75,7 +68,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
        
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
   const getImages = (e, field) => {
@@ -109,7 +102,9 @@ const CustomPaddlesEditor = ({ getProductData }) => {
     }
 
     try {
-    
+      setUploadingImages(true);
+      setImagesError(false);
+
       const imagesToUpload = [
         { data: paddlesData?.front, name: `front/${Date.now()}`, type: 'image/png', key: 'front' },
         { data: paddlesData?.back, name: `back/${Date.now()}`, type: 'image/png', key: 'back' },
@@ -131,14 +126,15 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       const uploadResults = {}; // To store successful uploads as { key: url }
       const failedUploads = []; // To track failed upload indices
   
+   
       for (const [index, { data, name, type, key }] of imagesToUpload.entries()) {
         if (!data) {
-          console.error(`No data found for ${name}`);
           failedUploads.push(key);
           continue;
         }
   
         try {
+         
           const response = await fetch('/api/imageUpload', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -170,11 +166,9 @@ const CustomPaddlesEditor = ({ getProductData }) => {
           const fileUrl = uploadUrl.split('?')[0]; 
           uploadResults[key] = fileUrl;
   
-          console.log(`File uploaded successfully: ${name}`);
-          console.log('Uploaded file can be accessed at:', fileUrl);  
-     
+         
+        
         } catch (uploadError) {
-          console.error(`Error uploading ${name}:`, uploadError);
           failedUploads.push(key); // Track failed key
         }
       }
@@ -182,14 +176,17 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       const allUploaded = failedUploads.length === 0;
   
       if (allUploaded) {
-        console.log('All files uploaded successfully!');
+        setUploadingImages(false);
       } else {
-        console.error('Some uploads failed:', failedUploads);
+        setUploadingImages(true)
+        setImagesError(true)
+        setErrorMessage('Uploading Failed! Please Try again ')
       }
-  
+
+
+
       return { allUploaded, uploadResults, failedUploads };
     } catch (error) {
-      console.error('Error during the upload process:', error);
       return { allUploaded: false, uploadResults: {}, failedUploads: [] };
     }
   };

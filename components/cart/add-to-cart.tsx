@@ -149,7 +149,7 @@ export function AddToCartBuilder({
     try {
       const submitImage = await submitButton();
 
-      if (submitImage.uploadResults) {
+      if (submitImage?.uploadResults) {
         attributes.push({key:'Front', value:submitImage.uploadResults.front});
         attributes.push({key:'Back', value:submitImage.uploadResults.back});
         attributes.push({key:'Cropped Back', value:submitImage.uploadResults.croppedBack});
@@ -158,13 +158,13 @@ export function AddToCartBuilder({
       }
 
 
-      if (submitImage.allUploaded) {
+      if (submitImage?.allUploaded) {
         startTransition(() => {
           addCartItem(finalVariant, product, productQuantity);
           formAction({ selectedVariantId, productQuantity, attributes });
         });
       } else {
-        console.error('Image upload failed. Failed indices:', submitImage.failedUploads);
+        console.error('Image upload failed. Failed indices:', submitImage?.failedUploads);
       }
     } catch (error) {
       console.error('Error during submit:', error);

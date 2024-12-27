@@ -15,6 +15,7 @@ export default function ProductGridItems({ products }: { products: Product[] }) 
             prefetch={true} 
           >*/}
             <ProductCard product={product}/>
+            
 
             {/* <GridTileImage
               alt={product.title}
