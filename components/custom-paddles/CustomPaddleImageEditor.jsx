@@ -170,7 +170,7 @@ function CustomPaddlesImageEditor({
 
       <label
         htmlFor={id}
-        className="absolute right-10 -top-10 sm:top-6 flex cursor-pointer items-center gap-1 rounded-full border border-black px-3 py-1 text-xs"
+        className="absolute right-10 -top-10 sm:top-6 sm:right-[35%] lg:right-10 lg:right-10 flex cursor-pointer items-center gap-1 rounded-full border border-black px-3 py-1 text-xs"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
