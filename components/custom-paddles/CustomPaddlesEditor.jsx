@@ -2,14 +2,23 @@
 import { AddToCartBuilder } from 'components/cart/add-to-cart';
 import { toPng } from 'html-to-image';
 
-import { useRef, useState } from 'react';
+// import { useRef, useState } from 'react';
+import { AddToCart } from 'components/cart/add-to-cart';
+import { useEffect, useRef, useState } from 'react';
 import CustomPaddleBottomSvg from './CustomPaddleBottomSvg';
 import CustomPaddleSvg from './CustomPaddleSvg';
 import CustomPaddlesEditorPopup from './CustomPaddlesEditorPopup';
+import UploadWithLoader from 'components/common/LoaderModal';
 const CustomPaddlesEditor = ({ getProductData }) => {
   const capture = useRef();
   const [selectedSide, setSelectedSide] = useState('front');
   const [openModal, setOpenModal] = useState(false);
+  const [uploadingImages, setUploadingImages] = useState(false);
+  const [imagesError, setImagesError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success,setSuccess] = useState(false);
+  const [uploaded,setUploaded] = useState(false)
+
   const [paddlesData, setPaddlesData] = useState({
     type: 'fiberglass',
     frontImage: '',
@@ -59,7 +68,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
        
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
   const getImages = (e, field) => {
@@ -79,8 +88,23 @@ const CustomPaddlesEditor = ({ getProductData }) => {
     }
   };
   const submitButton = async () => {
+    if (
+      !paddlesData.front ||
+      !paddlesData.back ||
+      !paddlesData?.cropedFront ||
+      !paddlesData?.cropedBack
+    ) {
+      
+      setUploadingImages(true);
+      setImagesError(true);
+      setErrorMessage('Please Upload the Both Images');
+      return;
+    }
+
     try {
-    
+      setUploadingImages(true);
+      setImagesError(false);
+
       const imagesToUpload = [
         { data: paddlesData?.front, name: `front/${Date.now()}`, type: 'image/png', key: 'front' },
         { data: paddlesData?.back, name: `back/${Date.now()}`, type: 'image/png', key: 'back' },
@@ -90,7 +114,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       ];
   
       const convertBase64ToBinary = (base64String) => {
-        const strippedBase64 = base64String.replace(/^data:image\/\w+;base64,/, "");
+        const strippedBase64 = base64String.replace(/^data:image\/\w+;base64,/, '');
         const binaryString = atob(strippedBase64);
         const binaryData = new Uint8Array(binaryString.length);
         for (let i = 0; i < binaryString.length; i++) {
@@ -102,14 +126,15 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       const uploadResults = {}; // To store successful uploads as { key: url }
       const failedUploads = []; // To track failed upload indices
   
+   
       for (const [index, { data, name, type, key }] of imagesToUpload.entries()) {
         if (!data) {
-          console.error(`No data found for ${name}`);
           failedUploads.push(key);
           continue;
         }
   
         try {
+         
           const response = await fetch('/api/imageUpload', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -141,11 +166,9 @@ const CustomPaddlesEditor = ({ getProductData }) => {
           const fileUrl = uploadUrl.split('?')[0]; 
           uploadResults[key] = fileUrl;
   
-          console.log(`File uploaded successfully: ${name}`);
-          console.log('Uploaded file can be accessed at:', fileUrl);  
-     
+         
+        
         } catch (uploadError) {
-          console.error(`Error uploading ${name}:`, uploadError);
           failedUploads.push(key); // Track failed key
         }
       }
@@ -153,20 +176,25 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       const allUploaded = failedUploads.length === 0;
   
       if (allUploaded) {
-        console.log('All files uploaded successfully!');
+        setUploadingImages(false);
       } else {
-        console.error('Some uploads failed:', failedUploads);
+        setUploadingImages(true)
+        setImagesError(true)
+        setErrorMessage('Uploading Failed! Please Try again ')
       }
-  
+
+
+
       return { allUploaded, uploadResults, failedUploads };
     } catch (error) {
-      console.error('Error during the upload process:', error);
       return { allUploaded: false, uploadResults: {}, failedUploads: [] };
     }
   };
   
   
 
+  useEffect(() => {
+  }, [paddlesData]);
   const selectColors = [
     {
       heading: 'Edgeguard',
@@ -313,6 +341,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
         </div>
         </div>
       </div>
+    {/* <div id="custom-paddle-builder" className="bg-[#FAF7EB]"> */}
       <div className="mx-4 flex max-w-[1440px] flex-col gap-6 py-10 md:mx-5 lg:flex-row xl:mx-auto xl:pl-[43px]">
         <div className="flex-1">
           <div className="sticky top-0 flex gap-4">
@@ -350,7 +379,6 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                 />
               </div>
             </div>
-
             <div className="main-gallery-images w-full">
               <div className="relative mx-auto w-full max-w-[400px] lg:max-w-full">
                 {selectedSide === 'front' && (
@@ -549,6 +577,13 @@ const CustomPaddlesEditor = ({ getProductData }) => {
           </div>
         </div>
       </div>
+      <UploadWithLoader
+        error={imagesError}
+        errorMessage={errorMessage}
+        uploadImages={uploadingImages}
+        setUploadingImages={setUploadingImages}
+        success={success}
+      />
     </div>
   );
 };

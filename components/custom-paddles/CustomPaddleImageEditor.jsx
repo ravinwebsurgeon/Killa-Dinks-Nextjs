@@ -54,8 +54,9 @@ function CustomPaddlesImageEditor({
     });
   };
   const handleEditorProcess = async (imageState) => {      
-    return fileToDataURL(imageState.dest).then((dataURL) => {
-      console.log(dataURL);
+    return fileToDataURL(imageState.dest).then((dataURL) => {      
+    // return fileToDataURL(imageState.dest).then((dataURL) => {
+    //   console.log(dataURL);
       
       return dataURL;
     });
@@ -104,9 +105,11 @@ function CustomPaddlesImageEditor({
       mimeType: 'image/png',
       postprocessImageData: (imageData) =>
         new Promise((resolve) => {
+          console.log(imageData);
+          
           const canvas = document.createElement('canvas');
-          canvas.width = imageData.width;
-          canvas.height = imageData.height;
+          canvas.width =  imageData.width;
+          canvas.height =  imageData.height;
           const ctx = canvas.getContext('2d');
           ctx.putImageData(imageData, 0, 0);
           const svgPath = new Path2D(
@@ -167,7 +170,7 @@ function CustomPaddlesImageEditor({
 
       <label
         htmlFor={id}
-        className="absolute right-10 -top-10 sm:top-6 flex cursor-pointer items-center gap-1 rounded-full border border-black px-3 py-1 text-xs"
+        className="absolute right-10 -top-10 sm:top-6 sm:right-[35%] lg:right-10 lg:right-10 flex cursor-pointer items-center gap-1 rounded-full border border-black px-3 py-1 text-xs"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

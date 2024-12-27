@@ -8,7 +8,6 @@ async function CollectionList() {
   // const collections = await getCollections();
   const collections = await getMenu('sidebar-collections');
   
-  
   return <FilterList  list={collections} title="Collections" />;
 }
 

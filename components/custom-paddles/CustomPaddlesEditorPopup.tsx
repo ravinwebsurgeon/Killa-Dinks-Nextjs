@@ -18,8 +18,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
 
     const file = e.target.files[0];
     if (e.target.files) {
-      console.log(file);
-
+      
       const reader = new FileReader();
       reader.onload = async () => {
         
@@ -51,7 +50,7 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
     }));
   };
   const getBothFrontImage = (e: any) => {
-    console.log(activeTab);
+
 
     setFormData((prev: any) => ({
       ...prev,
@@ -83,7 +82,6 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
     }
   }, [open]);
   useEffect(() => {
-    // console.log(formData, activeTab);
 
     if (formData?.cropedFront && formData?.front && activeTab === 'front' && reupload == '') {
       setActiveTab('back');

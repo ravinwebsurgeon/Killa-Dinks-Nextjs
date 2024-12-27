@@ -104,8 +104,6 @@ const Page = () => {
       //   emailBody // Pass the email body
       // );
       
-      // Form is valid, submit the data
-      // console.log('Form submitted', formData);
       const result = await sendEmail(
         // formData?.email, // Replace with your email address
         'New Contact Form Submission',

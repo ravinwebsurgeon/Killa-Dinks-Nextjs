@@ -72,18 +72,14 @@ export function AddToCart({
   const [message, formAction] = useActionState(addItem, null);
 
   // console.log(product, 'add')
-
+  
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every((option) => option.value === state[option.name.toLowerCase()])
   );
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
-
-  const actionWithVariant = formAction.bind(null, {
-    selectedVariantId: selectedVariantId,
-    productQuantity: productQuantity,
-    attributes: attributes
-  });
+  
+  const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity, attributes: attributes });
   // const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity});
   // console.log(product)
 
@@ -149,7 +145,7 @@ export function AddToCartBuilder({
     try {
       const submitImage = await submitButton();
 
-      if (submitImage.uploadResults) {
+      if (submitImage?.uploadResults) {
         attributes.push({key:'Front', value:submitImage.uploadResults.front});
         attributes.push({key:'Back', value:submitImage.uploadResults.back});
         attributes.push({key:'Cropped Back', value:submitImage.uploadResults.croppedBack});
@@ -158,13 +154,13 @@ export function AddToCartBuilder({
       }
 
 
-      if (submitImage.allUploaded) {
+      if (submitImage?.allUploaded) {
         startTransition(() => {
           addCartItem(finalVariant, product, productQuantity);
           formAction({ selectedVariantId, productQuantity, attributes });
         });
       } else {
-        console.error('Image upload failed. Failed indices:', submitImage.failedUploads);
+        console.error('Image upload failed. Failed indices:', submitImage?.failedUploads);
       }
     } catch (error) {
       console.error('Error during submit:', error);
