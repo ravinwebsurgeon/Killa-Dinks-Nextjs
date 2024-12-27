@@ -37,7 +37,7 @@ const UploadWithLoader = ({
             </div>
           )}
           {error ? (
-            <div className="text-xl text-[#BBA887]">{errorMessage}</div>
+            <div className="text-xl text-[#BBA887] text-center">{errorMessage}</div>
           ) : success ? (
             <div className="text-xl text-[#BBA887]">All images uploaded successfully!</div>
           ) : (
