@@ -72,18 +72,14 @@ export function AddToCart({
   const [message, formAction] = useActionState(addItem, null);
 
   // console.log(product, 'add')
-
+  
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every((option) => option.value === state[option.name.toLowerCase()])
   );
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
-
-  const actionWithVariant = formAction.bind(null, {
-    selectedVariantId: selectedVariantId,
-    productQuantity: productQuantity,
-    attributes: attributes
-  });
+  
+  const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity, attributes: attributes });
   // const actionWithVariant = formAction.bind(null,  {selectedVariantId:selectedVariantId,productQuantity:productQuantity});
   // console.log(product)
 

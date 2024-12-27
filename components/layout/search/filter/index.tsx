@@ -11,6 +11,7 @@ export type PathFilterItem = { title: string; path: string };
 
 
 function FilterItemList({ list }: { list: ListItem[] }) {
+  console.log(list, 'list');
   return (
     <>
       {list?.map((item: ListItem, i) => (

@@ -16,8 +16,12 @@ const CustomPaddlesEditor = ({ getProductData }) => {
   const [uploadingImages, setUploadingImages] = useState(false);
   const [imagesError, setImagesError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+<<<<<<< HEAD
   const [success,setSuccess] = useState(false);
   const [uploaded,setUploaded] = useState(false)
+=======
+  const [success,setSuccess] = useState(false)
+>>>>>>> ae3a788aeadd2c36a1747ea52962c7a48f664cc7
 
   const [paddlesData, setPaddlesData] = useState({
     type: 'fiberglass',
@@ -56,7 +60,15 @@ const CustomPaddlesEditor = ({ getProductData }) => {
       : null,
     paddlesData?.bottomPiece && paddlesData?.type !== 'raw-carbon-fiber'
       ? { key: 'Bottom Piece', value: paddlesData.bottomPiece }
+<<<<<<< HEAD
       : null
+=======
+      : null,
+    paddlesData?.front ? { key: 'Front', value: paddlesData.front } : null,
+    paddlesData?.back ? { key: 'Back', value: paddlesData.back } : null,
+    paddlesData?.cropedFront ? { key: 'Cropped Front', value: paddlesData.cropedFront } : null,
+    paddlesData?.cropedBack ? { key: 'Cropped Back', value: paddlesData.cropedBack } : null
+>>>>>>> ae3a788aeadd2c36a1747ea52962c7a48f664cc7
   ].filter((attr) => attr !== null); // Filter out null values
   const onCapture = () => {
     toPng(capture.current, { cacheBust: true })
@@ -379,7 +391,6 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                 />
               </div>
             </div>
-
             <div className="main-gallery-images w-full">
               <div className="relative mx-auto w-full max-w-[400px] lg:max-w-full">
                 {selectedSide === 'front' && (
@@ -566,8 +577,14 @@ const CustomPaddlesEditor = ({ getProductData }) => {
             </div>
             {/* <button className=' mt-5 flex w-full items-center justify-center rounded-lg  bg-[#BBA887]  hover:text-[#BBA887] hover:bg-white border border-[#BBA887] p-4 tracking-wide text-white' >Add to Cart</button> */}
             {getProductData && (
+<<<<<<< HEAD
               <div className="mt-5">
                 <AddToCartBuilder
+=======
+              <div className="mt-5" onClick={submitButton}>
+               
+                <AddToCart
+>>>>>>> ae3a788aeadd2c36a1747ea52962c7a48f664cc7
                   product={getProductData}
                   productQuantity={1}
                   submitButton={submitButton}
