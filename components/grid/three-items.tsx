@@ -17,8 +17,7 @@ function ThreeItemGridItem({
     >
       <a
         className="relative block aspect-square h-full w-full"
-        href={`/product/${item.handle}`}
-        prefetch={true}
+        href={`/product/${item.handle}`}        
       >
         <GridTileImage
           src={item.featuredImage.url}
