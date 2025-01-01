@@ -1,9 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-import React from 'react';
-import placeholder from '../../public/assets/product-placeholder.webp'
 import { useRouter } from 'next/navigation';
+import React from 'react';
+import placeholder from '../../public/assets/product-placeholder.webp';
 
 interface Product {
   title: string;
@@ -27,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       router.push(item);
   }
   return (
-    <Link  href={`/product/${product.handle}`}   className="w-full flex  min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
+    <a  href={`/product/${product.handle}`}   className="w-full flex  min-h-[436px] h-auto flex-col overflow-hidden border-[1px] border-[#BBA887] rounded-[20px] text-black bg-white    lg:mx-0">
       {/* Image Container with Hover Effect */}
       <div className="relative group  h-full max-h-[295px]  min-h-[295px] bg-[#FAF7EB]  rounded-t-[20px] flex justify-center items-center overflow-hidden transition-transform duration-500 ease-in-out">
         <img 
@@ -54,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           Choose Options
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 export default ProductCard

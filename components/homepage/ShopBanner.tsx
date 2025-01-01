@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const ShopBanner = ({ products }: any) => {
   const router = useRouter();
@@ -32,7 +31,7 @@ const ShopBanner = ({ products }: any) => {
                 products.map((item: any, index: any) => {
                   return (
                     <SwiperSlide key={index} className="w-full pb-[40px] max-w-[330px]">
-                      <Link href={`/product/${item.handle}`} className="w-full">
+                      <a href={`/product/${item.handle}`} className="w-full">
                         <div className="h-auto min-h-[336px] w-full min-w-[333px] flex-col overflow-hidden rounded-[20px] border-[1px] text-white lg:mx-0">
                           <div className="group flex h-full max-h-[302px] items-center justify-center overflow-hidden rounded-t-[20px] bg-[#FAF7EB] xl:h-[302px]">
                             <img
@@ -48,13 +47,13 @@ const ShopBanner = ({ products }: any) => {
                             </div>
                             <div
                               onClick={() => handleClick(item?.handle)}
-                              className="my-[10px] max-w-[200px] rounded-[20px] bg-white px-6 py-[6px] text-[16px] text-[#BBA887] sm:text-[18px]"
+                              className="my-[10px] max-w-[200px] rounded-[20px] bg-white pointer-events-none px-6 py-[6px] text-[16px] text-[#BBA887] sm:text-[18px]"
                             >
                               Choose Options
                             </div>
                           </div>
                         </div>
-                      </Link>
+                      </a>
                     </SwiperSlide>
                   );
                 })}
@@ -67,7 +66,7 @@ const ShopBanner = ({ products }: any) => {
             {products &&
               products.map((item: any, index: any) => {
                 return (
-                  <Link href={`/product/${item.handle}`} key={index} className="w-full">
+                  <a href={`/product/${item.handle}`} key={index} className="w-full">
                     <div className="h-auto min-h-[336px] w-full min-w-[333px] flex-col overflow-hidden rounded-[20px] border-[1px] text-white lg:mx-0">
                       <div className="group flex h-full max-h-[302px] items-center justify-center overflow-hidden rounded-t-[20px] bg-[#FAF7EB] xl:h-[302px]">
                         <img
@@ -83,13 +82,13 @@ const ShopBanner = ({ products }: any) => {
                         </div>
                         <div
                           onClick={() => handleClick(item?.handle)}
-                          className="my-[10px] max-w-[200px] rounded-[20px] bg-white px-6 py-[6px] text-[16px] text-[#BBA887] sm:text-[18px]"
+                          className="my-[10px] max-w-[200px] pointer-events-none rounded-[20px] bg-white px-6 py-[6px] text-[16px] text-[#BBA887] sm:text-[18px]"
                         >
                           Choose Options
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 );
               })}
           </div>

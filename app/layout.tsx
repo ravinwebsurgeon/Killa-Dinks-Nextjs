@@ -10,8 +10,8 @@ import { cookies } from 'next/headers';
 import Script from 'next/script';
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
-import './globals.css';
 import { ContextProvider } from './context/Context';
+import './globals.css';
 
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
@@ -46,7 +46,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart(cartId);
   const sidemenu = await getMenu('main-menu-1');
-
 
   return (
     <html lang="en" className={GeistSans.variable}>

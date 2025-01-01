@@ -1,16 +1,15 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper as SwiperClass } from 'swiper';
-import manImg from '../../public/assets/man.png';
 
 import StarRating from 'components/StarRatings';
-import client from '../../sanity/lib/client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import arrowImg1 from '../../public/assets/Arrow1.png';
 import arrowImg2 from '../../public/assets/Arrow2.png';
+import client from '../../sanity/lib/client';
 import { urlFor } from '../../sanity/lib/image';
 
-const Testimonials = ({sliderClass='',containerClass=''}:{ sliderClass:any,containerClass:any}) => {
+const Testimonials = ({sliderClass='',containerClass=''}:{ sliderClass?:any,containerClass?:any}) => {
   const swiperRef = useRef(null);
   const ourWorkRef = useRef<SwiperClass | any>(null);
 
