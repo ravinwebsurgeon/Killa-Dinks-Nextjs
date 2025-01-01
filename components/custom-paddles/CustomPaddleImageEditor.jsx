@@ -19,7 +19,7 @@ import {
   plugin_finetune_locale_en_gb,
   setPlugins
 } from '@pqina/pintura';
-import '@pqina/pintura/pintura.css';
+// import '@pqina/pintura/pintura.css';
 import { PinturaEditor } from '@pqina/react-pintura';
 import { useEffect, useRef, useState } from 'react';
 function CustomPaddlesImageEditor({
