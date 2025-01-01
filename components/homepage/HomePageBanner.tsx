@@ -3,7 +3,7 @@ import CartModal from 'components/cart/modal';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import logo from '../../public/assets/logo.png';
+// import logo from '../../public/assets/logo.png';
 import user from '../../public/assets/user.png';
 import client from '../../sanity/lib/client';
 import { urlFor } from '../../sanity/lib/image';
@@ -14,13 +14,30 @@ export default function HomePageBanner({ menu }: any) {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const drawerRef = useRef<any| null>(null); // Reference for the mobile drawer
   const drawerButtonRef = useRef<any | null>(null);
-  const [heroImage,setHeroImage] =useState(null)
+  const [heroImage,setHeroImage] =useState(null);
+  const [logo,setLogo] =useState(null)
 
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
   };
 
   const router = usePathname()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await client.fetch(`*[_type == "header"]`);
+        if (result?.length > 0) {
+         
+          setLogo(result[0]?.logo?.asset)
+        }
+      } catch (error) {
+        console.error('Error fetching :', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   const getbannerClass  = ()=>{
     if(router ==='/'  || router ==='/pages/ambassador'){
@@ -89,12 +106,16 @@ export default function HomePageBanner({ menu }: any) {
           <div className={`z-50 flex flex-col  h-full max-h-[800px] w-full rounded-[50px] `}>
             <div className={`  py-[13px] lg:flex  ${bannerClass}`}>
               <div className="mx-auto flex items-center justify-around lg:justify-center gap-[30px] text-white xl:w-full xl:max-w-[1440px] xl:justify-between xl:px-5">
-                <Link href={'/'}>
-                  <img
-                    src={logo.src}
-                    alt="Logo"
-                    className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
-                  />
+                <Link href={'/'} className="h-[40px]  opacity-100 lg:h-[63px] "
+ >
+                {
+                  logo? <img
+                  height={40}
+                  src={urlFor(logo)?.width(200)?.url()}
+                  className='object-cover w-full h-full'
+                  alt="Logo"
+                />:null
+                }
                 </Link>
                 <div className="lg:flex items-center hidden gap-[30px]  xl:text-[18px]">
                   {menu.map((item: any, index: any) => {
@@ -161,11 +182,13 @@ export default function HomePageBanner({ menu }: any) {
             <div className="flex flex-col gap-6 px-4 py-6 pt-8">
               <div className="mb-1 flex items-center justify-between">
               <div>
-                  <img
-                    src={logo.src}
-                    alt="Logo"
-                    className="h-[40px] w-[100px] opacity-100 lg:h-[63px] lg:w-[128px]"
-                  />
+              {
+                  logo? <img
+                  src={urlFor(logo)?.width(1200)?.url()}
+                  alt="Logo"
+                  className="h-[40px]  opacity-100 lg:h-[63px] "
+                />:null
+                }
                 </div>
                 <button onClick={toggleDrawer} className="text-4xl text-black">
                   &times; {/* Close icon */}

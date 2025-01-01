@@ -105,7 +105,6 @@ function CustomPaddlesImageEditor({
       mimeType: 'image/png',
       postprocessImageData: (imageData) =>
         new Promise((resolve) => {
-          console.log(imageData);
           
           const canvas = document.createElement('canvas');
           canvas.width =  imageData.width;

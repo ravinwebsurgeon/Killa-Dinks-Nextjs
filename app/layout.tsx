@@ -47,6 +47,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const cart = getCart(cartId);
   const sidemenu = await getMenu('main-menu-1');
 
+
   return (
     <html lang="en" className={GeistSans.variable}>
          <head>

@@ -83,8 +83,8 @@ const OurWork = () => {
           >
             {ouWorkData &&
               ouWorkData[0]?.images?.map((item: any, index: any) => (
-                <SwiperSlide key={index}>
-                  <div className="flex w-full max-w-[452px] flex-col overflow-hidden rounded-[20px] border-2">
+                <SwiperSlide className='' key={index}>
+                  <div className="flex w-full h-full lg:h-auto max-w-[452px] flex-col overflow-hidden rounded-[20px] border-2">
                     <div className="group  h-full lg:h-[429px] overflow-hidden">
                       <img
                         src={urlFor(item?.image)?.width(1200)?.url()}
