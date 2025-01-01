@@ -16,10 +16,10 @@ export default async function SearchPage(props: {
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
 
   const products = await getProducts({ sortKey, reverse, query: searchValue });
-  console.log(products,'hello')
+
   const filterIds = ['gid://shopify/Product/9910961406257', 'gid://shopify/Product/9904468689201', 'gid://shopify/Product/9226445848881']; // Replace with your actual IDs
   const filteredProducts = products.filter((product) => !filterIds.includes(product.id));
-  console.log(filteredProducts)
+
   const resultsText = products.length > 1 ? 'results' : 'result';
 
   return (
