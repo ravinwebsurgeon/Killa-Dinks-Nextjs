@@ -682,3 +682,9 @@ color: #BBA887 !important;
 .shopbanner-slider .swiper-pagination-bullet-active{
   background-color: #fff;
 }
+
+@media (min-width: 768px) and (max-width: 1200px){
+  .PinturaNavTools{
+    padding-top: 64px !important;
+  } 
+}
