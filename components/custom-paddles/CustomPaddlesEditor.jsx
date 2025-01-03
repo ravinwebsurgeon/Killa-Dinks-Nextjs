@@ -500,7 +500,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                   Fiber glass
                 </label>
                 <input
-                  onChange={() => setPaddlesData((prev) => ({ ...prev, type: 'fiberglass' }))}
+                  onClick={() => setPaddlesData((prev) => ({ ...prev, type: 'fiberglass' }))}
                   type="radio"
                   value="fiberglass"
                   id="fiberglass"
@@ -514,7 +514,7 @@ const CustomPaddlesEditor = ({ getProductData }) => {
                   Raw Carbon Fiber
                 </label>
                 <input
-                  onChange={() => setPaddlesData((prev) => ({ ...prev, type: 'raw-carbon-fiber' }))}
+                  onClick={() => setPaddlesData((prev) => ({ ...prev, type: 'raw-carbon-fiber' }))}
                   type="radio"
                   value="raw-carbon-fiber"
                   id="raw-carbon-fiber"
