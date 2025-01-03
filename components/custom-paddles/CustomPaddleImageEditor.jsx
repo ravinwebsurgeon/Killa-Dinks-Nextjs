@@ -1,10 +1,10 @@
 'use client';
 import {
-  colorStringToColorArray,
   createDefaultColorOptions,
   createDefaultImageOrienter,
   createDefaultImageReader,
   createDefaultImageScrambler,
+  createMarkupEditorToolStyles,
   getEditorDefaults,
   locale_en_gb,
   markup_editor_defaults,
@@ -37,7 +37,7 @@ function CustomPaddlesImageEditor({
   const editorRef = useRef(null);
   const [inlineResult, setInlineResult] = useState('');
   const [frameStyle, setFrameStyle] = useState('my-custom-frame');
-  
+
   setPlugins(plugin_crop, plugin_fill, plugin_annotate);
   useEffect(() => {
     if (getImage) {
@@ -53,11 +53,11 @@ function CustomPaddlesImageEditor({
       reader.readAsDataURL(file);
     });
   };
-  const handleEditorProcess = async (imageState) => {      
-    return fileToDataURL(imageState.dest).then((dataURL) => {      
-    // return fileToDataURL(imageState.dest).then((dataURL) => {
-    //   console.log(dataURL);
-      
+  const handleEditorProcess = async (imageState) => {
+    return fileToDataURL(imageState.dest).then((dataURL) => {
+      // return fileToDataURL(imageState.dest).then((dataURL) => {
+      //   console.log(dataURL);
+
       return dataURL;
     });
   };
@@ -105,22 +105,41 @@ function CustomPaddlesImageEditor({
       mimeType: 'image/png',
       postprocessImageData: (imageData) =>
         new Promise((resolve) => {
-          
           const canvas = document.createElement('canvas');
-          canvas.width =  imageData.width;
-          canvas.height =  imageData.height;
+          canvas.width = imageData.width;
+          canvas.height = imageData.height;
           const ctx = canvas.getContext('2d');
+          
+          // Draw the image data onto the canvas
           ctx.putImageData(imageData, 0, 0);
+          
+          // Define the SVG path
           const svgPath = new Path2D(
             'M250.98,1126.21h81.21v-8.15l3.45-254.07c0.15-7.02,0.59-14.13,1.32-21.11c2.29-22.03,8.12-43.42,17.34-63.57   c6.3-13.77,14.4-26.66,24.08-38.29c14.28-17.16,31.11-31.87,50.03-43.71c8.61-5.39,17.62-10.33,26.78-14.68   c69.98-32.78,115.22-103.89,115.25-181.17V201.09c-0.07-73.69-43.01-141.98-109.4-173.96c-26.38-12.71-55.8-19.45-85.09-19.5h-84.33   c-9.43,0.38-19.01,0.46-28.45,0.23c-14.42-0.34-29.05-0.54-43.5-0.6c-14.45-0.06-29.05,0.91-43.37,2.87   c-12.14,1.66-24.09,4.74-35.52,9.15c-0.01,0-0.02,0.01-0.03,0.01c-24.07,8.82-45.92,22.02-64.94,39.22   c-39.97,36.5-62.96,88.47-63.08,142.59l0,300.32c0.19,77.22,45.48,148.35,115.36,181.2c10.19,4.9,20.16,10.53,29.63,16.71   c9.48,6.2,18.61,13.13,27.12,20.6c18.23,16.21,32.76,35.61,43.18,57.67c12.61,26.85,19.38,56.71,19.6,86.37l3.36,254.07V1126.21z'
-          );  
+          );
+          
+          // Apply the mask (destination-in)
           ctx.globalCompositeOperation = 'destination-in';
           ctx.fillStyle = 'black';
           ctx.fill(svgPath);
-
-
+          
+          // Get the masked image data
           const maskedImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          resolve(maskedImageData);
+          
+          // Clear the canvas or create a new one
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.putImageData(maskedImageData, 0, 0);
+          
+          // Draw the stroke
+          ctx.globalCompositeOperation = 'source-over'; // Ensure normal drawing mode
+          ctx.strokeStyle = 'red'; // Stroke color
+          ctx.lineWidth = 10; // Stroke width
+          ctx.stroke(svgPath);
+          
+          // Resolve with the updated masked image data
+          const finalImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          resolve(finalImageData);
+          
         })
     },
     ...markup_editor_defaults,
@@ -150,12 +169,7 @@ function CustomPaddlesImageEditor({
           scrambleAmount: 2,
           blurAmount: 6
         })}
-        fillOptions={[
-          [0, 0, 0, 1],
-          [255, 255, 255, 1],
-          ...Object.values(createDefaultColorOptions()),
-          colorStringToColorArray('rgba(0, 0, 255, .5)')
-        ]}
+        fillOptions={[...Object.values(createDefaultColorOptions())]}
         willRenderCanvas={willRenderCanvas}
         markupEditorToolbar={[['text', 'text', { disabled: true }]]}
         imageCropAspectRatio={0.674}
@@ -165,11 +179,19 @@ function CustomPaddlesImageEditor({
         cropEnableZoomMatchImageAspectRatio={false}
         cropEnableRotateMatchImageAspectRatio={'always'}
         onProcess={handleEditorProcess}
+        markupEditorToolStyles={createMarkupEditorToolStyles({
+          text: {
+            fontSize: '10%',
+            color: createDefaultColorOptions().black,
+            textAlign: 'center',
+            fontFamily: 'Arial Black'
+          }
+        })}
       />
 
       <label
         htmlFor={id}
-        className="absolute right-10 -top-10 sm:top-6 sm:right-[35%] lg:right-10 lg:right-10 flex cursor-pointer items-center gap-1 rounded-full border border-black px-3 py-1 text-xs"
+        className="absolute -top-10 right-10 flex cursor-pointer items-center gap-1 rounded-full border border-black px-3 py-1 text-xs sm:right-[35%] sm:top-6 lg:right-10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -183,13 +205,15 @@ function CustomPaddlesImageEditor({
         Reupload image
         <input
           id={id}
-          onChange={(e) => {setReupload(id); getInputImages(e, field)}}
+          onChange={(e) => {
+            setReupload(id);
+            getInputImages(e, field);
+          }}
           type="file"
           accept="image/png, image/jpeg"
           className="hidden"
         />
       </label>
-
     </div>
   );
 }
