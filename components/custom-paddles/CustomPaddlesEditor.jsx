@@ -1,16 +1,15 @@
 'use client';
 import { AddToCartBuilder } from 'components/cart/add-to-cart';
 import { toPng } from 'html-to-image';
-
+import './pintura.css';
 // import { useRef, useState } from 'react';
-import { AddToCart } from 'components/cart/add-to-cart';
+import UploadWithLoader from 'components/common/LoaderModal';
+import restartIcon from 'public/assets/restart.png';
 import { useEffect, useRef, useState } from 'react';
+import ContactCreativeTeam from './ContactCreativeTeam';
 import CustomPaddleBottomSvg from './CustomPaddleBottomSvg';
 import CustomPaddleSvg from './CustomPaddleSvg';
 import CustomPaddlesEditorPopup from './CustomPaddlesEditorPopup';
-import UploadWithLoader from 'components/common/LoaderModal';
-import restartIcon from 'public/assets/restart.png';
-import ContactCreativeTeam from './ContactCreativeTeam';
 
 const CustomPaddlesEditor = ({ getProductData }) => {
   const capture = useRef();
