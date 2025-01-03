@@ -2,19 +2,19 @@
 import React, { useEffect, useState } from 'react';
 import sendEmail from 'lib/nodemailer/sendEmail';
 
-const Page = () => {
+const ContactCreativeTeam = () => {
   // State to hold form values and errors
   const [formData, setFormData] = useState({
-    name: '',
+    
     email: '',
-    phone: '',
+   
     comment: '',
   });
 
   const [errors, setErrors] = useState({
-    name: '',
+    
     email: '',
-    phone: '',
+  
     comment: '',
   });
 
@@ -39,17 +39,13 @@ const Page = () => {
   const validate = () => {
     let isValid = true;
     let newErrors = {
-      name: '',
+     
       email: '',
-      phone: '',
+     
       comment: '',
     };
 
-    // Name validation
-    if (!formData.name) {
-      newErrors.name = 'Name is required';
-      isValid = false;
-    }
+  
 
     // Email validation
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -60,16 +56,7 @@ const Page = () => {
       newErrors.email = 'Please enter a valid email';
       isValid = false;
     }
-
-    // Phone number validation
-    const phoneRegex = /^[0-9]{10}$/; // Example: requires a 10-digit phone number
-    if (!formData.phone) {
-      newErrors.phone = 'Phone number is required';
-      isValid = false;
-    } else if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = 'Please enter a valid phone number';
-      isValid = false;
-    }
+   
 
     // Comment validation
     if (!formData.comment) {
@@ -85,13 +72,12 @@ const Page = () => {
   // Handle form submission
   const handleSubmit = async(e: any) => {
     e.preventDefault();
+   
     if (validate()) {
       const emailBody = `
         <div>
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${formData.name}</p>
+          <h2>Form Submission for Killa Dinks Creative Team</h2>
           <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Phone Number:</strong> ${formData.phone}</p>
           <p><strong>Comment:</strong></p>
           <p>${formData.comment}</p>
         </div>
@@ -106,9 +92,10 @@ const Page = () => {
       
       const result = await sendEmail(
         // formData?.email, // Replace with your email address
-        'New Contact Form Submission',
+        'Form Submission for Killa Dinks Creative Team ',
         emailBody // Pass the email body
       );
+
       if (result === true) {
         // Success
         setFormStatus({
@@ -116,15 +103,13 @@ const Page = () => {
           type: 'success',
         });
         setFormData({
-          name: '',
+          
           email: '',
-          phone: '',
+          
           comment: '',
         });
-        setErrors({
-          name: '',
+        setErrors({        
           email: '',
-          phone: '',
           comment: '',
         });
       } else {
@@ -140,29 +125,16 @@ const Page = () => {
   
 
   return (
-    <div className="flex flex-col gap-4 bg-[#FAF7EB]">
-      <div className="mx-4 tracking-[1px] lg:mx-[20px] lg:pt-[47px] xl:mx-[43px]">
-        <div className="py-24 max-w-[1400px] w-full mx-auto flex flex-col justify-center lg:flex-row lg:justify-between text-center text-2xl font-[600] text-[#bba887] lg:text-5xl">
-          <div className="p-6 text-4xl xl:text-6xl">Contact Us</div>
+    <div className="flex flex-col gap-3 bg-[#FAF7EB]">
+      <div className=" tracking-[1px] ">
+        <div className=" w-full mx-auto flex flex-col justify-center lg:justify-between text-center text-2xl font-[600] text-[#bba887] lg:text-5xl">
 
-          <div className="flex max-w-[600px]  mx-auto lg:mx-0  w-full my-8">
+          <div className="flex   mx-auto lg:mx-0  w-full my-8">
             <form
-              className="text-xl text-black w-full font-[500] flex flex-col gap-4 md:gap-6 lg:gap-8 rounded-lg"
+              className="text-xl text-black w-full font-[500] flex flex-col gap-4  rounded-lg"
               onSubmit={handleSubmit}
             >
-              <div className="contact-form-input">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="placeholder:text-[#bba887]"
-                  placeholder="Name"
-                />
-                {errors.name && (
-                  <span className="text-red-500 text-sm">{errors.name}</span>
-                )}
-              </div>
+             
 
               <div className="contact-form-input">
                 <input
@@ -178,19 +150,7 @@ const Page = () => {
                 )}
               </div>
 
-              <div className="contact-form-input">
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="placeholder:text-[#bba887]"
-                  placeholder="Phone number"
-                />
-                {errors.phone && (
-                  <span className="text-red-500 text-sm">{errors.phone}</span>
-                )}
-              </div>
+             
 
               <div className="contact-form-input">
                 <textarea
@@ -207,14 +167,14 @@ const Page = () => {
               </div>
 
               <button
-                className="px-4 py-3 w-min text-[#bba887] hover:bg-[#bba887] hover:text-white bg-[white] hover:text-[#bba887] mx-auto rounded-lg"
+                className="px-4 py-3 w-min text-[#bba887] hover:bg-[#bba887] hover:text-white bg-[white] mx-auto rounded-lg"
                 type="submit"
               >
                 Send
               </button>
               {formStatus.message && (
             <div
-              className={`mt-4 text-center p-3 rounded-lg ${
+              className={` text-center p-1 rounded-lg ${
                 formStatus.type === 'success'
                   ? 'bg-green-100 text-green-800'
                   : 'bg-red-100 text-red-800'
@@ -233,4 +193,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default ContactCreativeTeam;

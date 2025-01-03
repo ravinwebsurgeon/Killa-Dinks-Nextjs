@@ -95,7 +95,11 @@ const CustomPaddlesEditorPopup = ({ open, closePopup, setFormData, formData }: a
     }
   }, [formData]);
   const getSide = () => {
-    if (formData?.front || formData?.back) {
+    if(activeTab == 'front' && formData?.front){
+      setLoading(true);
+      setSide(Math.random());
+    }
+    if(activeTab == 'back' && formData?.back){
       setLoading(true);
       setSide(Math.random());
     }

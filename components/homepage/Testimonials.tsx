@@ -21,7 +21,6 @@ const Testimonials = ({sliderClass='',containerClass=''}:{ sliderClass?:any,cont
       try {
         const result = await client.fetch(`*[_type == "testimonials"]`);
         if (result?.length > 0) {
-        
           setReviews(result[0].reviews)
           setTestimonial(result);
         }
@@ -118,12 +117,14 @@ const Testimonials = ({sliderClass='',containerClass=''}:{ sliderClass?:any,cont
                     <SwiperSlide className="w-full" key={index}>
                       <div className="flex min-h-[458px]  flex-col justify-between rounded-[20px] border-2">
                         <div className="relative">
-                          <div className="absolute top-[-67px] !h-[146px]  flex w-full justify-center">
+                          <div className="absolute testimonial-logo-container top-[-67px] !h-[146px]  flex w-full justify-center">
+                            <div className='imgx rounded-full testimonial-logo bg-[#BBA887] w-[100px] h-[100px] p-2 overflow-hidden flex border-[4px] border-white ' >
                             <img
                               src={urlFor(item?.image.asset)?.width(200).url() }
-                              alt=""
-                              className="imgx object-cover h-full bg-white transform border-[4px] border-white"
+                              alt={item?.image.alt}
+                              className=" object-contain h-full  transform "
                             />
+                            </div>
                           </div>
                           <div className="flex flex-col justify-center gap-[30px] pt-[113px]">
                             <div className="flex flex-col justify-center gap-[10px]">
