@@ -172,9 +172,13 @@ function CustomPaddlesImageEditor({
     }
   });
   editorDefaults.locale.annotateLabel = 'Text';
+
+  console.log(formData)
+
   return (
     <div className={` ${className || ''} left-0 h-full w-full`}>
-      <div className='absolute  bottom-4 right-4 z-[1]'>
+    { formData?.type !== 'raw-carbon-fiber'&&
+        <div className='absolute  bottom-4 right-4 z-[1]'>
         <label className='text-[#BBA887] text-sm font-medium uppercase block text-center mb-0.5'>Fill</label>
       <input
       className='w-[40px] h-[40px]'
@@ -185,6 +189,7 @@ function CustomPaddlesImageEditor({
         value={fillColorCode}
       />
       </div>
+    }
       <PinturaEditor
         {...editorDefaults}
         src={image}
@@ -209,7 +214,7 @@ function CustomPaddlesImageEditor({
           }  
       })}
         imageCropAspectRatio={0.674}
-        imageBackgroundColor={fillColor}
+        imageBackgroundColor={formData?.type === 'raw-carbon-fiber'? [0,0,0,1]:fillColor}
         zoomAdjustWheelFactor={5}
         stickersticktoimage={true}
         cropInteractionFocus="selection"
