@@ -187,11 +187,25 @@ img {
   border-radius: 20px;
   transition: transform 0.5s ease;
 }
+
+.testimonials .swiper-slide-active .testimonial-logo {
+  width: 122px;
+  height: 122px;
+}
+
+.testimonials .swiper-slide:not(.swiper-slide-active)  .testimonial-logo-container{
+
+  top: -48px;
+
+}
+
+
+
 .swiper-slide-active .testimonial-review-name{
       color: white;
 }
 
-@media (max-width:968px) {
+@media (max-width:1024px) {
   .testimonials .swiper-slide-active{
    scale: 1;
     color: white;
@@ -448,9 +462,6 @@ img {
 .ambassador-card{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,280px )) ;
-}
-.paddleMask{
-  
 }
 
 .contact-form-input{

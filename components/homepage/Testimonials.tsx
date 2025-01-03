@@ -117,12 +117,12 @@ const Testimonials = ({sliderClass='',containerClass=''}:{ sliderClass?:any,cont
                     <SwiperSlide className="w-full" key={index}>
                       <div className="flex min-h-[458px]  flex-col justify-between rounded-[20px] border-2">
                         <div className="relative">
-                          <div className="absolute top-[-67px] !h-[146px]  flex w-full justify-center">
-                            <div className='imgx rounded-full bg-white p-2 overflow-hidden flex border-[4px] border-white ' >
+                          <div className="absolute testimonial-logo-container top-[-67px] !h-[146px]  flex w-full justify-center">
+                            <div className='imgx rounded-full testimonial-logo bg-[#BBA887] w-[100px] h-[100px] p-2 overflow-hidden flex border-[4px] border-white ' >
                             <img
                               src={urlFor(item?.image.asset)?.width(200).url() }
                               alt={item?.image.alt}
-                              className=" object-cover h-full  transform "
+                              className=" object-contain h-full  transform "
                             />
                             </div>
                           </div>
