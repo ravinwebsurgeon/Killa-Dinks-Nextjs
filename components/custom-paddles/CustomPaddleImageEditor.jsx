@@ -216,14 +216,6 @@ function CustomPaddlesImageEditor({
         cropEnableZoomMatchImageAspectRatio={false}
         cropEnableRotateMatchImageAspectRatio={'always'}
         onProcess={handleEditorProcess}
-        markupEditorToolStyles={createMarkupEditorToolStyles({
-          text: {
-            fontSize: '10%',
-            color: createDefaultColorOptions().black,
-            textAlign: 'center',
-            fontFamily: 'Arial Black'
-          }
-        })}
       />
 
       <label
